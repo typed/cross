@@ -37,6 +37,7 @@
 *.suo
 *.idb
 *.log
+*.user
 .vs
 Debug
 Release
