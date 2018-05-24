@@ -1,3 +1,8 @@
+
+#工程名
+project(liblua)
+
+#源文件
 set(LUA_SRC
   lapi.c
   lauxlib.c
@@ -31,12 +36,7 @@ set(LUA_SRC
   print.c
 )
 
-add_library(lua STATIC
-  ${LUA_SRC}
-)
+#unicode字符集
+add_definitions(-DUNICODE -D_UNICODE)
 
-set_target_properties(lua
-    PROPERTIES
-    ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-    LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-)
+add_library(lua STATIC ${LUA_SRC})

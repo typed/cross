@@ -2,7 +2,7 @@
 cmake_minimum_required (VERSION 3.0)
 
 # 工程名
-project(all)
+project(cross)
 
 include_directories(${PROJECT_SOURCE_DIR}/)
 
@@ -16,4 +16,5 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libs)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
 add_subdirectory(tinyxml)
+add_subdirectory(lua)
 add_subdirectory(testcommon)
