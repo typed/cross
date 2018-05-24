@@ -39,5 +39,6 @@
 *.log
 *.user
 .vs
+build
 Debug
 Release
