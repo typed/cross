@@ -34,6 +34,7 @@
 *.db
 *.opendb
 *.pdb
+*.suo
 *.idb
 *.log
 .vs
