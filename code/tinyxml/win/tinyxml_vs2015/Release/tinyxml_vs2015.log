@@ -1,0 +1,5 @@
+﻿  tinystr.cpp
+  tinyxml.cpp
+  tinyxmlerror.cpp
+  tinyxmlparser.cpp
+  tinyxml_vs2015.vcxproj -> F:\my_proj2\cross\code\tinyxml\win\tinyxml_vs2015\\tinyxml_vs2015.lib
