@@ -4,14 +4,12 @@ cmake_minimum_required(VERSION 3.0)
 project(testcommon)
 
 #源文件
-set(testcommon_src
-    main.cpp
-)
+file(GLOB SOURCE "./*.cpp" "./*.h")
 
 #unicode字符集
 add_definitions(-DUNICODE -D_UNICODE)
 
-add_executable(testcommon ${testcommon_src})
+add_executable(testcommon ${SOURCE})
 
 target_link_libraries(testcommon
     libtinyxml
