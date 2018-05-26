@@ -15,6 +15,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libs)
 # 设置可执行文件目录，同样设成和库目录相同
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
-add_subdirectory(tinyxml)
-add_subdirectory(lua)
-add_subdirectory(testcommon)
+add_subdirectory(QuickLZ)
+add_subdirectory(TinyXml)
+add_subdirectory(Lua)
+add_subdirectory(TestCommon)

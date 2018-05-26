@@ -1,9 +1,9 @@
 
 #工程名
-project(liblua)
+project(libLua)
 
 #源文件
-set(LUA_SRC
+set(SOURCE
   lapi.c
   lauxlib.c
   lbaselib.c
@@ -39,4 +39,4 @@ set(LUA_SRC
 #unicode字符集
 add_definitions(-DUNICODE -D_UNICODE)
 
-add_library(lua STATIC ${LUA_SRC})
+add_library(libLua STATIC ${SOURCE})

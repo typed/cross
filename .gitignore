@@ -31,14 +31,6 @@
 *.out
 *.app
 
-*.db
-*.opendb
-*.pdb
-*.suo
-*.idb
-*.log
-*.user
+.vscode
 .vs
 build
-Debug
-Release

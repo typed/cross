@@ -1,12 +1,12 @@
 cmake_minimum_required(VERSION 3.0)
 
 #工程名
-project(libTinyXml)
+project(libPcre)
 
 #源文件
-file(GLOB SOURCE "./*.cpp" "./*.h")
+file(GLOB SOURCE "./*.c" "./*.h")
 
 #unicode字符集
 add_definitions(-DUNICODE -D_UNICODE)
 
-add_library(libTinyXml STATIC ${SOURCE})
+add_library(libPcre STATIC ${SOURCE})
