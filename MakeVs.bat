@@ -1,7 +1,7 @@
-rd /S /Q build
-mkdir build
-cd build
-mkdir windows
-cd windows
-cmake ../../code
+rd /S /Q Build
+mkdir Build
+cd Build
+mkdir Windows
+cd Windows
+cmake ../../Code
 cd ../../
