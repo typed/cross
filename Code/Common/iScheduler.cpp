@@ -60,7 +60,7 @@ class cScheduler :
 {
 public:
 
-	//<?> ´¦ÀístepTimeÓĞÎÊÌâ£¬Ó¦¸Ã²ÉÓÃstartTime£¬ÖØĞÂ¼ÓÈëÁĞ±íÅÅĞò
+	//<?> å¤„ç†stepTimeæœ‰é—®é¢˜ï¼Œåº”è¯¥é‡‡ç”¨startTimeï¼Œé‡æ–°åŠ å…¥åˆ—è¡¨æ’åº
 	void RunOnce()
 	{
 		TypeTime tmTimeCur = GetClock()->GetTimeCur();
@@ -74,7 +74,7 @@ public:
 			}
 			if (task.sortTime > tmTimeCur)
 				break;
-			//endTimeÎª0ÊÇÓÀ¾ÃÈÎÎñ
+			//endTimeä¸º0æ˜¯æ°¸ä¹…ä»»åŠ¡
 			m_param.id = task.id;
 			m_param.curTime = tmTimeCur;
 			m_param.startTime = task.startTime;

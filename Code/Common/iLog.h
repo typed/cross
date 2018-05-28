@@ -58,29 +58,29 @@ public:
 	virtual iLog& operator << (eLog_CoutColor lc) = 0;
 	virtual void operator << (eLog_State state) = 0;
 
-	//ÊÇ·ñÐèÒªÊä³öµ½¿ØÖÆÌ¨£¬Ä¬ÈÏÎªfalse
+	//æ˜¯å¦éœ€è¦è¾“å‡ºåˆ°æŽ§åˆ¶å°ï¼Œé»˜è®¤ä¸ºfalse
 	virtual void SetCout(bool bCout) = 0;
 	virtual bool IsCout() const = 0;
 
-	//ÊÇ·ñÐèÒªÐ´´ÅÅÌ£¬Ä¬ÈÏÎªtrue
+	//æ˜¯å¦éœ€è¦å†™ç£ç›˜ï¼Œé»˜è®¤ä¸ºtrue
 	virtual void SetOutputFile(bool bOF) = 0;
 	virtual bool IsOutputFile() const = 0;
 
 };
 
-//´´½¨ÓëÏú»Ùµ¥¶ÀÈÕÖ¾
+//åˆ›å»ºä¸Žé”€æ¯å•ç‹¬æ—¥å¿—
 //COMMON_API iLog* CreateALog();
 //COMMON_API void DestroyALog(iLog*);
 
-//Ö±½Ó²éÕÒÈÕÖ¾£¬Èç¹ûÃ»ÓÐ¾Í·µ»Ø0
+//ç›´æŽ¥æŸ¥æ‰¾æ—¥å¿—ï¼Œå¦‚æžœæ²¡æœ‰å°±è¿”å›ž0
 COMMON_API iLog* FindLog(cpstr sName);
 
-//²éÕÒÈÕÖ¾£¬Èç¹ûÃ»ÓÐ¾Í´´½¨Ò»¸öÐÂµÄÈÕÖ¾
+//æŸ¥æ‰¾æ—¥å¿—ï¼Œå¦‚æžœæ²¡æœ‰å°±åˆ›å»ºä¸€ä¸ªæ–°çš„æ—¥å¿—
 COMMON_API iLog* GetLog(cpstr sName);
 
 COMMON_API void InitLog(bool bCloseAllLog = false);
 
-//ÏêÏ¸ÈÕÖ¾
+//è¯¦ç»†æ—¥å¿—
 COMMON_API iLog& LogOut(iLog* log, iLog::eLog_Type type);
 
 }

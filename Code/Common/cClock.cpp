@@ -21,8 +21,8 @@ TypeTime GetCurTime()
 	return GetClock()->GetTimeCur();//GetCurTimeReal();
 }
 
-//Ê±ÖÓ
-//³õÊ¼Ê±¼ä
+//æ—¶é’Ÿ
+//åˆå§‹æ—¶é—´
 cClock::cClock()
 {
 	m_tmRealTimeInit = _GetCurTime();
@@ -62,7 +62,7 @@ TypeTime cClock::GetCurTimeReal()
 
 void cClock::UpdateOnce()
 {
-	//ÕæÊµÊ±¼ä
+	//çœŸå®æ—¶é—´
 	m_tmRealTimeCur = _GetCurTime();
 	if (m_tmRealTimeLast == 0)
 		m_tmRealTimeLast = m_tmRealTimeCur;
@@ -82,7 +82,7 @@ void cClock::UpdateOnce()
 	//	m_dSmoothSum -= m_dSmoothPreframe;
 	//	if (m_dSmoothSum < 0.0)
 	//		m_dSmoothSum = 0.0;
-	//	//ĞéÄâÂß¼­Ê±¼ä
+	//	//è™šæ‹Ÿé€»è¾‘æ—¶é—´
 	//	m_tmVirtalTimeEslasped = m_dSmoothPreframe * m_dSpeed + 0.5;
 	//}
 	//else
@@ -254,7 +254,7 @@ string cDate::GetTimeStringEx(bool b24)
 
 string cDate::GetHourMinuteString(bool b24)
 {
-	//ÏÔÊ¾¸ñÊ½£ºxx:xx(Ê±:·Ö),²»ÏÔÊ¾Ãë
+	//æ˜¾ç¤ºæ ¼å¼ï¼šxx:xx(æ—¶:åˆ†),ä¸æ˜¾ç¤ºç§’
 	if (b24) {
 		i32 nHour = (m_hour == 0) ? 24 : m_hour;
 		return CrossString::Format("%02d:%02d", nHour, m_minute);

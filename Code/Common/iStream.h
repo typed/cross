@@ -9,7 +9,7 @@
 #include <string>
 #include <fstream>
 
-//²»ÊÇÏß³Ì°²È«µÄ
+//ä¸æ˜¯çº¿ç¨‹å®‰å…¨çš„
 
 namespace cm
 {
@@ -58,7 +58,7 @@ public:
 		m_bOk = true;
 	}
 
-	//Êä³ö
+	//è¾“å‡º
 	cOStream& operator << (const bool& n) {
 		WriteData(&n, sizeof(n));
 		return *this;
@@ -339,7 +339,7 @@ public:
 		m_bSelf = true;
 	}
 
-	//ÊäÈë
+	//è¾“å…¥
 	cIStream& operator >> (bool& n) {
 		ReadData(&n, sizeof(n));
 		return *this;

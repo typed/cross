@@ -1,10 +1,9 @@
 #include "../inc/CrossString.h"
 #include "pcre/pcre.h"
-#include "md5.h"
-#include "aes.h"
+#include "Md5/md5.h"
 #include <map>
 
-//°üº¬ÎÄ¼ş°æ±¾Çø·Ö
+//åŒ…å«æ–‡ä»¶ç‰ˆæœ¬åŒºåˆ†
 #if (defined(WIN32) || defined(_WIN32) || defined (WINDOWS) || defined (_WINDOWS))
 #	include <windows.h>
 #	if defined(_MSC_VER)
@@ -149,7 +148,7 @@ namespace cm
 		return src;
 #endif
 	}
-	//UTF8×ªWString
+	//UTF8è½¬WString
 	std::wstring CrossString::UTF8ToWString(const std::string& utf8) {
 #if (defined(WIN32) || defined(_WIN32))
 		int len = utf8.length();
@@ -169,7 +168,7 @@ namespace cm
 		return wstr;
 #endif
 	}
-	//WString×ªUTF8
+	//WStringè½¬UTF8
 	std::string CrossString::WStringToUTF8(const std::wstring& wstr) {
 #if (defined(WIN32) || defined(_WIN32))
 		int len = wstr.length();
@@ -268,7 +267,7 @@ namespace cm
 		else
 			return 0;
 	}
-	//×Ö·û16½øÖÆ×ªbinary
+	//å­—ç¬¦16è¿›åˆ¶è½¬binary
 	std::string CrossString::StringToBinary(std::string s) {
 		std::string aBuf;
 		if (s.length() < 2 || s.length() % 2 != 0)
@@ -309,20 +308,20 @@ namespace cm
 		*p = 0;
 		return &s.front();
 	}
-	//ÊÇ·ñÊÇÕûĞÎ °üÀ¨¸ºÊı add by yfw
-	//describe:Ñ­»·¼ì²âÃ¿¸ö×Ö·ûÊÇ·ñÎªÊı×Ö£¬µÚÒ»Î»»¹¿ÉÒÔ°üÀ¨'+' or '-'£»Ö»ÒªÓĞÒ»¸ö²»Âú×ã£¬ÔòÖ±½Ó·µ»Øfalse
+	//æ˜¯å¦æ˜¯æ•´å½¢ åŒ…æ‹¬è´Ÿæ•° add by yfw
+	//describe:å¾ªç¯æ£€æµ‹æ¯ä¸ªå­—ç¬¦æ˜¯å¦ä¸ºæ•°å­—ï¼Œç¬¬ä¸€ä½è¿˜å¯ä»¥åŒ…æ‹¬'+' or '-'ï¼›åªè¦æœ‰ä¸€ä¸ªä¸æ»¡è¶³ï¼Œåˆ™ç›´æ¥è¿”å›false
 	bool CrossString::IsInt(std::string s)
 	{
-		if (s.length() == 0)	//Èç¹ûµ±Ç°×Ö·û´®Îª¿Õ£¬ÔİÊ±Ò²ÅĞ¶ÏÎªÆä²»ÊÇÊı×Ö
+		if (s.length() == 0)	//å¦‚æœå½“å‰å­—ç¬¦ä¸²ä¸ºç©ºï¼Œæš‚æ—¶ä¹Ÿåˆ¤æ–­ä¸ºå…¶ä¸æ˜¯æ•°å­—
 			return false;
 		const ui32 cnIni = 0;
 		const i8 csAdd = '+';
 		const i8 csSub = '-';
 		for (ui32 i = 0; i < s.length(); i++) {
 			i8 c = s[i];
-			//Èç¹ûÊÇ·ÇÊı×Ö×Ö·û
+			//å¦‚æœæ˜¯éæ•°å­—å­—ç¬¦
 			if ( c < '0' || c > '9' ) {
-				//µÚÒ»Î»×Ö·ûĞèÒªÅĞ¶ÏÊÇ·ñÎª'+' or '-'×Ö·û£»ÆäËüµÄÖ»Òª²»ÊÇÊı×Ö£¬ÔòÖ±½Ó·µ»Øfalse
+				//ç¬¬ä¸€ä½å­—ç¬¦éœ€è¦åˆ¤æ–­æ˜¯å¦ä¸º'+' or '-'å­—ç¬¦ï¼›å…¶å®ƒçš„åªè¦ä¸æ˜¯æ•°å­—ï¼Œåˆ™ç›´æ¥è¿”å›false
 				if ( cnIni != i || ( csAdd != c && csSub != c ) )
 					return false;
 			}
@@ -382,7 +381,7 @@ namespace cm
 			offend = (i32)sIn.find(sign, off);
 			if (offend == -1)
 				break;
-			//Èç¹ûµ±Ç°ÕÒµ½µÄ¶Î£¬
+			//å¦‚æœå½“å‰æ‰¾åˆ°çš„æ®µï¼Œ
 			if (!secSignStart.empty() && !secSignEnd.empty()) {
 				i32 offset = -1;
 				i32 SecOffStart = (i32)sIn.find(secSignStart, off);
@@ -444,8 +443,8 @@ namespace cm
 		return str.substr(pos1, pos2+1-pos1);
 	}
 
-	//add by yfw ³¬¼¶ÎÄ±¾¿ò coord µÄ¸ñÊ½¹¹½¨
-	//<coord µØÍ¼Ãû NPCÕæÊµÃû×Ö ÈÎÎñÃû>NPCÏÔÊ¾Ãû×Ö</coord> or <coord µØÍ¼Ãû>ÏÔÊ¾ÎÄ±¾</coord>
+	//add by yfw è¶…çº§æ–‡æœ¬æ¡† coord çš„æ ¼å¼æ„å»º
+	//<coord åœ°å›¾å NPCçœŸå®åå­— ä»»åŠ¡å>NPCæ˜¾ç¤ºåå­—</coord> or <coord åœ°å›¾å>æ˜¾ç¤ºæ–‡æœ¬</coord>
 	std::string CrossString::StringFormatCoord(cpstr szContent, i32 nX, i32 nY, cpstr szMapName, cpstr szRealName, cpstr szTaskName)
 	{
 		if (szContent || !szMapName)
@@ -464,7 +463,7 @@ namespace cm
 		}
 		return "";
 	}
-	//<coord X Y µØÍ¼Ãû NPCÕæÊµÃû×Ö ÈÎÎñÃû>NPCÏÔÊ¾Ãû×Ö</coord> or <coord X Y µØÍ¼Ãû>ÏÔÊ¾ÎÄ±¾</coord>
+	//<coord X Y åœ°å›¾å NPCçœŸå®åå­— ä»»åŠ¡å>NPCæ˜¾ç¤ºåå­—</coord> or <coord X Y åœ°å›¾å>æ˜¾ç¤ºæ–‡æœ¬</coord>
 	std::string CrossString::StringFormatCoord(cpstr szContent, cpstr szMapName, cpstr szRealName, cpstr szTaskName)
 	{
 		if (!szContent || !szMapName)
@@ -485,8 +484,8 @@ namespace cm
 		return "";
 	}
 
-	//µÃµ½sz ÖĞ Coord¸ñÊ½ÖĞµÄnIndex¶Î£»
-	//ÏŞÖÆ£¬Ö»ÄÜ»ñµÃszÖĞµÚÒ»¸ö<coord ¡£¡£¡£>¡£¡£</coord>¸ñÊ½£¬Ö®ºóµÄ½«±»ºöÂÔ
+	//å¾—åˆ°sz ä¸­ Coordæ ¼å¼ä¸­çš„nIndexæ®µï¼›
+	//é™åˆ¶ï¼Œåªèƒ½è·å¾—szä¸­ç¬¬ä¸€ä¸ª<coord ã€‚ã€‚ã€‚>ã€‚ã€‚</coord>æ ¼å¼ï¼Œä¹‹åçš„å°†è¢«å¿½ç•¥
 	std::string CrossString::GetParamCoord(cpstr sz, i32 nIndex)
 	{
 		std::string strResult;
@@ -501,7 +500,7 @@ namespace cm
 			i32 npos1=0, npos2=0;
 			if (nStart>=0 && nEnd>=nStart)
 			{
-				//µÃµ½µÚnIndex¶ÎµÄ×ó·Ö¶Î·ûÎ»ÖÃ
+				//å¾—åˆ°ç¬¬nIndexæ®µçš„å·¦åˆ†æ®µç¬¦ä½ç½®
 				npos1 = nStart;
 				i32 n = 0;
 				while (n < nIndex+1)
@@ -509,7 +508,7 @@ namespace cm
 					npos1 = (i32)strTemp.find_first_of(" ",npos1+1);
 					n++;
 
-					if (npos1 >= nEnd || (i32)(std::string::npos) == npos1)		//Ô½½çÁË
+					if (npos1 >= nEnd || (i32)(std::string::npos) == npos1)		//è¶Šç•Œäº†
 						return strResult;
 				}
 
@@ -532,9 +531,9 @@ namespace cm
 		return strResult;
 	}
 
-	//bBefor = trueÈ¡µÃ <coord ¡£¡£¡£>¡£¡£</coord>¸ñÊ½ µÄÇ°¶Ë×Ö·û£»¼´ÔÚ<coordÇ°ÃæµÄ×Ö·û
-	//bAfter = trueÈ¡µÃ <coord ¡£¡£¡£>¡£¡£</coord>¸ñÊ½ µÄºó¶Ë×Ö·û£»¼´ÔÚ</coord>ºóÃæµÄ×Ö·û
-	//bBefor = false ÇÒbAfter= false È¡µÃÏÔÊ¾×Ö·û
+	//bBefor = trueå–å¾— <coord ã€‚ã€‚ã€‚>ã€‚ã€‚</coord>æ ¼å¼ çš„å‰ç«¯å­—ç¬¦ï¼›å³åœ¨<coordå‰é¢çš„å­—ç¬¦
+	//bAfter = trueå–å¾— <coord ã€‚ã€‚ã€‚>ã€‚ã€‚</coord>æ ¼å¼ çš„åç«¯å­—ç¬¦ï¼›å³åœ¨</coord>åé¢çš„å­—ç¬¦
+	//bBefor = false ä¸”bAfter= false å–å¾—æ˜¾ç¤ºå­—ç¬¦
 	std::string CrossString::GetContentCoord(cpstr sz, bool bBefor, bool bAfter)
 	{
 		std::string strResult;
@@ -543,7 +542,7 @@ namespace cm
 
 		std::string strTemp = sz;
 
-		//Ç°¶Ë×Ö·û´®
+		//å‰ç«¯å­—ç¬¦ä¸²
 		if (bBefor)
 		{
 			i32 npos = (i32)strTemp.find("<coord");
@@ -553,7 +552,7 @@ namespace cm
 				strResult = strTemp.substr(0, npos);
 			}
 		}
-		//ºó¶Ë×Ö·û´®
+		//åç«¯å­—ç¬¦ä¸²
 		else if (bAfter)
 		{
 			i32 npos = (i32)strTemp.find("</coord>");
@@ -563,7 +562,7 @@ namespace cm
 				strResult = strTemp.substr(npos+8);
 			}
 		}
-		//ÏÔÊ¾×Ö·û
+		//æ˜¾ç¤ºå­—ç¬¦
 		else
 		{
 			i32 npos = (i32)strTemp.find("<coord");
@@ -639,9 +638,9 @@ namespace cm
 
 	static std::string Base64_Encode(const unsigned char* Data, int DataByte)
 	{
-		//±àÂë±í
+		//ç¼–ç è¡¨
 		const char EncodeTable[]="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-		//·µ»ØÖµ
+		//è¿”å›å€¼
 		string strEncode;
 		unsigned char Tmp[4]={0};
 		int LineLength=0;
@@ -656,7 +655,7 @@ namespace cm
 			strEncode+= EncodeTable[Tmp[3] & 0x3F];
 			if(LineLength+=4,LineLength==76) {strEncode+="\r\n";LineLength=0;}
 		}
-		//¶ÔÊ£ÓàÊı¾İ½øĞĞ±àÂë
+		//å¯¹å‰©ä½™æ•°æ®è¿›è¡Œç¼–ç 
 		int Mod=DataByte % 3;
 		if(Mod==1)
 		{
@@ -680,7 +679,7 @@ namespace cm
 
 	static std::string Base64_Decode(const char* Data, int DataByte, int& OutByte)
 	{
-		//½âÂë±í
+		//è§£ç è¡¨
 		const char DecodeTable[] =
 		{
 			0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -696,7 +695,7 @@ namespace cm
 			26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
 			39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, // 'a'-'z'
 		};
-		//·µ»ØÖµ
+		//è¿”å›å€¼
 		string strDecode;
 		int nValue;
 		int i= 0;
@@ -722,7 +721,7 @@ namespace cm
 				}
 				i += 4;
 			}
-			else// »Ø³µ»»ĞĞ,Ìø¹ı
+			else// å›è½¦æ¢è¡Œ,è·³è¿‡
 			{
 				Data++;
 				i++;
@@ -731,52 +730,14 @@ namespace cm
 		return strDecode;
 	}
 
-	std::string CrossString::EncryptAES(const std::string& sz, const std::string& key, const std::string& iv)
+	std::string CrossString::EncryptAES(const std::string& sz, const std::string& key)
 	{
-		AES_KEY aes;
-		std::string ret;
-		ret.resize(sz.size());
-		int rs = AES_set_encrypt_key1((ui8*)key.data(), 128, &aes);
-		if (rs < 0)
-			return "";
-		AES_cbc_encrypt1((ui8*)sz.data(), (ui8*)ret.data(), ret.size(), &aes, (ui8*)iv.data(), AES_ENCRYPT);
-		return Base64_Encode((unsigned char*)ret.data(), ret.length());
+        return "";
 	}
 
-	std::string CrossString::DecryptAES(const std::string& sz, const std::string& key, const std::string& iv)
+	std::string CrossString::DecryptAES(const std::string& sz, const std::string& key)
 	{
-		AES_KEY aes;
-		int out_len = 0;
-		std::string in = Base64_Decode(sz.data(), sz.size(), out_len);
-		std::string ret;
-		ret.resize(out_len);
-		int rs = AES_set_decrypt_key1((ui8*)key.data(), 128, &aes);
-		if (rs < 0)
-			return "";
-		AES_cbc_encrypt1((ui8*)in.data(), (ui8*)ret.data(), ret.size(), &aes, (ui8*)iv.data(), AES_DECRYPT);
-		return ret;
-	}
-
-	std::string CrossString::MyEncrypt(std::string src)
-	{
-		std::string key = "66b178cd96685385e019e313be5d9bb8";
-		std::string result = Base64_Encode((unsigned char*)src.c_str(), strlen(src.c_str()));
-		return ToMD5(result + key) + result;
-	}
-
-	std::string CrossString::MyDecrypt(std::string src)
-	{
-		std::string key = "66b178cd96685385e019e313be5d9bb8";
-		if(src.length() < 32)
-			return "0";
-		std::string str_md5 = src.substr(0,32);
-		std::string str_data = src.substr(32,src.length() - 32);
-		//printf("md5=%s",str_md5);
-		if(str_md5 != ToMD5(str_data + key) )
-			return "0";
-		int out_len = 0;
-		std::string in = Base64_Decode(str_data.data(), str_data.size(), out_len);
-		return in;
+        return "";
 	}
 
 }

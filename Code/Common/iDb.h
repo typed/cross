@@ -1,7 +1,7 @@
 #ifndef idb_h
 #define idb_h
 
-//·ÇÏß³Ì°²È«
+//éçº¿ç¨‹å®‰å…¨
 
 #include "CommonDef.h"
 #include "CrossMemory.h"
@@ -83,7 +83,7 @@ public:
 	virtual void Backup2(std::string) {}
 	virtual void Backup2Process(b8 bTrace, i32 pages) {}
 
-	//kvÊı¾İ
+	//kvæ•°æ®
 	virtual bool Set(std::string vKey, std::string vValue) {return false;}
 	virtual bool SetSync(std::string vKey, std::string vValue) {return Set(vKey, vValue);}
 	virtual bool Get(std::string vKey, std::string& vValue) {return false;}

@@ -48,7 +48,7 @@ public:
 
 	bool Release() {
 		if (m_nRef <= 0) {
-			//´íÎó£¡0ÒýÓÃÊÍ·Å£¡
+			//é”™è¯¯ï¼0å¼•ç”¨é‡Šæ”¾ï¼
 			RefError();
 			return false;
 		}

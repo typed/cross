@@ -1,10 +1,10 @@
-//³ÌĞòÃû³Æ£ºCross.h
-//¹¦ÄÜÃèÊö£º¿çÆ½Ì¨ÖĞ¼ä¼ş
-//¿ª·¢ÈË£º	¹¨Ïş½£
-//¿ª·¢Ê±¼ä£º2012-11-9
-//ĞŞ¸ÄÕß£º
-//ĞŞ¸ÄÊ±¼ä£º
-//ĞŞ¸ÄËµÃ÷£º
+//ç¨‹åºåç§°ï¼šCross.h
+//åŠŸèƒ½æè¿°ï¼šè·¨å¹³å°ä¸­é—´ä»¶
+//å¼€å‘äººï¼š	é¾šæ™“å‰‘
+//å¼€å‘æ—¶é—´ï¼š2012-11-9
+//ä¿®æ”¹è€…ï¼š
+//ä¿®æ”¹æ—¶é—´ï¼š
+//ä¿®æ”¹è¯´æ˜ï¼š
 
 #ifndef crossfileop_h
 #define crossfileop_h
@@ -34,18 +34,18 @@ struct stFileFindParam
 		bIgnoreHidden(IgnoreHid),
         sFolder(sfolder),
         sFindText(sfindtext){}
-	bool bTree;					//ÊÇ·ñ²é×ÓÄ¿Â¼
-	bool bUseFullPath;			//Ê¹ÓÃ¾ø¶ÔÂ·¾¶
-	bool bFloder;				//ÊÇ·ñ°üº¬Ä¿Â¼
-	bool bIgnoreHidden;			//ÊÇ·ñºöÂÔÒş²ØÄ¿Â¼»òÎÄ¼ş
-    std::string sFolder;		//²éÕÒµÄÄ¿Â¼
-    std::string sFindText;		//²éÕÒÎÄ¼ş
+	bool bTree;					//æ˜¯å¦æŸ¥å­ç›®å½•
+	bool bUseFullPath;			//ä½¿ç”¨ç»å¯¹è·¯å¾„
+	bool bFloder;				//æ˜¯å¦åŒ…å«ç›®å½•
+	bool bIgnoreHidden;			//æ˜¯å¦å¿½ç•¥éšè—ç›®å½•æˆ–æ–‡ä»¶
+    std::string sFolder;		//æŸ¥æ‰¾çš„ç›®å½•
+    std::string sFindText;		//æŸ¥æ‰¾æ–‡ä»¶
 };
 
 struct stFileEntry
 {
 	std::string sName;
-	std::string sFullName;		//µ±Ê¹ÓÃ¾ø¶ÔÂ·¾¶Ê±ÊÇ¾ø¶ÔÂ·¾¶£¬·ñÔòÊÇÏà¶ÔÂ·¾¶
+	std::string sFullName;		//å½“ä½¿ç”¨ç»å¯¹è·¯å¾„æ—¶æ˜¯ç»å¯¹è·¯å¾„ï¼Œå¦åˆ™æ˜¯ç›¸å¯¹è·¯å¾„
 	ui32 ulSize;
 	TypeDate time_create;
 	TypeDate time_write;
@@ -62,7 +62,7 @@ struct stFileEntry
 
 typedef std::vector<stFileEntry> aFileEntry;
 
-//ÎÄ¼ş´¦Àí
+//æ–‡ä»¶å¤„ç†
 class CrossFileOP
 {
 public:
@@ -126,10 +126,10 @@ public:
 	//length
 	static ui32 GetFileLength(const std::string& sFile);
 
-	//±È½ÏÎÄ¼şĞŞ¸ÄÊ±¼ä
+	//æ¯”è¾ƒæ–‡ä»¶ä¿®æ”¹æ—¶é—´
 	static bool IsTimeLate(cpstr sz1, cpstr sz2);
 	static bool SetFileWriteTime(cpstr sFile, TypeDate tm);
-	//»ñÈ¡ÎÄ¼şĞŞ¸ÄÊ±¼ä
+	//è·å–æ–‡ä»¶ä¿®æ”¹æ—¶é—´
 	static TypeDate GetFileWriteTime(cpstr sFile);
 	//filefind
 

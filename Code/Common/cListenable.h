@@ -6,7 +6,7 @@
 #include <vector>
 
 /**
- *	¿É¼àÌıµÄÄ£°åÀà
+ *	å¯ç›‘å¬çš„æ¨¡æ¿ç±»
  */
 template <typename T>
 class cListenable

@@ -13,7 +13,7 @@ class cClock;
 COMMON_API cClock* GetClock();
 COMMON_API TypeTime GetCurTime();
 
-//Ê±ÖÓ
+//æ—¶é’Ÿ
 class COMMON_API cClock
 {
 public:
@@ -27,14 +27,14 @@ public:
 	void SetSmoothTime(bool b) {m_bSmoothTime = b;}
 	void SetTimePreframe(f64 d) {m_dPreframe = d;}
 
-	//Ê±¼äÔËĞĞ
+	//æ—¶é—´è¿è¡Œ
 	void UpdateOnce();
 
-	//ÔËĞĞ¾­¹ıµÄ×ÜÊ±¼ä£¬¿ÉÒÔÍ£Ö¹ºÍÖØÖÃ
+	//è¿è¡Œç»è¿‡çš„æ€»æ—¶é—´ï¼Œå¯ä»¥åœæ­¢å’Œé‡ç½®
 	TypeTime GetTimeCur() const { return m_tmVirtalTimeCount; }
 	TypeTime GetTimeEslasped() const { return m_tmVirtalTimeEslasped; }
 
-	//Ê±ÖÓÔËĞĞËÙ¶È
+	//æ—¶é’Ÿè¿è¡Œé€Ÿåº¦
 	bool SetTimeSpeed(f64 d) {
 		if (d <= 0.f)
 			return false;
@@ -103,13 +103,13 @@ public:
 	void SetTime(i32 hour, i32 minute, i32 second);
 	void SetTimeString(cpstr);
 
-	//ÖĞÎÄÏÔÊ¾
+	//ä¸­æ–‡æ˜¾ç¤º
 	std::string GetTimeStringC();
 
 	std::string GetTimeString();
-	//ÏÔÊ¾¸ñÊ½£ºxx:xx:xx(Ê±:·Ö:Ãë)
+	//æ˜¾ç¤ºæ ¼å¼ï¼šxx:xx:xx(æ—¶:åˆ†:ç§’)
 	std::string GetTimeStringEx(bool b24 = false);
-	//ÏÔÊ¾¸ñÊ½£ºxx:xx(Ê±:·Ö)
+	//æ˜¾ç¤ºæ ¼å¼ï¼šxx:xx(æ—¶:åˆ†)
 	std::string GetHourMinuteString(bool b24 = false);
 	std::string GetDateString();
 	std::string GetDateTimeString();
@@ -130,7 +130,7 @@ public:
 	bool IsSameDate(const cDate& dt);
 	bool IsSameMonth(const cDate& dt);
 
-	//»ñµÃµ±Ç°ÏûºÄµÄËùÓĞ·ÖÖÓÊı add by yfw
+	//è·å¾—å½“å‰æ¶ˆè€—çš„æ‰€æœ‰åˆ†é’Ÿæ•° add by yfw
 	int GetAllMinuteTheDay() const {return m_hour*60 + m_minute;}
 
 	static cDate GetCurDate();

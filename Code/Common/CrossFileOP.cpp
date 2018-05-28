@@ -320,7 +320,7 @@ namespace cm
 	string CrossFileOP::ChangePathSub(const string& filename, ui32 offset, const string& newname)
 	{
 		string s;
-		//ÔİÊ±Î´ÊµÏÖ
+		//æš‚æ—¶æœªå®ç°
 		return s;
 	}
 
@@ -414,7 +414,7 @@ namespace cm
 		return 0 == rename(oldname.c_str(), newname.c_str());
 	}
 
-	//<?>Çå³ıÖ»¶Á, Òş²Ø?»¹ÓĞ¶ÀÕ¼ÄØ?
+	//<?>æ¸…é™¤åªè¯», éšè—?è¿˜æœ‰ç‹¬å å‘¢?
 	bool CrossFileOP::IsReadonly(const string& szFileName)
 	{
 #if (defined(WIN32) || defined(_WIN32) || defined (WINDOWS) || defined (_WINDOWS))
@@ -483,7 +483,7 @@ namespace cm
 		//	ZeroMemory(szModuleName, sizeof(szModuleName));
 		//	if (GetModuleFileName(0, szModuleName, _countof(szModuleName)-2) <= 0)
 		//		strcpy(szModuleName, ("Unknown"));
-		//	s_sModuleName = CrossFileOP::GetFileName(szModuleName);//???Õâ¸öº¯Êı²»ÊÇÈ¡µÃÄ£¿éµÄÈ«ÏŞ¶¨Ãû³ÆÂğ£¿ÔõÃ´»¹ĞèÕâÒ»¾ä£¿Ask by lkm,2013.3.26
+		//	s_sModuleName = CrossFileOP::GetFileName(szModuleName);//???è¿™ä¸ªå‡½æ•°ä¸æ˜¯å–å¾—æ¨¡å—çš„å…¨é™å®šåç§°å—ï¼Ÿæ€ä¹ˆè¿˜éœ€è¿™ä¸€å¥ï¼ŸAsk by lkm,2013.3.26
 		//}
 		//return s_sModuleName;
 		return "";

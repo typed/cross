@@ -4,7 +4,7 @@
 #include "../inc/cThread.h"
 #include "../inc/iReference.h"
 
-//包含文件版本区分
+//鍖呭惈鏂囦欢鐗堟湰鍖哄垎
 
 #include <stdio.h>
 #if (defined(WIN32) || defined(_WIN32))

@@ -1,10 +1,10 @@
-//³ÌĞòÃû³Æ£ºCross.h
-//¹¦ÄÜÃèÊö£º¿çÆ½Ì¨ÖĞ¼ä¼ş
-//¿ª·¢ÈË£º	¹¨Ïş½£
-//¿ª·¢Ê±¼ä£º2012-11-9
-//ĞŞ¸ÄÕß£º
-//ĞŞ¸ÄÊ±¼ä£º
-//ĞŞ¸ÄËµÃ÷£º
+//ç¨‹åºåç§°ï¼šCross.h
+//åŠŸèƒ½æè¿°ï¼šè·¨å¹³å°ä¸­é—´ä»¶
+//å¼€å‘äººï¼š	é¾šæ™“å‰‘
+//å¼€å‘æ—¶é—´ï¼š2012-11-9
+//ä¿®æ”¹è€…ï¼š
+//ä¿®æ”¹æ—¶é—´ï¼š
+//ä¿®æ”¹è¯´æ˜ï¼š
 
 #ifndef crossstl_h
 #define crossstl_h
@@ -16,7 +16,7 @@
 namespace cm
 {
 
-//STL¼ò»¯º¯Êı
+//STLç®€åŒ–å‡½æ•°
 template<typename T> inline bool VectorRemove(typename std::vector<T>& a, const T& v) {
 	typename std::vector<T>::iterator it = std::find(a.begin(), a.end(), v);
 	if (it == a.end())

@@ -1,10 +1,10 @@
-//³ÌĞòÃû³Æ£ºCross.h
-//¹¦ÄÜÃèÊö£º¿çÆ½Ì¨ÖĞ¼ä¼ş
-//¿ª·¢ÈË£º	¹¨Ïş½£
-//¿ª·¢Ê±¼ä£º2012-11-9
-//ĞŞ¸ÄÕß£º
-//ĞŞ¸ÄÊ±¼ä£º
-//ĞŞ¸ÄËµÃ÷£º
+//ç¨‹åºåç§°ï¼šCross.h
+//åŠŸèƒ½æè¿°ï¼šè·¨å¹³å°ä¸­é—´ä»¶
+//å¼€å‘äººï¼š	é¾šæ™“å‰‘
+//å¼€å‘æ—¶é—´ï¼š2012-11-9
+//ä¿®æ”¹è€…ï¼š
+//ä¿®æ”¹æ—¶é—´ï¼š
+//ä¿®æ”¹è¯´æ˜ï¼š
 
 #ifndef crossstring_h
 #define crossstring_h
@@ -17,109 +17,109 @@
 namespace cm
 {
 
-//×Ö·û
+//å­—ç¬¦
 class CrossString
 {
 public:
-	//×Ö·û´®±È½Ï
+	//å­—ç¬¦ä¸²æ¯”è¾ƒ
 	static i32 StrCmp(cpstr, cpstr);
-	//×Ö·û´®¿½±´
+	//å­—ç¬¦ä¸²æ‹·è´
 	static void StrCpy(pstr, cpstr);
-	//×Ö·û´®¿½±´N¸ö
+	//å­—ç¬¦ä¸²æ‹·è´Nä¸ª
 	static void StrNCpy(pstr, cpstr, ui64);
-	//×Ö·û´®Á¬½Ó£¬Add by lkm,2013.3.22
+	//å­—ç¬¦ä¸²è¿æ¥ï¼ŒAdd by lkm,2013.3.22
 	static void StrCat(pstr des, cpstr src);
-	//Çó×Ö·û´®³¤¶È£¬Add by lkm,2013.3.25
+	//æ±‚å­—ç¬¦ä¸²é•¿åº¦ï¼ŒAdd by lkm,2013.3.25
 	static ui32 StrLen(cpstr s);
-	//×ª»»ÎªĞ¡Ğ´
+	//è½¬æ¢ä¸ºå°å†™
 	static std::string ToLower(const std::string&);
-	//×ª»»Îª´óĞ´
+	//è½¬æ¢ä¸ºå¤§å†™
 	static std::string ToUpper(const std::string&);
-	//×Ö·û´®ÊÇ·ñÏàµÈ
+	//å­—ç¬¦ä¸²æ˜¯å¦ç›¸ç­‰
 	static bool Equal(cpstr, cpstr);
-	//×Ö·û´®ÊÇ·ñÏàµÈºöÂÔ´óĞ¡Ğ´
+	//å­—ç¬¦ä¸²æ˜¯å¦ç›¸ç­‰å¿½ç•¥å¤§å°å†™
 	static bool EqualIgnore(cpstr, cpstr);
-	//×Ö·û´®ÊÇ·ñÏàµÈºöÂÔ´óĞ¡Ğ´
+	//å­—ç¬¦ä¸²æ˜¯å¦ç›¸ç­‰å¿½ç•¥å¤§å°å†™
 	static bool EqualIgnore(const std::string&, const std::string&);
-	//×Ö·û´® == "null"
+	//å­—ç¬¦ä¸² == "null"
 	static bool EqualStrNull(cpstr);
-	//¸ñÊ½»¯×Ö·û´®,max 102400byte
+	//æ ¼å¼åŒ–å­—ç¬¦ä¸²,max 102400byte
 	static std::string Format(cpstr src, ...);
-	//sscanf,ÔİÊ±Ã»ÓĞÊµÏÖ
+	//sscanf,æš‚æ—¶æ²¡æœ‰å®ç°
 	static void SScanf(cpstr src, cpstr sText, ...);
-	//UTF8×ªASCII
+	//UTF8è½¬ASCII
 	static std::string UTF8ToASCII(const std::string& utf8);
-	//ASCII×ªUTF8
+	//ASCIIè½¬UTF8
 	static std::string ASCIIToUTF8(const std::string& ascii);
-	//UTF8×ªWString
+	//UTF8è½¬WString
 	static std::wstring UTF8ToWString(const std::string& utf8);
-	//WString×ªUTF8
+	//WStringè½¬UTF8
 	static std::string WStringToUTF8(const std::wstring& wstr);
-	//²ğ×Ö·û´®
+	//æ‹†å­—ç¬¦ä¸²
 	static bool Split(const std::string& s, const std::string& sign, std::vector<std::string>& aSet);
 	static std::string Split(const std::string& s, const std::string& sign, i32& offset);
-	//add by yfw ÔÚSplitµÄ»ù´¡ÉÏ£¬Ôö¼Ó¹ıÂËsecSignStartºÍsecSignEndÖĞ³öÏÖµÄsign·ûºÅ²úÉúµÄ¶Î£¬¼´±»secSignStartºÍsecSignEndÎ§³ÉµÄ¶Î£¬²»»á±»ÇĞÎªÁ½¶Î
+	//add by yfw åœ¨Splitçš„åŸºç¡€ä¸Šï¼Œå¢åŠ è¿‡æ»¤secSignStartå’ŒsecSignEndä¸­å‡ºç°çš„signç¬¦å·äº§ç”Ÿçš„æ®µï¼Œå³è¢«secSignStartå’ŒsecSignEndå›´æˆçš„æ®µï¼Œä¸ä¼šè¢«åˆ‡ä¸ºä¸¤æ®µ
 	static bool SplitEx(const std::string& s, const std::string& sign, const std::string& secSignStart, const std::string& secSignEnd, std::vector<std::string>& aSet);
 	static bool SplitNumber(i64, std::vector<std::string>& aSet);
-	//Ìæ»»
+	//æ›¿æ¢
 	static std::string ReplaceAll(const std::string& str, const std::string& old_value, const std::string& new_value);
 	static std::string Trim(const std::string& str);
 
-	//¹ØÓÚ<coord > .. <\coord>µÄ¸ñÊ½»¯add by yfw
-	//add by yfw ³¬¼¶ÎÄ±¾¿ò coord µÄ¸ñÊ½¹¹½¨
-	//<coord µØÍ¼Ãû NPCÕæÊµÃû×Ö ÈÎÎñÃû>NPCÏÔÊ¾Ãû×Ö</coord> or <coord µØÍ¼Ãû>ÏÔÊ¾ÎÄ±¾</coord>
+	//å…³äº<coord > .. <\coord>çš„æ ¼å¼åŒ–add by yfw
+	//add by yfw è¶…çº§æ–‡æœ¬æ¡† coord çš„æ ¼å¼æ„å»º
+	//<coord åœ°å›¾å NPCçœŸå®åå­— ä»»åŠ¡å>NPCæ˜¾ç¤ºåå­—</coord> or <coord åœ°å›¾å>æ˜¾ç¤ºæ–‡æœ¬</coord>
 	static std::string StringFormatCoord(cpstr szContent, i32 nX, i32 nY, cpstr szMapName, cpstr szRealName = 0, cpstr szTaskName = 0);
-	//<coord X Y µØÍ¼Ãû NPCÕæÊµÃû×Ö ÈÎÎñÃû>NPCÏÔÊ¾Ãû×Ö</coord> or <coord X Y µØÍ¼Ãû>ÏÔÊ¾ÎÄ±¾</coord>
+	//<coord X Y åœ°å›¾å NPCçœŸå®åå­— ä»»åŠ¡å>NPCæ˜¾ç¤ºåå­—</coord> or <coord X Y åœ°å›¾å>æ˜¾ç¤ºæ–‡æœ¬</coord>
 	static std::string StringFormatCoord(cpstr szContent, cpstr szMapName, cpstr szRealName = 0, cpstr szTaskName = 0);
 
-	//µÃµ½sz ÖĞ Coord¸ñÊ½ÖĞµÄnIndex¶Î£»µ« bContent=trueÊ±£¬ºöÂÔnIndex£¬Ö±½Ó»ñµÃÏÔÊ¾¶Î¡£
-	//ÏŞÖÆ£¬Ö»ÄÜ»ñµÃszÖĞµÚÒ»¸ö<coord ¡£¡£¡£>¡£¡£</coord>¸ñÊ½£¬Ö®ºóµÄ½«±»ºöÂÔ
+	//å¾—åˆ°sz ä¸­ Coordæ ¼å¼ä¸­çš„nIndexæ®µï¼›ä½† bContent=trueæ—¶ï¼Œå¿½ç•¥nIndexï¼Œç›´æ¥è·å¾—æ˜¾ç¤ºæ®µã€‚
+	//é™åˆ¶ï¼Œåªèƒ½è·å¾—szä¸­ç¬¬ä¸€ä¸ª<coord ã€‚ã€‚ã€‚>ã€‚ã€‚</coord>æ ¼å¼ï¼Œä¹‹åçš„å°†è¢«å¿½ç•¥
 	static std::string GetParamCoord(cpstr sz, i32 nIndex);
-	//È¡<coord ¡£¡£¡£>¡£¡£</coord>¸ñÊ½µÄÇ°¶Ë×Ö·û£¬»òºó¶Ë×Ö·û£»»òÏÔÊ¾×Ö·û
+	//å–<coord ã€‚ã€‚ã€‚>ã€‚ã€‚</coord>æ ¼å¼çš„å‰ç«¯å­—ç¬¦ï¼Œæˆ–åç«¯å­—ç¬¦ï¼›æˆ–æ˜¾ç¤ºå­—ç¬¦
 	static std::string GetContentCoord(cpstr sz, bool bBefor, bool bAfter);
 
-	//×Ö·û -> bool
+	//å­—ç¬¦ -> bool
 	static bool ToBool(const std::string& s);
-	//×Ö·û10½øÖÆ -> int
+	//å­—ç¬¦10è¿›åˆ¶ -> int
 	static i32 _10ToInt(const std::string& s);
-	//×Ö·û10½øÖÆ -> long Add by lkm,2013.3.26
+	//å­—ç¬¦10è¿›åˆ¶ -> long Add by lkm,2013.3.26
 	static l32 _10ToLong(const std::string& s);
-	//×Ö·û10½øÖÆ -> float
+	//å­—ç¬¦10è¿›åˆ¶ -> float
 	static f32 _10ToFloat(const std::string& s);
-	//×Ö·û10½øÖÆ -> ui32
+	//å­—ç¬¦10è¿›åˆ¶ -> ui32
 	static ui32 _10ToUInt(const std::string& s);
-	//×Ö·û16½øÖÆ -> unsigned long
+	//å­—ç¬¦16è¿›åˆ¶ -> unsigned long
 	static ui32 _16ToUInt(const std::string& s);
 
 	static ui32 StrToHex(const std::string& s);
-	//×Ö·û10½øÖÆ -> double
+	//å­—ç¬¦10è¿›åˆ¶ -> double
 	static f64 _10ToDouble(const std::string& s);
-	//int -> ×Ö·û10½øÖÆ
+	//int -> å­—ç¬¦10è¿›åˆ¶
 	static std::string IntTo10(i32 num);
-	//unsigned long -> ×Ö·û10½øÖÆ
+	//unsigned long -> å­—ç¬¦10è¿›åˆ¶
 	static std::string UIntTo10(ui32 num);
-	//float -> ×Ö·û10½øÖÆ
+	//float -> å­—ç¬¦10è¿›åˆ¶
 	static std::string FloatTo10(f32 num);
-	//int -> ×Ö·û16½øÖÆ
+	//int -> å­—ç¬¦16è¿›åˆ¶
 	static std::string IntTo16(i32 num);
-	//unsigned long -> ×Ö·û16½øÖÆ
+	//unsigned long -> å­—ç¬¦16è¿›åˆ¶
 	static std::string UIntTo16(ui32 num);
-	//unsigned long -> ×Ö·û16½øÖÆ
+	//unsigned long -> å­—ç¬¦16è¿›åˆ¶
 	static std::string UIntTo016(ui32 num);
-	//long long -> ×Ö·û10½øÖÆ
+	//long long -> å­—ç¬¦10è¿›åˆ¶
 	static std::string Int64To10(i64 num);
 
 	static i8 Char16ToBinary(i8 c);
-	//×Ö·û16½øÖÆ×ªbinary
+	//å­—ç¬¦16è¿›åˆ¶è½¬binary
 	static std::string StringToBinary(std::string s);
-	//buffer×ª×Ö·û16½øÖÆ
+	//bufferè½¬å­—ç¬¦16è¿›åˆ¶
 	static std::string BinaryToString(cpstr aBuf, ui32 len);
 	static std::string BinaryToString(const std::string& aBuf) {
 		return BinaryToString(aBuf.c_str(), (ui32)aBuf.size());
 	}
-	//ÊÇ·ñÊÇÕûĞÎÖ§³ÖÔÚÊ×Î»°üº¬'+'ºÍ'-'·ûºÅµÄ add by yfw
+	//æ˜¯å¦æ˜¯æ•´å½¢æ”¯æŒåœ¨é¦–ä½åŒ…å«'+'å’Œ'-'ç¬¦å·çš„ add by yfw
 	static bool IsInt(std::string s);
-	//ÕıÔò±í´ïÊ½
+	//æ­£åˆ™è¡¨è¾¾å¼
 	static bool Match(const std::string& src, const std::string& regex);
 
 	template<class T> 

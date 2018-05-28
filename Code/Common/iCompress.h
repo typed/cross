@@ -23,10 +23,10 @@ enum eCompress
 
 COMMON_API cpstr GetCompressErrString(eCompress);
 
-//得到压缩后目标buffer的最大size
+//寰楀埌鍘嬬缉鍚庣洰鏍嘼uffer鐨勬渶澶ize
 COMMON_API ui32 GetCompressSized(cpvd pSrc, ui32 iSrc, eCompressType t = CT_Qlz);
 
-//得到解压后目标buffer的最大size
+//寰楀埌瑙ｅ帇鍚庣洰鏍嘼uffer鐨勬渶澶ize
 COMMON_API ui32 GetDecompressSized(cpvd pSrc, ui32 iSrc, eCompressType t = CT_Qlz);
 
 COMMON_API eCompress Compress(cpvd pSrc, ui32 iSrc, pvd pDes, ui32& iDes, eCompressType t = CT_Qlz);

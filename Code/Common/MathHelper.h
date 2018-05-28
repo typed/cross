@@ -6,7 +6,7 @@
 #include "math/cVector2D.h"
 #include "math/cVector3D.h"
 #include "math/cVector4D.h"
-#include "math/cVectorND.h"		//add by yfw Ö÷ÒªÎªÁËºóĞøÒıÓÃ£¬
+#include "math/cVectorND.h"		//add by yfw ä¸»è¦ä¸ºäº†åç»­å¼•ç”¨ï¼Œ
 #include "math/cRect.h"
 #include "math/cRectSet.h"
 #include "math/cMatrix4X4.h"
@@ -29,25 +29,25 @@ typedef std::vector<matrix> aMatrix;
 typedef std::vector<quat> aQuat;
 typedef std::vector<vector3d> aVector3D;
 
-//Á½µã¼ä¾àÀë
+//ä¸¤ç‚¹é—´è·ç¦»
 template<class T> inline T GetDistance(const cVector2D<T>& v1, const cVector2D<T>& v2)
 {
 	return (T) CrossMath::Sqrt( (f32) (v1.x - v2.x) * (v1.x - v2.x) + (v1.y - v2.y) * (v1.y - v2.y) );
 }
 
-//ÇóÖ±ÏßĞ±ÂÊ
+//æ±‚ç›´çº¿æ–œç‡
 template<class T> inline f32 LineSlope(const cVector2D<T>& vFrom, const cVector2D<T>& vTo)
 {
 	return (f32)( vTo.y - vFrom.y ) / ( vTo.x - vFrom.x );
 }
 
-//±¶Êı×ª»»
+//å€æ•°è½¬æ¢
 template<class T> inline T GetDiploid(const T n, const T d)
 {
 	return n % d ? n / d + 1 : n / d;
 }
 
-//ÇóÒ»¸ö2DÏòÁ¿µÄ»¡¶È
+//æ±‚ä¸€ä¸ª2Då‘é‡çš„å¼§åº¦
 //template<class T> inline T GetDiploid(const cVector2D<T>& v, bool bDeasil = false)
 //{
 //	return atanf( v.y / v.x );
@@ -67,7 +67,7 @@ inline bool fless(f32 a, f32 b)
 	return (a - b) < +0.001f;
 }
 
-//8·½Ïò×ª»¡¶È
+//8æ–¹å‘è½¬å¼§åº¦
 inline cVector3Df Dir8ToRadian(i32 dir)
 {
 	static const f32 c_fRadian[] = {
@@ -120,7 +120,7 @@ inline ui32 Get2Multiples(ui32 w, ui32 maxw = 2048)
 	return w + 1;
 }
 
-//¼òµ¥µÄÇúÏß£¬»ùÓÚbezier curve
+//ç®€å•çš„æ›²çº¿ï¼ŒåŸºäºbezier curve
 //P1223(t) = (1-t)^2P1 + 2t(t-1)P2 + t^2P3
 inline void GetCurvePos(const cVector3Df& ptFrom, const cVector3Df& ptTo, const cVector3Df& ptControl, cVector3Df& ptR, f32 t)
 {
@@ -130,8 +130,8 @@ inline void GetCurvePos(const cVector3Df& ptFrom, const cVector3Df& ptTo, const 
 }
 
 //author:	yfw
-//Desc:		¸ù¾İÖÆ¶¨µÄ±ß½çÖµ£¬µ÷Õû×î´ó×îĞ¡Öµ	
-//Param:	nLow ×îĞ¡±ß½çÖµ		nUp ×î´ó±ß½çÖµ  nMin nMax Òªµ÷ÕûµÄ×î´ó×îĞ¡Öµ 
+//Desc:		æ ¹æ®åˆ¶å®šçš„è¾¹ç•Œå€¼ï¼Œè°ƒæ•´æœ€å¤§æœ€å°å€¼	
+//Param:	nLow æœ€å°è¾¹ç•Œå€¼		nUp æœ€å¤§è¾¹ç•Œå€¼  nMin nMax è¦è°ƒæ•´çš„æœ€å¤§æœ€å°å€¼ 
 inline bool MaxMinValue(i32 nLow, i32 nUp, i32 &nMin, i32 &nMax)
 {
 	if (nLow > nUp)
@@ -157,8 +157,8 @@ enum eAngularDisplacementXY
 	AD_ALL = 3
 };
 
-//·µ»ØÖµÊÇ¾ØÕóĞÎÊ½µÄ½ÇÎ»ÒÆ£¬Èç¹ûÁ½¸öÏòÁ¿ÏàµÈ¾Í·µ»Øfalse
-//ÓÎÏ·ÀïÄ¬ÈÏ(0,0,-1)·½ÏòÎª3D¶ÔÏóµÄ0¶È·½Ïò¡£Ë³ÊÆÕëµİÔö
+//è¿”å›å€¼æ˜¯çŸ©é˜µå½¢å¼çš„è§’ä½ç§»ï¼Œå¦‚æœä¸¤ä¸ªå‘é‡ç›¸ç­‰å°±è¿”å›false
+//æ¸¸æˆé‡Œé»˜è®¤(0,0,-1)æ–¹å‘ä¸º3Då¯¹è±¡çš„0åº¦æ–¹å‘ã€‚é¡ºåŠ¿é’ˆé€’å¢
 inline bool GetRotation(cVector3Df& vOut, const cVector3Df& vTo, const cVector3Df& vFrom, 
 	eAngularDisplacementXY e = AD_Y, const cVector3Df& vDefault = cVector3Df(0.f, 0.f, -1.f))
 {
@@ -183,7 +183,7 @@ inline bool GetRotation(cVector3Df& vOut, const cVector3Df& vTo, const cVector3D
 	return true;
 }
 
-//ÓÎÏ·ÀïÄ¬ÈÏ(0,0,-1)·½ÏòÎª3D¶ÔÏóµÄ0¶È·½Ïò¡£Ë³ÊÆÕëµİÔö
+//æ¸¸æˆé‡Œé»˜è®¤(0,0,-1)æ–¹å‘ä¸º3Då¯¹è±¡çš„0åº¦æ–¹å‘ã€‚é¡ºåŠ¿é’ˆé€’å¢
 inline bool GetYDir(cVector3Df& vOut, const cVector3Df& vDes, const cVector3Df& vSrc, const cVector3Df& vDefault = cVector3Df(0.f, 0.f, -1.f))
 {
 	return GetRotation(vOut, vDes, vSrc, AD_Y, vDefault);
@@ -198,7 +198,7 @@ inline cVector3Df GetYDirVector(const cVector3Df& vFrom, f32 fYDeg, f32 fDis, co
 
 
 //Added by lkm,2011.11.21
-//ÅĞ¶ÏµãÊÇ·ñÔÚÍ¹¶à±ßĞÎÄÚ,ÒªÇóVertexListÖĞ¶¥µã°´ÄæÊ±ÖÓ·½ÏòÅÅÁĞ
+//åˆ¤æ–­ç‚¹æ˜¯å¦åœ¨å‡¸å¤šè¾¹å½¢å†…,è¦æ±‚VertexListä¸­é¡¶ç‚¹æŒ‰é€†æ—¶é’Ÿæ–¹å‘æ’åˆ—
 template<typename T>
 inline bool IsPointInPolygon(const std::vector<cVector2D<T> >& VertexList, const cVector2D<T>& vPoint)
 {
@@ -221,7 +221,7 @@ inline bool IsPointInPolygon(const std::vector<cVector2D<T> >& VertexList, const
 }
 
 //add by yfw 
-//ÇóµÃÖ¸¶¨x£¬zÁ½Î¬Êı¾İ£¬ÇóµÃÖ¸¶¨Æ½ÃæÄÚ£¬¶ÔÓ¦µÄÁíÍâÒ»Î¬Êı¾İ¡£
+//æ±‚å¾—æŒ‡å®šxï¼Œzä¸¤ç»´æ•°æ®ï¼Œæ±‚å¾—æŒ‡å®šå¹³é¢å†…ï¼Œå¯¹åº”çš„å¦å¤–ä¸€ç»´æ•°æ®ã€‚
 template<typename T>
 inline T GetHeightInPlane(const cVector3D<T>& pt0, const cVector3D<T>& pt1, const cVector3D<T>& pt2, T x, T z)
 {
@@ -244,13 +244,13 @@ inline bool isOnSameSide(const cVector3Df& p1, const cVector3Df& p2, const cVect
 	cVector3Df cp2 = bminusa.CrossProduct(p2 - a);
 	return (cp1.DotProduct(cp2) >= 0.0f);
 }
-//ÇóµãÊÇ·ñÔÚ3µãºÏ³ÉµÄÈı½ÇĞÎÄÚ£¨Ç°Ìá£¬µã±ØĞëÔÚ¸Ã3µãºÏ³ÉµÄÃæÖĞ£©
+//æ±‚ç‚¹æ˜¯å¦åœ¨3ç‚¹åˆæˆçš„ä¸‰è§’å½¢å†…ï¼ˆå‰æï¼Œç‚¹å¿…é¡»åœ¨è¯¥3ç‚¹åˆæˆçš„é¢ä¸­ï¼‰
 inline bool isPointInside(const cVector3Df& p, const cVector3Df& a, const cVector3Df& b, const cVector3Df& c)
 {
 	return (isOnSameSide(p, a, b, c) && isOnSameSide(p, b, a, c) && isOnSameSide(p, c, a, b));
 }
 
-// static const i32 c_nNumDir8 = 8;		//8¸ö·½Ïò
+// static const i32 c_nNumDir8 = 8;		//8ä¸ªæ–¹å‘
 // static const point c_aPointDir8[c_nNumDir8] = {
 // 	point(0,-1),
 // 	point(1,-1),

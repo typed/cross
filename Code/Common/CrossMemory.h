@@ -1,10 +1,10 @@
-//�������ƣ�Cross.h
-//������������ƽ̨�м��
-//�����ˣ�	������
-//����ʱ�䣺2012-11-9
-//�޸��ߣ�
-//�޸�ʱ�䣺
-//�޸�˵����
+//程序名称：Cross.h
+//功能描述：跨平台中间件
+//开发人：	龚晓剑
+//开发时间：2012-11-9
+//修改者：
+//修改时间：
+//修改说明：
 
 #ifndef crossmemory_h
 #define crossmemory_h
@@ -14,7 +14,7 @@
 namespace cm
 {
 
-//�ڴ�
+//内存
 class COMMON_API CrossMemory
 {
 public:

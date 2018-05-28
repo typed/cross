@@ -1,6 +1,6 @@
 #include "../inc/CrossTime.h"
 
-//包含文件版本区分
+//鍖呭惈鏂囦欢鐗堟湰鍖哄垎
 
 #include <stdio.h>
 #if (defined(WIN32) || defined(_WIN32) || defined (WINDOWS) || defined (_WINDOWS))
@@ -16,7 +16,7 @@ using namespace std;
 
 namespace cm
 {
-	//时钟
+	//鏃堕挓
 	TypeDate CrossTime::GetDate() {
 		return (TypeDate)time(0);
 	}
@@ -45,12 +45,12 @@ namespace cm
 		static cPerformanceClock s_pc;
 		return s_pc;
 	}
-	//CPU时间
+	//CPU鏃堕棿
 	TypeTime CrossTime::GetCPUTime() {
 		return GetPerformanceClock().GetTime();
 	}
 #else
-	//CPU时间
+	//CPU鏃堕棿
 	TypeTime CrossTime::GetCPUTime() {
 		timeval tv;
 		gettimeofday(&tv, 0);

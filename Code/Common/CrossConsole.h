@@ -1,10 +1,10 @@
-//³ÌĞòÃû³Æ£ºCross.h
-//¹¦ÄÜÃèÊö£º¿çÆ½Ì¨ÖĞ¼ä¼ş
-//¿ª·¢ÈË£º	¹¨Ïş½£
-//¿ª·¢Ê±¼ä£º2012-11-9
-//ĞŞ¸ÄÕß£º
-//ĞŞ¸ÄÊ±¼ä£º
-//ĞŞ¸ÄËµÃ÷£º
+//ç¨‹åºåç§°ï¼šCross.h
+//åŠŸèƒ½æè¿°ï¼šè·¨å¹³å°ä¸­é—´ä»¶
+//å¼€å‘äººï¼š	é¾šæ™“å‰‘
+//å¼€å‘æ—¶é—´ï¼š2012-11-9
+//ä¿®æ”¹è€…ï¼š
+//ä¿®æ”¹æ—¶é—´ï¼š
+//ä¿®æ”¹è¯´æ˜ï¼š
 
 #ifndef crossconsole_h
 #define crossconsole_h
@@ -15,15 +15,15 @@
 namespace cm
 {
 
-//¿ØÖÆÌ¨
+//æ§åˆ¶å°
 class CrossConsole
 {
 public:
-	//¿ØÖÆÌ¨ÊäÈë,×èÈû
+	//æ§åˆ¶å°è¾“å…¥,é˜»å¡
 	static std::string GetString();
-	//¿ØÖÆÌ¨ÊäÈë,·Ç×èÈû
+	//æ§åˆ¶å°è¾“å…¥,éé˜»å¡
 	static bool GetString(std::string&);
-	//¿ØÖÆÌ¨ÔİÍ£
+	//æ§åˆ¶å°æš‚åœ
 	static void Pause();
 	enum eColor {
 		CC_White,
@@ -33,7 +33,7 @@ public:
 		CC_Blue,
 		CC_Cyan,
 	};
-	//¿ØÖÆÌ¨Êä³ö×ÖÌåÑÕÉ«
+	//æ§åˆ¶å°è¾“å‡ºå­—ä½“é¢œè‰²
 	static void SetColor(eColor fgCol = CC_White);
 	static bool IsShow();
 	static void Show();

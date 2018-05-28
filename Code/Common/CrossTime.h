@@ -1,10 +1,10 @@
-//³ÌĞòÃû³Æ£ºCross.h
-//¹¦ÄÜÃèÊö£º¿çÆ½Ì¨ÖĞ¼ä¼ş
-//¿ª·¢ÈË£º	¹¨Ïş½£
-//¿ª·¢Ê±¼ä£º2012-11-9
-//ĞŞ¸ÄÕß£º
-//ĞŞ¸ÄÊ±¼ä£º
-//ĞŞ¸ÄËµÃ÷£º
+//ç¨‹åºåç§°ï¼šCross.h
+//åŠŸèƒ½æè¿°ï¼šè·¨å¹³å°ä¸­é—´ä»¶
+//å¼€å‘äººï¼š	é¾šæ™“å‰‘
+//å¼€å‘æ—¶é—´ï¼š2012-11-9
+//ä¿®æ”¹è€…ï¼š
+//ä¿®æ”¹æ—¶é—´ï¼š
+//ä¿®æ”¹è¯´æ˜ï¼š
 
 #ifndef crosstime_h
 #define crosstime_h
@@ -15,13 +15,13 @@
 namespace cm
 {
 
-//Ê±¼ä
+//æ—¶é—´
 class CrossTime
 {
 public:
-	//Ê±ÖÓ
+	//æ—¶é’Ÿ
 	static TypeDate GetDate();
-	//CPUÊ±¼ä
+	//CPUæ—¶é—´
 	static TypeTime GetCPUTime();
 	//
 	static TypeDate MkTime(i32 year, i32 month, i32 day, i32 hour, i32 minute, i32 second);
