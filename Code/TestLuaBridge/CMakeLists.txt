@@ -11,6 +11,6 @@ add_definitions(-DUNICODE -D_UNICODE)
 
 add_executable(TestLuaBridge ${SOURCE})
 
-target_link_libraries(TestCommon
+target_link_libraries(TestLuaBridge
     libLua
 )

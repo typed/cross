@@ -10,3 +10,7 @@ file(GLOB SOURCE "./*.cpp" "./*.h")
 add_definitions(-DUNICODE -D_UNICODE)
 
 add_executable(TestAES ${SOURCE})
+
+target_link_libraries(TestAES
+    libAES
+)

@@ -1,4 +1,4 @@
 cd Build
-cd Windows
+cd VisualStudio
 cmake ../../Code
 cd ../../

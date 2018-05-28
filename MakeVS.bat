@@ -1,7 +1,7 @@
 rd /S /Q Build
 mkdir Build
 cd Build
-mkdir Windows
-cd Windows
+mkdir VisualStudio
+cd VisualStudio
 cmake ../../Code
 cd ../../
