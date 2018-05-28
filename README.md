@@ -7,5 +7,13 @@ windows构建<br>
 2.解压并bin目录加入环境变量Path<br>
 3.Cmd执行MakeVS.(如果有文件加删或目录变化，执行UpdateVS.bat)<br>
 <br>
-工程介绍
-pcre 正则表达式
+工程介绍<br>
+第三方库<br>
+Pcre 正则表达式<br>
+TinyXml xml文件读取<br>
+Raknet 网络引擎<br>
+Sqlite 嵌入式数据库<br>
+QuickLZ 快速解压缩库<br>
+Md5 MD5<br>
+Lua 脚本<br>
+LuaBridge Lua脚本绑定<br>
