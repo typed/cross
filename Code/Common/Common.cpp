@@ -14,7 +14,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 
 string s_sInitAppDir;

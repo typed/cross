@@ -12,7 +12,7 @@ extern "C" {
 #include <string>
 #include <string.h>
 
-namespace cm
+namespace cross
 {
 
 static cpstr c_sLSE = "script_error";

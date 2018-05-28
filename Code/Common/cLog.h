@@ -10,7 +10,7 @@
 #include <fstream>
 #include <sstream>
 
-namespace cm
+namespace cross
 {
 
 class cLog :

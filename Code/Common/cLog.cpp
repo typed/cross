@@ -5,7 +5,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 
 cLog::cLog()

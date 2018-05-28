@@ -12,7 +12,7 @@
 #include "CommonDef.h"
 #include <string>
 
-namespace cm
+namespace cross
 {
 
 //时间

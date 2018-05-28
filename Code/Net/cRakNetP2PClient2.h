@@ -15,7 +15,7 @@
 #include <set>
 #include <vector>
 
-namespace cm
+namespace cross
 {
 
 struct stProxy

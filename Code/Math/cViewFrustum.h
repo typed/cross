@@ -1,5 +1,5 @@
-#ifndef _common_viewfrustum_h_
-#define _common_viewfrustum_h_
+#ifndef _cross_math_viewfrustum_h_
+#define _cross_math_viewfrustum_h_
 
 #include "../CommonDef.h"
 #include "cVector3D.h"
@@ -9,9 +9,9 @@
 #include "cMatrix4X4.h"
 #include "cQuaternion.h"
 
-namespace cm
+namespace cross
 {
-//ÊÓ×¶
+//è§†é”¥
 enum eVFPlanes
 {
 	VFP_Far,
@@ -52,18 +52,18 @@ public:
 	void SetMProject(const cMatrix4X4& m) {m_mProject = m; Recalculate();}
 	//
 	bool ClipLine(cLine3Df& lineOut, const cLine3Df& lineIn) const;
-	//µãÊÇ·ñÔÚÊÓ×¶Àï
+	//ç‚¹æ˜¯å¦åœ¨è§†é”¥é‡Œ
 	bool IsPointInside(const cVector3Df& p) const;
-	//ºĞ×ÓÊÇ·ñÓëÊÓ×¶Ïà½»
+	//ç›’å­æ˜¯å¦ä¸è§†é”¥ç›¸äº¤
 	bool IntersectsWithBox(const cAabboxf& box) const;
-	//´ÓÆÁÄ»µãµ½¿Õ¼äÉäÏß
+	//ä»å±å¹•ç‚¹åˆ°ç©ºé—´å°„çº¿
 	bool GetRayFromScreenCoordinates(const cPoint& pt, cRay3Df& ray, i32 w, i32 h) const;
-	//¿Õ¼äÖĞµÄµã×ªµ½ÆÁÄ»ÉÏ
+	//ç©ºé—´ä¸­çš„ç‚¹è½¬åˆ°å±å¹•ä¸Š
 	bool GetScreenCoordinatesFromVector3D(cPoint& pt, const cVector3Df& v, i32 w, i32 h) const;
-	//»ñÈ¡8¸ö¶¥µã
+	//è·å–8ä¸ªé¡¶ç‚¹
 	void GetEdges(cVector3Df* edges) const;
 	void GetEdgesIndex(ui16* edgesindex) const;
-	//»ñÈ¡12ÌõÏß
+	//è·å–12æ¡çº¿
 	void GetLines(cLine3Df* lines) const;
 
 	const cPlane3Df& GetPlane(eVFPlanes e) const {return m_planes[e];}
@@ -248,7 +248,7 @@ inline bool cViewFrustum::ClipLine(cLine3Df& lineOut, const cLine3Df& lineIn) co
 	return wasClipped;
 }
 
-//µãÊÇ·ñÔÚÊÓ×¶Àï
+//ç‚¹æ˜¯å¦åœ¨è§†é”¥é‡Œ
 inline bool cViewFrustum::IsPointInside(const cVector3Df& p) const
 {
 	for (i32 i = 0; i < VFP_Count; i++)
@@ -257,7 +257,7 @@ inline bool cViewFrustum::IsPointInside(const cVector3Df& p) const
 	return true;
 }
 
-//ºĞ×ÓÊÇ·ñÓëÊÓ×¶Ïà½»
+//ç›’å­æ˜¯å¦ä¸è§†é”¥ç›¸äº¤
 inline bool cViewFrustum::IntersectsWithBox(const cAabboxf& box) const
 {
 	cVector3Df v[8];
@@ -278,19 +278,19 @@ inline bool cViewFrustum::IntersectsWithBox(const cAabboxf& box) const
 
 inline bool cViewFrustum::GetRayFromScreenCoordinates(const cPoint& pt, cRay3Df& ray, i32 w, i32 h) const
 {
-	//»ñÈ¡ÊÓ¿ÚĞÅÏ¢
+	//è·å–è§†å£ä¿¡æ¯
 	cRect viewport;
 	viewport.SetData2(0, 0, w, h);
 	//cVector3Df vecProject((f32)pt.x, (f32)pt.y, -100000.f);
 	cVector3Df vecProject((f32)pt.x, (f32)pt.y, 1.0f);
-	//¹Û²ì×ø±êÏµ
+	//è§‚å¯Ÿåæ ‡ç³»
 	cVector3Df vecout;
 	cMatrix4X4::ProjectTransform2DTo3D(vecout, vecProject, viewport, m_mProject, m_mView);
 	ray = cRay3Df(vecout, vecProject);
 	return true;
 }
 
-//¿Õ¼äÖĞµÄµã×ªµ½ÆÁÄ»ÉÏ
+//ç©ºé—´ä¸­çš„ç‚¹è½¬åˆ°å±å¹•ä¸Š
 inline bool cViewFrustum::GetScreenCoordinatesFromVector3D(cPoint& pt, const cVector3Df& v, i32 w, i32 h) const
 {
 	cVector2Df vScreen;
@@ -303,7 +303,7 @@ inline bool cViewFrustum::GetScreenCoordinatesFromVector3D(cPoint& pt, const cVe
 	return true;
 }
 
-//»ñÈ¡8¸ö¶¥µã
+//è·å–8ä¸ªé¡¶ç‚¹
 inline void cViewFrustum::GetEdges(cVector3Df* edges) const
 {
 	/*
@@ -341,7 +341,7 @@ inline void cViewFrustum::GetEdgesIndex(ui16* edgesindex) const
 	CrossMemory::MemCpy(edgesindex, indexes, sizeof(indexes));
 }
 
-//»ñÈ¡12ÌõÏß
+//è·å–12æ¡çº¿
 inline void cViewFrustum::GetLines(cLine3Df* lines) const
 {
 	cVector3Df vs[8];

@@ -3,10 +3,10 @@
 #include "../../inc/CrossString.h"
 
 using namespace std;
-using namespace cm;
+using namespace cross;
 using namespace RakNet;
 
-namespace cm
+namespace cross
 {
 
 ui32 cRakNetCSServerTCP::s_id = 1;

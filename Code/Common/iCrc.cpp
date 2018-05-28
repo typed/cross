@@ -1,7 +1,7 @@
 #include "../inc/iCrc.h"
 #include "Crc32Static.h"
 
-namespace cm
+namespace cross
 {
 
 bool StringCrc32(cpstr szString, ui32& ulCrc32)

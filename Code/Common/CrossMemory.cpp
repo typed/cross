@@ -1,4 +1,4 @@
-#include "../inc/CrossMemory.h"
+#include "CrossMemory.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,13 +12,13 @@
 #else
 #endif
 
-namespace cm
+namespace cross
 {
 	pvd CrossMemory::Malloc(ui32 sz) {
-		return ::malloc(sz);
+		return malloc(sz);
 	}
 	void CrossMemory::Free(pvd p) {
-		::free(p);
+		free(p);
 	}
 	void CrossMemory::MemCpy(pvd des, cpvd src, ui32 sz) {
 		memcpy(des, src, sz);

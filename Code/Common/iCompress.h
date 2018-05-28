@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 
-namespace cm
+namespace cross
 {
 
 enum eCompressType

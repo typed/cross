@@ -5,7 +5,7 @@
 #include "CrossApp.h"
 #include <string>
 
-namespace cm
+namespace cross
 {
 
 class COMMON_API iLog

@@ -1,5 +1,5 @@
-#ifndef _common_rect_h_
-#define _common_rect_h_
+#ifndef _cross_math_rect_h_
+#define _cross_math_rect_h_
 
 #include "../CommonDef.h"
 #include "MathBase.h"
@@ -267,7 +267,7 @@ public:
 		return rc;
 	}
 
-	//È¡½»¼¯
+	//å–äº¤é›†
 	cRectTemplate<T> GetIntersection(const cRectTemplate<T>& rect) const {
 		cRectTemplate<T> temp;
 		if ((right > rect.left) && (left < rect.right) && 
@@ -282,7 +282,7 @@ public:
 			return temp;
 	}
 
-	//È¡²¢¼¯
+	//å–å¹¶é›†
 	cRectTemplate<T> Union(const cRectTemplate<T>& rect) const {
 		cRectTemplate<T> temp;
 		if (IsEmpty())
@@ -317,7 +317,7 @@ public:
 		}
 	}
 
-	//Ğ§ÂÊ²»¸ß
+	//æ•ˆç‡ä¸é«˜
 	bool IsIn(const cRectTemplate<T>& m) const {
 		return GetIntersection(m) == m;
 	}
@@ -344,7 +344,7 @@ public:
 		return right - left <= 0 || bottom - top <= 0;
 	}
 
-	//À©Õ¹
+	//æ‰©å±•
 	void Inflate(const cSizeTemplate<T> sz) {
 		Inflate(sz.x/2, sz.x/2, sz.y/2, sz.y/2);
 	}
@@ -355,13 +355,13 @@ public:
 		left -= l; right += r; top -= t; bottom += b;
 	}
 
-	//ÊÇ·ñÏà½»
+	//æ˜¯å¦ç›¸äº¤
 	bool IsIntersectant(const cRectTemplate<T>& m) const {
 		return ( (right > m.left) && (left < m.right) && 
 			(bottom > m.top) && (top < m.bottom) );
 	}
 
-	//ÉèÖÃÖĞĞÄµã
+	//è®¾ç½®ä¸­å¿ƒç‚¹
 	void SetCenter(const cVector2D<T>& vcenter, T sz) {
 		SetCenter(vcenter, sz, sz, sz, sz);
 	}
@@ -381,8 +381,8 @@ public:
 		return cPointTemplate<T>( left + GetWidth() / 2, top + GetHeight() / 2 );
 	}
 
-	//·µ»ØµÈ±ÈÄÚÇĞ¾ØĞÎ
-	//aspect ¿í¸ß±È
+	//è¿”å›ç­‰æ¯”å†…åˆ‡çŸ©å½¢
+	//aspect å®½é«˜æ¯”
 	cRectTemplate<T> GetInnerRect(float aspect) const {
 		cRectTemplate<T> rc = *this;
 		float myaspect = (float)GetWidth() / GetHeight();
@@ -415,8 +415,8 @@ public:
 		}
 	}
 
-	//ÌØÊâº¯Êı
-	//µÃµ½Á½¸örectÏà½»²¿·Ö£¬ÔÚthis rectµÄ×ø±êÏµÏÂµÄrect
+	//ç‰¹æ®Šå‡½æ•°
+	//å¾—åˆ°ä¸¤ä¸ªrectç›¸äº¤éƒ¨åˆ†ï¼Œåœ¨this rectçš„åæ ‡ç³»ä¸‹çš„rect
 	cRectTemplate<T> GetInRect(const cRectTemplate<T>& rc) const {
 		cRectTemplate<T> rcOut;
 		cRectTemplate<T> rc1 = GetIntersection(rc);
@@ -453,10 +453,10 @@ public:
 
 };
 
-/** Ò»Ğ©°ïÖúº¯Êı */
+/** ä¸€äº›å¸®åŠ©å‡½æ•° */
 /*
-*	szSource	±íÊ¾Ô´ÇøÓò´óĞ¡
-*	szBlock		±íÊ¾Ò»Ğ¡¿é
+*	szSource	è¡¨ç¤ºæºåŒºåŸŸå¤§å°
+*	szBlock		è¡¨ç¤ºä¸€å°å—
 */
 template<typename T>
 inline int ClipRect(const cSizeTemplate<T>& szSource, const cSizeTemplate<T>& szBlock, cRectTemplate<T>* arcout = 0)
@@ -502,7 +502,7 @@ inline int ClipRect(const cSizeTemplate<T>& szSource, const cSizeTemplate<T>& sz
 }
 
 /*
-ÀàËÆĞ¡µØÍ¼µÄµ¼º½
+ç±»ä¼¼å°åœ°å›¾çš„å¯¼èˆª
 */
 template<typename T>
 inline bool MoveInRect(cRectTemplate<T>& rcView, cRectTemplate<T>& rcInMap, const cPointTemplate<T>& pt, 
@@ -517,7 +517,7 @@ inline bool MoveInRect(cRectTemplate<T>& rcView, cRectTemplate<T>& rcInMap, cons
 	if (rcMap.GetWidth() >= szView.GetWidth() && 
 		rcMap.GetHeight() >= szView.GetHeight())
 	{
-		//ÉÏÏÂ×óÓÒ¶¼¿ÉÒÆ¶¯
+		//ä¸Šä¸‹å·¦å³éƒ½å¯ç§»åŠ¨
 		rc.SetCenter(pt, szView);
 		rcView.SetSize(szView);
 		if (rc.left < rcMap.left)
@@ -537,7 +537,7 @@ inline bool MoveInRect(cRectTemplate<T>& rcView, cRectTemplate<T>& rcInMap, cons
 	else if (rcMap.GetWidth() > szView.GetWidth() && 
 		rcMap.GetHeight() < szView.GetHeight())
 	{
-		//ÔÊĞí×óÓÒÒÆ¶¯
+		//å…è®¸å·¦å³ç§»åŠ¨
 		rc.SetCenter(pt, szView);
 		rcView.SetSize(szView);
 		ty = rcMap.top - ( szView.GetHeight() - rcMap.GetHeight() ) / 2;
@@ -552,7 +552,7 @@ inline bool MoveInRect(cRectTemplate<T>& rcView, cRectTemplate<T>& rcInMap, cons
 	else if (rcMap.GetHeight() > szView.GetHeight() &&
 		rcMap.GetWidth() < szView.GetWidth())
 	{
-		//ÔÊĞíÉÏÏÂÒÆ¶¯
+		//å…è®¸ä¸Šä¸‹ç§»åŠ¨
 		rc.SetCenter(pt, szView);
 		rcView.SetSize(szView);
 		tx = rcMap.left - ( szView.GetWidth() - rcMap.GetWidth() ) / 2;
@@ -565,7 +565,7 @@ inline bool MoveInRect(cRectTemplate<T>& rcView, cRectTemplate<T>& rcInMap, cons
 		rcView.MoveSelfTo(tx, ty);
 	}
 	else {
-		//²»ÄÜÒÆ¶¯
+		//ä¸èƒ½ç§»åŠ¨
 		rc.SetCenter(pt, szView);
 		rcView.SetSize(szView);
 		tx = rcMap.left - ( szView.GetWidth() - rcMap.GetWidth() ) / 2;
@@ -582,8 +582,8 @@ inline bool MoveInRect(cRectTemplate<T>& rcView, cRectTemplate<T>& rcInMap, cons
 }
 
 /*
-¾íÖáËã·¨
-ÎªÁËĞ§ÂÊÔİÊ±Ã»ÓĞÅĞ¶Ï³ı0µÄÇé¿ö
+å·è½´ç®—æ³•
+ä¸ºäº†æ•ˆç‡æš‚æ—¶æ²¡æœ‰åˆ¤æ–­é™¤0çš„æƒ…å†µ
 */
 template<typename T>
 inline cRectTemplate<T> RealRect(const cSizeTemplate<T>& szBig,

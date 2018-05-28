@@ -11,7 +11,7 @@
 #include <mutex>
 #include <sstream>
 
-namespace cm
+namespace cross
 {
 
 cMutex::cMutex()

@@ -3,7 +3,7 @@
 
 #include "Config.h"
 
-namespace cm
+namespace cross
 {
 
 void InitCommon(bool bConsole = false, int argc = 0, char** argv = 0, cpstr sExe = "", cpstr sCommand = "");

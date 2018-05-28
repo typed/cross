@@ -6,7 +6,7 @@
 #include <string>
 #include <map>
 
-namespace cm
+namespace cross
 {
 
 class cNetMapping

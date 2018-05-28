@@ -18,7 +18,7 @@
 #endif
 #include <iostream>
 
-namespace cm
+namespace cross
 {
 
 	std::string CrossConsole::GetString() {

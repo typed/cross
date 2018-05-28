@@ -8,7 +8,7 @@
 
 #include "RakNetConfig.h"
 
-namespace cm
+namespace cross
 {
 
 class cRakNetUDPSocket :

@@ -1,12 +1,12 @@
-#ifndef _common_triangle3d_h_
-#define _common_triangle3d_h_
+#ifndef _cross_math_triangle3d_h_
+#define _cross_math_triangle3d_h_
 
 #include "../CommonDef.h"
 #include "MathBase.h"
 #include "cVector3D.h"
 #include "cAabbox.h"
 
-namespace cm
+namespace cross
 {
 
 template<typename T>

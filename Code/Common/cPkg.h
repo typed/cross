@@ -14,7 +14,7 @@
 #include <set>
 #include <fstream>
 
-namespace cm
+namespace cross
 {
 
 static const unsigned int c_header_size = 128*1024;

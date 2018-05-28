@@ -5,7 +5,7 @@
 
 typedef std::map<std::string, std::string> mapCac;
 
-namespace cm
+namespace cross
 {
 
 struct stCacHeader

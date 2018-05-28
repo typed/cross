@@ -3,7 +3,7 @@
 #include "../inc/iCrc.h"
 #include "../inc/CrossString.h"
 
-namespace cm
+namespace cross
 {
 
 cGuid::cGuid()

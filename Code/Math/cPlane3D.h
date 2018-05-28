@@ -1,26 +1,26 @@
-#ifndef _common_plane3d_h_
-#define _common_plane3d_h_
+#ifndef _cross_math_plane3d_h_
+#define _cross_math_plane3d_h_
 
 #include "../CommonDef.h"
 #include "MathBase.h"
 #include "cVector3D.h"
 #include "cLine3D.h"
 
-namespace cm
+namespace cross
 {
 
 /*
-	Æ½Ãæ·½³Ì£ºn.p + d = 0;ÆäÖĞnÎª·¨ÏßÏòÁ¿£¬pÎªÆ½ÃæÉÏµÄµã£¬
-	Ôòd = - n.p;
+	å¹³é¢æ–¹ç¨‹ï¼šn.p + d = 0;å…¶ä¸­nä¸ºæ³•çº¿å‘é‡ï¼Œpä¸ºå¹³é¢ä¸Šçš„ç‚¹ï¼Œ
+	åˆ™d = - n.p;
 
-	ÇóÉäÏßºÍÆ½ÃæµÄ½»µã£¬Ô­Àí:
-	Æ½Ãæ·½³Ì£º
+	æ±‚å°„çº¿å’Œå¹³é¢çš„äº¤ç‚¹ï¼ŒåŸç†:
+	å¹³é¢æ–¹ç¨‹ï¼š
 	n.p + d = 0;
-	ÉäÏß·½³Ì£º
-	p = p0 + tu; ÆäÖĞp0ÎªÆğµã£¬uÎªÉäÏß·½Ïò
-	½«ÉäÏß·½³Ì´úÈëÆ½Ãæ·½³ÌµÃµ½: n.(p0 + tu) + d = 0;
-	¼ÆËã¿ÉÒÔµÃµ½t = (-d - (n.p0))/(n.u);
-	Èç¹ût > 0 ÔòÉäÏßºÍÆ½ÃæÏà½»£¬½«t´úÈëÉäÏß·½³Ì µÃµ½½»µã
+	å°„çº¿æ–¹ç¨‹ï¼š
+	p = p0 + tu; å…¶ä¸­p0ä¸ºèµ·ç‚¹ï¼Œuä¸ºå°„çº¿æ–¹å‘
+	å°†å°„çº¿æ–¹ç¨‹ä»£å…¥å¹³é¢æ–¹ç¨‹å¾—åˆ°: n.(p0 + tu) + d = 0;
+	è®¡ç®—å¯ä»¥å¾—åˆ°t = (-d - (n.p0))/(n.u);
+	å¦‚æœt > 0 åˆ™å°„çº¿å’Œå¹³é¢ç›¸äº¤ï¼Œå°†tä»£å…¥å°„çº¿æ–¹ç¨‹ å¾—åˆ°äº¤ç‚¹
 */
 template<class T>
 class cPlane3D
@@ -37,44 +37,44 @@ public:
 	void SetPlane(const cVector3D<T>& nvect, T d) {m_vNormal = nvect; m_d = d;}
 	void SetPlane(const cVector3D<T>& point, const cVector3D<T>& nvector) {m_vNormal = nvector; RecalculateD(point);}
 	void SetPlane(const cVector3D<T>& point1, const cVector3D<T>& point2, const cVector3D<T>& point3);
-	//¸ù¾İ·¨ÏòÁ¿ºÍÆ½ÃæÉÏµÄÒ»¸öµã¼ÆËãd
+	//æ ¹æ®æ³•å‘é‡å’Œå¹³é¢ä¸Šçš„ä¸€ä¸ªç‚¹è®¡ç®—d
 	void RecalculateD(const cVector3D<T>& MPoint) {m_d = - MPoint.DotProduct(m_vNormal);}
 	//
 	cVector3D<T> GetMemberPoint() const {return m_vNormal * ( - m_d );}
 
-	//µãÓëÃæµÄ¹ØÏµ
+	//ç‚¹ä¸é¢çš„å…³ç³»
 	eIntersectionRelation3D ClassifyPointRelation(const cVector3D<T>& point) const;
-	//ÏßÓëÃæµÄ¹ØÏµ
+	//çº¿ä¸é¢çš„å…³ç³»
 	bool GetIntersectionWithLine(const cVector3D<T>& linePoint, const cVector3D<T>& lineVect, cVector3D<T>& outIntersection) const;
 	//
 	float GetKnownIntersectionWithLine(const cVector3D<T>& linePoint1, const cVector3D<T>& linePoint2) const;
 	//
 	bool GetIntersectionWithLimitedLine(const cVector3D<T>& linePoint1, const cVector3D<T>& linePoint2, cVector3D<T>& outIntersection) const;
 	
-	//ÃæÓëÃæÊÇ·ñÏà½»
+	//é¢ä¸é¢æ˜¯å¦ç›¸äº¤
 	bool ExistsIntersection(const cPlane3D<T>& other) const { cVector3D<T> cross = other.m_vNormal.CrossProduct(m_vNormal); return cross.GetLength() > c_fRounding_Error;}
-	//ÃæÓëÃæÏà½»Ïß
+	//é¢ä¸é¢ç›¸äº¤çº¿
 	bool GetIntersectionWithPlane(const cPlane3D<T>& other, cVector3D<T>& outLinePoint, cVector3D<T>& outLineVect) const;
-	//3¸öÃæµÄ½»µã
+	//3ä¸ªé¢çš„äº¤ç‚¹
 	bool GetIntersectionWithPlanes(const cPlane3D<T>& o1, const cPlane3D<T>& o2, cVector3D<T>& outPoint) const;
-	//µãµ½ÃæµÄ¾àÀë
+	//ç‚¹åˆ°é¢çš„è·ç¦»
 	T GetDistanceTo(const cVector3D<T>& point) const {return point.DotProduct(m_vNormal) + m_d;}
-	//¿´¿´ÊÇÕıÃæ»¹ÊÇ±³Ãæ
+	//çœ‹çœ‹æ˜¯æ­£é¢è¿˜æ˜¯èƒŒé¢
 	bool IsFrontFacing(const cVector3D<T>& lookDirection) const {const float d = m_vNormal.DotProduct(lookDirection); return d <= 0.f;}
 
 	void GetNormalLine(cLine3D<T>& line, T len) const {line.SetLine(GetMemberPoint(), m_vNormal, len);}
 
-	//»ñµÃÁíÒ»¸öÎ¬¶ÈÖµnDimension=2Öµ,Ö»ÊäÈëµÄÊÇxz£¬ĞèÒª»ñµÃµÚ¶şÎ¬yµÄÊıÖµ		add by yfw 
+	//è·å¾—å¦ä¸€ä¸ªç»´åº¦å€¼nDimension=2å€¼,åªè¾“å…¥çš„æ˜¯xzï¼Œéœ€è¦è·å¾—ç¬¬äºŒç»´yçš„æ•°å€¼		add by yfw 
 	T GetOtherDimenValue(const cVector2D<T>& vPoint, int nDimension=2);
 
 	//add by yfw
-	//°´ÕÕ·¨Ïß·½ÏòÒÆ¶¯
+	//æŒ‰ç…§æ³•çº¿æ–¹å‘ç§»åŠ¨
 	bool MoveByNormal(float fDis);
 	//add by yfw 
 	bool IsEmpty() const { return m_vNormal.IsEmpty();}
 	bool Set0(){m_vNormal.Set0(); return true;}
 
-	cVector3D<T> m_vNormal;//Æ½Ãæ·¨Ïß
+	cVector3D<T> m_vNormal;//å¹³é¢æ³•çº¿
 	T			 m_d;
 };
 
@@ -171,14 +171,14 @@ inline T cPlane3D<T>::GetOtherDimenValue(const cVector2D<T>& vPoint, int nDimens
 	}
 }
 
-//°´ÕÕ·¨Ïß·½ÏòÒÆ¶¯
+//æŒ‰ç…§æ³•çº¿æ–¹å‘ç§»åŠ¨
 template<class T>
 bool cPlane3D<T>::MoveByNormal(float fDis)
 {
 	if (Equals(0.0f, fDis))
 		return true;
 
-	m_d += fDis;			//m_d ¼ÇÂ¼µÄÊÇºÍÕæÕı¾àÀë£¬¶ÔÓ¦µÄ¸ºÊıÊıÖµ
+	m_d += fDis;			//m_d è®°å½•çš„æ˜¯å’ŒçœŸæ­£è·ç¦»ï¼Œå¯¹åº”çš„è´Ÿæ•°æ•°å€¼
 	return true;
 }
 

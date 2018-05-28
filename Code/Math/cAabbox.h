@@ -1,13 +1,13 @@
-#ifndef _common_aabbox_h_
-#define _common_aabbox_h_
+#ifndef _cross_math_aabbox_h_
+#define _cross_math_aabbox_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 #include "cVector3D.h"
 #include "cLine3D.h"
 #include "cPlane3D.h"
 
-namespace cm
+namespace cross
 {
 
 template<class T>
@@ -39,27 +39,27 @@ public:
 	bool IsPointInside(const cVector3D<T>& p) const {return (p.x >= m_min.x && p.x <= m_max.x && p.y >= m_min.y && p.y <= m_max.y && p.z >= m_min.z && p.z <= m_max.z);}
 	bool IsPointTotalInside(const cVector3D<T>& p) const {return (p.x > m_min.x && p.x < m_max.x && p.y > m_min.y && p.y < m_max.y && p.Z > m_min.z && p.z < m_max.z);}
 	bool IsFullInside(const cAabbox<T>& other) {return m_min >= other.m_min && m_max <= other.m_max;}
-	//¼ì²âÓëÏß¶ÎÏà½»
+	//æ£€æµ‹ä¸çº¿æ®µç›¸äº¤
 	bool IntersectsWithLine(const cLine3D<T>& line) const {return IntersectsWithLine(line.GetMiddle(), line.GetVector().Normalize(), (T)(line.GetLength() * 0.5));}
 	bool IntersectsWithLine(const cVector3D<T>& linemiddle, const cVector3D<T>& linevect, T halflength) const;
 
 	//add by yfw
 	bool IntersectsWithRay(const cVector3D<T>& vIni, const cVector3D<T>& vDir, T fMaxHeight=(T)1000) const;
 
-	//¼ì²âÓëÉäÏßÏà½»
+	//æ£€æµ‹ä¸å°„çº¿ç›¸äº¤
 	f32 IntersectsWithRay2(const cVector3Df& rayOrg, const cVector3Df& rayDelta, cVector3D<T>* returnNormal) const;
 	bool Intersects(const cVector3Df& origin, const cVector3Df& direction, f32& dist) const;
-	//ÓëÃæµÄ¹ØÏµ
+	//ä¸é¢çš„å…³ç³»
 	eIntersectionRelation3D ClassifyPlaneRelation(const cPlane3D<T>& plane) const;
-	//¼ì²âÓëboxÏà½»
+	//æ£€æµ‹ä¸boxç›¸äº¤
 	bool IntersectsWithBox(const cAabbox<T>& other) const {return (m_min <= other.m_max && m_max >= other.m_min);}
 	bool GetIntersectsWithBox(cAabbox<T>& boxOut, const cAabbox<T>& boxIn) const;
-	// ²åÖµ£¬Calculates a new interpolated bounding box.
+	// æ’å€¼ï¼ŒCalculates a new interpolated bounding box.
 	cAabbox<T> GetInterpolated(const cAabbox<T>& other, f32 d) const;
-	//»ñÈ¡8¸ö¶¥µã
+	//è·å–8ä¸ªé¡¶ç‚¹
 	void GetEdges(cVector3D<T>* edges) const;
 	void GetEdgesIndex(ui16* edgesindex) const;
-	//»ñÈ¡12ÌõÏß
+	//è·å–12æ¡çº¿
 	void GetLines(cLine3D<T>* lines) const;
 
 	T GetVolume() const {const cVector3D<T> e = GetExtent(); return e.x * e.y * e.z;}
@@ -171,7 +171,7 @@ inline eIntersectionRelation3D cAabbox<T>::ClassifyPlaneRelation(const cPlane3D<
 template<class T>
 inline bool cAabbox<T>::GetIntersectsWithBox(cAabbox<T>& boxOut, const cAabbox<T>& boxIn) const
 {
-	//²»Ïà½»
+	//ä¸ç›¸äº¤
 	if (!IntersectsWithBox(boxIn))
 		return false;
 	boxOut.m_min.x = Max(m_min.x, boxIn.m_min.x);
@@ -285,9 +285,9 @@ inline bool cAabbox<T>::Intersects(const cVector3Df& origin, const cVector3Df& d
 	bool hit = false;
 	cVector3Df hitpoint;
 
-	// Èç¹ûÉäÏß³ö·¢µãÔÚ°üÎ§ºĞµÄÄÚ²¿£¬Ôò±Ø¶¨Ïà½»
+	// å¦‚æœå°„çº¿å‡ºå‘ç‚¹åœ¨åŒ…å›´ç›’çš„å†…éƒ¨ï¼Œåˆ™å¿…å®šç›¸äº¤
 
-	//ÏÖÔÚÈÏÎªÔÚ°üÎ§ºĞÄÚ²¿,ÎŞ·¨pickµ½
+	//ç°åœ¨è®¤ä¸ºåœ¨åŒ…å›´ç›’å†…éƒ¨,æ— æ³•pickåˆ°
 	if (( origin.x > m_min.x && origin.x < m_max.x )
 		&& ( origin.y > m_min.y && origin.y < m_max.y )
 		&&( origin.z > m_min.z && origin.z < m_max.z ))
@@ -295,8 +295,8 @@ inline bool cAabbox<T>::Intersects(const cVector3Df& origin, const cVector3Df& d
 		return false;
 	}
 
-	//·Ö±ğÅĞ¶ÏÓë°üÎ§ºĞ¸÷Æ½ÃæµÄÏà½»Çé¿ö
-	//1. Óëx = m_min.xÃæµÄÏà½»µÄ¿ÉÄÜĞÔ:ÉäÏßÆğµãÔÚ¸ÃÃæ×ó²à£¬¶øÇÒdirection.x > 0,ÈçÏÂÍ¼ËùÊ¾£º
+	//åˆ†åˆ«åˆ¤æ–­ä¸åŒ…å›´ç›’å„å¹³é¢çš„ç›¸äº¤æƒ…å†µ
+	//1. ä¸x = m_min.xé¢çš„ç›¸äº¤çš„å¯èƒ½æ€§:å°„çº¿èµ·ç‚¹åœ¨è¯¥é¢å·¦ä¾§ï¼Œè€Œä¸”direction.x > 0,å¦‚ä¸‹å›¾æ‰€ç¤ºï¼š
 		
 	/*
 		
@@ -304,10 +304,10 @@ inline bool cAabbox<T>::Intersects(const cVector3Df& origin, const cVector3Df& d
 					/3--------/7
 					/  |      / |
 (direction)			/   |     /  |
-		¡£		1---------5  |
-		¡£		|   2- - -| -6
-		¡£			|  /      |  /
-(origin)¡£			|/        | /
+		ã€‚		1---------5  |
+		ã€‚		|   2- - -| -6
+		ã€‚			|  /      |  /
+(origin)ã€‚			|/        | /
 				0---------4/ 
 				m_min
 	*/
@@ -318,7 +318,7 @@ inline bool cAabbox<T>::Intersects(const cVector3Df& origin, const cVector3Df& d
 		t = (m_min.x - origin.x) / direction.x;
 		if (t >= 0)
 		{
-			//¼ÆËã³öÏà½»µã£¬ÅĞ¶Ï½»µãÊÇ·ñÔÚ°üÎ§ºĞÉÏ
+			//è®¡ç®—å‡ºç›¸äº¤ç‚¹ï¼Œåˆ¤æ–­äº¤ç‚¹æ˜¯å¦åœ¨åŒ…å›´ç›’ä¸Š
 			hitpoint = origin + direction * t;
 			if (hitpoint.y >= m_min.y && hitpoint.y <= m_max.y &&
 				hitpoint.z >= m_min.z && hitpoint.z <= m_max.z &&
@@ -329,7 +329,7 @@ inline bool cAabbox<T>::Intersects(const cVector3Df& origin, const cVector3Df& d
 			}
 		}
 	}
-	//2.Óëx = m_max.xÃæµÄÏà½»µÄ¿ÉÄÜĞÔ:ÉäÏßÆğµãÔÚ¸ÃÃæÓÒ²à£¬¶øÇÒdirection.x < 0
+	//2.ä¸x = m_max.xé¢çš„ç›¸äº¤çš„å¯èƒ½æ€§:å°„çº¿èµ·ç‚¹åœ¨è¯¥é¢å³ä¾§ï¼Œè€Œä¸”direction.x < 0
 	if (origin.x >= m_max.x && direction.x < 0)
 	{
 		t = (m_max.x - origin.x) / direction.x;
@@ -346,7 +346,7 @@ inline bool cAabbox<T>::Intersects(const cVector3Df& origin, const cVector3Df& d
 		}
 	}
 
-	//3.Óëy = m_min.yÃæµÄÏà½»µÄ¿ÉÄÜĞÔ:ÉäÏßÆğµãÔÚ¸ÃÃæ×ó²à£¬¶øÇÒdirection.y > 0
+	//3.ä¸y = m_min.yé¢çš„ç›¸äº¤çš„å¯èƒ½æ€§:å°„çº¿èµ·ç‚¹åœ¨è¯¥é¢å·¦ä¾§ï¼Œè€Œä¸”direction.y > 0
 	if (origin.y <= m_min.y && direction.y > 0)
 	{
 		t = (m_min.y - origin.y) / direction.y;
@@ -363,7 +363,7 @@ inline bool cAabbox<T>::Intersects(const cVector3Df& origin, const cVector3Df& d
 		}
 	}
 
-	//4.Óëy = m_max.yÃæµÄÏà½»µÄ¿ÉÄÜĞÔ:ÉäÏßÆğµãÔÚ¸ÃÃæÓÒ²à£¬¶øÇÒdirection.y <0
+	//4.ä¸y = m_max.yé¢çš„ç›¸äº¤çš„å¯èƒ½æ€§:å°„çº¿èµ·ç‚¹åœ¨è¯¥é¢å³ä¾§ï¼Œè€Œä¸”direction.y <0
 	if (origin.y >= m_max.y && direction.y < 0)
 	{
 		t = (m_max.y - origin.y) / direction.y;
@@ -380,7 +380,7 @@ inline bool cAabbox<T>::Intersects(const cVector3Df& origin, const cVector3Df& d
 		}
 	}
 
-	//5.Óëz = m_min.zÃæµÄÏà½»µÄ¿ÉÄÜĞÔ:ÉäÏßÆğµãÔÚ¸ÃÃæ×ó²à£¬¶øÇÒdirection.z > 0
+	//5.ä¸z = m_min.zé¢çš„ç›¸äº¤çš„å¯èƒ½æ€§:å°„çº¿èµ·ç‚¹åœ¨è¯¥é¢å·¦ä¾§ï¼Œè€Œä¸”direction.z > 0
 	if (origin.z <= m_min.z && direction.z > 0)
 	{
 		t = (m_min.z - origin.z) / direction.z;
@@ -397,7 +397,7 @@ inline bool cAabbox<T>::Intersects(const cVector3Df& origin, const cVector3Df& d
 		}
 	}
 
-	//6.Óëz = m_max.zÃæµÄÏà½»µÄ¿ÉÄÜĞÔ:ÉäÏßÆğµãÔÚ¸ÃÃæÓÒ²à£¬¶øÇÒdirection.z < 0
+	//6.ä¸z = m_max.zé¢çš„ç›¸äº¤çš„å¯èƒ½æ€§:å°„çº¿èµ·ç‚¹åœ¨è¯¥é¢å³ä¾§ï¼Œè€Œä¸”direction.z < 0
 	if (origin.z >= m_max.z && direction.z < 0)
 	{
 		t = (m_max.z - origin.z) / direction.z;

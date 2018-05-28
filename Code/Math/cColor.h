@@ -1,12 +1,12 @@
-#ifndef _common_color_h_
-#define _common_color_h_
+#ifndef _cross_math_color_h_
+#define _cross_math_color_h_
 
 #include "../CommonDef.h"
 #include "cRect.h"
 #include "cVector4D.h"
 #include "Random.h"
 
-namespace cm
+namespace cross
 {
 
 #define SMOOTH(v) \
@@ -36,7 +36,7 @@ public:
 		SetColor8888(col);
 	}
 
-	cColor(ui32 col, bool /*bRGB*/) {      // r g b   µÕŒª->∏ﬂŒª   add by jiangzhijun 10-9-28
+	cColor(ui32 col, bool /*bRGB*/) {      // r g b   ‰Ωé‰Ωç->È´ò‰Ωç   add by jiangzhijun 10-9-28
 		SetColor888(col);
 	}
 
@@ -83,7 +83,7 @@ public:
 		out.m_fGreen = m_fGreen + (in.m_fGreen - m_fGreen) * fChangePer;
 	}
 
-	//ª“∂»÷µ = 0.3*R+0.59*G+0.11*B
+	//ÁÅ∞Â∫¶ÂÄº = 0.3*R+0.59*G+0.11*B
 	cColor Gradation()
 	{
 		cColor col;

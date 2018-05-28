@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 
 struct stATask

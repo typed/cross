@@ -19,7 +19,7 @@
 #include <vector>
 #include <map>
 
-namespace cm
+namespace cross
 {
 
 class cTManager;

@@ -1,12 +1,12 @@
-#ifndef _common_vectornd_h_
-#define _common_vectornd_h_
+#ifndef _cross_math_vectornd_h_
+#define _cross_math_vectornd_h_
 
 #include "MathBase.h"
 #include "../CrossMemory.h"
 
-namespace cm
+namespace cross
 {
-	//const ui32 g_cunMaxDimemsion = 4;		//×î´óÎ¬Êı
+	//const ui32 g_cunMaxDimemsion = 4;		//æœ€å¤§ç»´æ•°
 
 	//enum eVecDimemsion
 	//{
@@ -77,10 +77,10 @@ namespace cm
 	//		return (float*)&m_Data[0];
 	//	}
 
-	//	//¸´Öµ Èç¹ûÎ¬Êı²»ÏàµÈ£¬ÔòĞèÒªÏÈÖØĞÂ·ÖÅä
+	//	//å¤å€¼ å¦‚æœç»´æ•°ä¸ç›¸ç­‰ï¼Œåˆ™éœ€è¦å…ˆé‡æ–°åˆ†é…
 	//	cVectorND<T, DIMEMSION>& operator = (const cVectorND<T, DIMEMSION>& other)
 	//	{
-	//		//µ±Ç°Î¬Êı²»ÏàµÈÊ±£¬ĞèÒªÖØĞÂ·ÖÅä
+	//		//å½“å‰ç»´æ•°ä¸ç›¸ç­‰æ—¶ï¼Œéœ€è¦é‡æ–°åˆ†é…
 	//		memcpy(m_Data, other.GetData(), sizeof(T)*DIMEMSION);
 
 	//		return *this;
@@ -278,7 +278,7 @@ namespace cm
 	//		return temp;
 	//	}
 
-	//	//ÏòÁ¿µÄ´óĞ¡
+	//	//å‘é‡çš„å¤§å°
 	//	T GetLength() const
 	//	{
 	//		T l = (T)0;
@@ -289,7 +289,7 @@ namespace cm
 	//		return (T)Faster_Sqrt((float)(l));
 	//	}
 
-	//	//¹æ¸ñ»¯
+	//	//è§„æ ¼åŒ–
 	//	cVectorND<T, DIMEMSION>& Normalize()
 	//	{
 	//		T l = (T)0;
@@ -308,7 +308,7 @@ namespace cm
 	//		return *this;
 	//	}
 
-	//	////½«vBorder×÷Îª±ß½ç µ÷Õû	bUpper = trueÊÇÉÏ±ß½ç£»·ñÔòÎªÏÂ±ß½ç
+	//	////å°†vBorderä½œä¸ºè¾¹ç•Œ è°ƒæ•´	bUpper = trueæ˜¯ä¸Šè¾¹ç•Œï¼›å¦åˆ™ä¸ºä¸‹è¾¹ç•Œ
 	//	//cVectorND<T, DIMEMSION>& AdjustData(const cVectorND<T, DIMEMSION>& vBorder, bool bUpper = true)
 	//	//{
 	//	//	for (ui32 unIndex=0; unIndex<DIMEMSION; unIndex++)
@@ -332,7 +332,7 @@ namespace cm
 
 
 	//Ver1
-	//Í¨ÓÃ×ª»»º¯ÊıcVectorND<T, eVecDimemsion_2 ºÍ cVector2D<T>Ö®¼äµÄ»¥Ïà×ª»»£»cVectorND<T, eVecDimemsion_3 ºÍ cVector3D<T>Ö®¼äµÄ»¥Ïà×ª»»
+	//é€šç”¨è½¬æ¢å‡½æ•°cVectorND<T, eVecDimemsion_2 å’Œ cVector2D<T>ä¹‹é—´çš„äº’ç›¸è½¬æ¢ï¼›cVectorND<T, eVecDimemsion_3 å’Œ cVector3D<T>ä¹‹é—´çš„äº’ç›¸è½¬æ¢
 	//template<class T>
 	//cVector2D<T> TransVector2NDTo2D(const cVectorND<T, eVecDimemsion_2>& vDis)
 	//{
@@ -414,7 +414,7 @@ namespace cm
 	//	return true;
 	//}
 
-const ui32 g_cunMaxDimemsion = 4;		//×î´óÎ¬Êı
+const ui32 g_cunMaxDimemsion = 4;		//æœ€å¤§ç»´æ•°
 enum eVecDimemsion
 {
 	eVecDimemsion_1 = 1,
@@ -495,7 +495,7 @@ public:
 
 	bool IsEmpty() const
 	{
-		if (!IsValid())		//µ±Ç°Êı¾İÎŞĞ§£¬Ò²ËãÊÇ ¿Õ£¡
+		if (!IsValid())		//å½“å‰æ•°æ®æ— æ•ˆï¼Œä¹Ÿç®—æ˜¯ ç©ºï¼
 			return true;
 
 		for (ui32 unIndex=0; unIndex<m_unDimemsion; unIndex++)
@@ -507,7 +507,7 @@ public:
 	}
 	bool Set0()
 	{
-		if (!IsValid())		//µ±Ç°Êı¾İÎŞĞ§£¬Ò²ËãÊÇ ¿Õ£¡
+		if (!IsValid())		//å½“å‰æ•°æ®æ— æ•ˆï¼Œä¹Ÿç®—æ˜¯ ç©ºï¼
 			return false;
 
 		CrossMemory::ZeroMem(m_pData, sizeof(T)*m_unDimemsion);
@@ -523,13 +523,13 @@ public:
 
 		return true;
 	}
-	//ÖØĞÂ·ÖÅä£¨ÏÈ½«Ô­À´Êı¾İÇå¿Õ£©ÔÙÖØĞÂ·ÖÅä£¬³õÊ¼»¯
+	//é‡æ–°åˆ†é…ï¼ˆå…ˆå°†åŸæ¥æ•°æ®æ¸…ç©ºï¼‰å†é‡æ–°åˆ†é…ï¼Œåˆå§‹åŒ–
 	bool ReAllot(ui32 unDimemsion)
 	{
 		if (0==unDimemsion || unDimemsion>g_cunMaxDimemsion)
 			return false;
 
-		//Èç¹ûµ±Ç°µÄÊı¾İÊ±Ò»ÖÂµÄ£¬Ôò²»ĞèÒªÖØĞÂ·ÖÅä£¬µ¥´¿³õÊ¼»¯Ò»ÏÂ¾Íok
+		//å¦‚æœå½“å‰çš„æ•°æ®æ—¶ä¸€è‡´çš„ï¼Œåˆ™ä¸éœ€è¦é‡æ–°åˆ†é…ï¼Œå•çº¯åˆå§‹åŒ–ä¸€ä¸‹å°±ok
 		if (unDimemsion == m_unDimemsion)
 		{
 			if (Set0())
@@ -575,7 +575,7 @@ public:
 		m_pData[i] = num;
 		return true;
 	}
-	bool SetData(T num)		//ÔİÊ±¼ÓÒ»¸öÕâ¸öº¯Êı
+	bool SetData(T num)		//æš‚æ—¶åŠ ä¸€ä¸ªè¿™ä¸ªå‡½æ•°
 	{
 		if (!IsValid())
 			return false;
@@ -602,12 +602,12 @@ public:
 		return m_pData;
 	}
 
-	//¸´Öµ Èç¹ûÎ¬Êı²»ÏàµÈ£¬ÔòĞèÒªÏÈÖØĞÂ·ÖÅä
+	//å¤å€¼ å¦‚æœç»´æ•°ä¸ç›¸ç­‰ï¼Œåˆ™éœ€è¦å…ˆé‡æ–°åˆ†é…
 	cVectorND<T>& operator = (const cVectorND<T>& other)
 	{
 		if (!other.IsValid())
 			return *this;
-		//µ±Ç°Î¬Êı²»ÏàµÈÊ±£¬ĞèÒªÖØĞÂ·ÖÅä
+		//å½“å‰ç»´æ•°ä¸ç›¸ç­‰æ—¶ï¼Œéœ€è¦é‡æ–°åˆ†é…
 		if (m_unDimemsion != other.m_unDimemsion)
 			ReAllot(other.m_unDimemsion);
 		CrossMemory::MemCpy(m_pData, other.GetData(), sizeof(T)*m_unDimemsion);
@@ -619,7 +619,7 @@ public:
 		if (IsValid() != other.IsValid())
 			return false;
 
-		if (!IsValid() && !other.IsValid())		//ÕâÀïÔİÊ±·µ»Øtrue
+		if (!IsValid() && !other.IsValid())		//è¿™é‡Œæš‚æ—¶è¿”å›true
 			return true;
 
 		if (m_unDimemsion != other.m_unDimemsion)
@@ -654,7 +654,7 @@ public:
 	//		return temp;
 	//	}
 
-	//	//ÕâÀï²»Ğ´·µ»ØÖµ£¬¿ÉÒÔÃ´£¿
+	//	//è¿™é‡Œä¸å†™è¿”å›å€¼ï¼Œå¯ä»¥ä¹ˆï¼Ÿ
 	//}
 	//cVectorND<T> operator - (const cVectorND<T>& other) const
 	//{
@@ -679,7 +679,7 @@ public:
 	//		return temp;
 	//	}
 
-	//	//ÕâÀï²»Ğ´·µ»ØÖµ£¬¿ÉÒÔÃ´£¿
+	//	//è¿™é‡Œä¸å†™è¿”å›å€¼ï¼Œå¯ä»¥ä¹ˆï¼Ÿ
 	//}
 	//cVectorND<T> operator / (const cVectorND<T>& other) const
 	//{
@@ -704,7 +704,7 @@ public:
 	//		return temp;
 	//	}
 
-	//	//ÕâÀï²»Ğ´·µ»ØÖµ£¬¿ÉÒÔÃ´£¿
+	//	//è¿™é‡Œä¸å†™è¿”å›å€¼ï¼Œå¯ä»¥ä¹ˆï¼Ÿ
 	//	return temp;
 	//}
 
@@ -731,9 +731,9 @@ public:
 	//		return temp;
 	//	}
 
-	//	//ÕâÀï²»Ğ´·µ»ØÖµ£¬¿ÉÒÔÃ´£¿
+	//	//è¿™é‡Œä¸å†™è¿”å›å€¼ï¼Œå¯ä»¥ä¹ˆï¼Ÿ
 	//}
-	//¼ÆËãÊ±£¬Á½ÊıÖµ²»ÄÜ½øĞĞÔËËã£¬ÔòÖ±½Ó·µ»Øµ±Ç°¶ÔÏó
+	//è®¡ç®—æ—¶ï¼Œä¸¤æ•°å€¼ä¸èƒ½è¿›è¡Œè¿ç®—ï¼Œåˆ™ç›´æ¥è¿”å›å½“å‰å¯¹è±¡
 	cVectorND<T> operator + (const cVectorND<T>& other) const
 	{
 		if (!IsValid())
@@ -772,7 +772,7 @@ public:
 
 		return *this;
 
-		//ÕâÀï²»Ğ´·µ»ØÖµ£¬¿ÉÒÔÃ´£¿
+		//è¿™é‡Œä¸å†™è¿”å›å€¼ï¼Œå¯ä»¥ä¹ˆï¼Ÿ
 	}
 
 	cVectorND<T> operator / (const cVectorND<T>& other) const
@@ -1011,7 +1011,7 @@ public:
 		return temp;
 	}
 
-	//ÏòÁ¿µÄ´óĞ¡
+	//å‘é‡çš„å¤§å°
 	T GetLength() const
 	{
 		if (!IsValid())
@@ -1025,7 +1025,7 @@ public:
 		return (T)CrossMath::Sqrt((float)(l));
 	}
 
-	//¹æ¸ñ»¯
+	//è§„æ ¼åŒ–
 	cVectorND<T>& Normalize()
 	{
 		if (!IsValid())

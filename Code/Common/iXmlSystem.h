@@ -4,7 +4,7 @@
 #include "CommonDef.h"
 #include <string>
 
-namespace cm
+namespace cross
 {
 
 class COMMON_API iXmlAttributes

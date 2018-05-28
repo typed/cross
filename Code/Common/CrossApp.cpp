@@ -7,7 +7,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 
 	void CrossApp::MsgBox(const std::string& sTxt, const std::string& sTitle) {

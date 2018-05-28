@@ -20,7 +20,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 
 	bool CrossFileOP::Delete(const string& s) {

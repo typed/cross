@@ -5,7 +5,7 @@
 #include "cRect.h"
 #include "vector"
 
-namespace cm
+namespace cross
 {
 
 template<class TR>

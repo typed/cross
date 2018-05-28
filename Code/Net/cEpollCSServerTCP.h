@@ -19,7 +19,7 @@
 #include <map>
 #include <vector>
 
-namespace cm
+namespace cross
 {
 	
 #define BUFF_SIZE 1048576

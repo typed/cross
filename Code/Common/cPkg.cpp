@@ -2,7 +2,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 
 cPkgNormal::cPkgNormal():

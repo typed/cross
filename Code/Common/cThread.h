@@ -5,7 +5,7 @@
 #include <string>
 #include <functional>
 
-namespace cm
+namespace cross
 {
 
 class cMutex

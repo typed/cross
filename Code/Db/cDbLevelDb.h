@@ -5,7 +5,7 @@
 
 #if USE_LEVELDB
 
-namespace cm
+namespace cross
 {
 
 class cDbLevelDb :

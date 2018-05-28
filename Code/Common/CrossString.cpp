@@ -1,5 +1,5 @@
-#include "../inc/CrossString.h"
-#include "pcre/pcre.h"
+#include "CrossString.h"
+#include "Pcre/pcre.h"
 #include "Md5/md5.h"
 #include <map>
 
@@ -19,7 +19,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 
 	static const i32 c_iTempSize = 102400;

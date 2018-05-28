@@ -9,7 +9,7 @@
 #include "RakNetConfig.h"
 #include <map>
 
-namespace cm
+namespace cross
 {
 
 struct stLink

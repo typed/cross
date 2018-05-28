@@ -22,7 +22,7 @@
 using namespace std;
 using namespace RakNet;
 
-namespace cm
+namespace cross
 {
 
 enum FeatureSupport
@@ -42,7 +42,7 @@ enum FeatureList
 	FEATURE_LIST_COUNT,
 };
 
-//´úÀí
+//ï¿½ï¿½ï¿½ï¿½
 std::vector<SystemAddress> g_aProxyCoordinator;
 
 #define NatTypeDetectionServerFramework_Supported QUERY

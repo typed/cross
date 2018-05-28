@@ -4,7 +4,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 
 static const cpstr c_sMappingFile = "proxy.txt";

@@ -1,11 +1,11 @@
-#ifndef _common_vector4d_h_
-#define _common_vector4d_h_
+#ifndef _cross_math_vector4d_h_
+#define _cross_math_vector4d_h_
 
 #include "../CommonDef.h"
 #include "MathBase.h"
 #include "cVector3D.h"
 
-namespace cm
+namespace cross
 {
 
 template<class T>

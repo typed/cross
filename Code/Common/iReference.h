@@ -19,7 +19,7 @@
 #define SafeD2(d,x)	{ if( (x)!=0 ) { (x)->d; (x)=0; } }
 #define Saferelease(p) { if ( (p) != 0 ) { (p)->release(); (p) = 0; } }
 
-namespace cm
+namespace cross
 {
 
 class iReference

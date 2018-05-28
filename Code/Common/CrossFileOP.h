@@ -15,7 +15,7 @@
 #include <vector>
 
 
-namespace cm
+namespace cross
 {
 
 struct stFileFindParam

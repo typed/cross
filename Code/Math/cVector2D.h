@@ -1,10 +1,10 @@
-#ifndef _common_cvector2d_h_
-#define _common_cvector2d_h_
+#ifndef _cross_math_cvector2d_h_
+#define _cross_math_cvector2d_h_
 
 #include "../CommonDef.h"
 #include "MathBase.h"
 
-namespace cm
+namespace cross
 {
 
 template<class T>
@@ -145,7 +145,7 @@ public:
 		return *this;
 	}
 
-	//ÏòÁ¿µÄ´óĞ¡
+	//å‘é‡çš„å¤§å°
 	T GetLength() const {
 		return (T)CrossMath::Sqrt((f32)GetLengthSQ());
 	}
@@ -161,19 +161,19 @@ public:
 		cVector2D<T> v = des - *this;
 		return v.GetLengthSQ();
 	}
-	//µ±Ç°µãÊÇ·ñÔÚÖ¸¶¨ Á½µãÖ®¼ä
+	//å½“å‰ç‚¹æ˜¯å¦åœ¨æŒ‡å®š ä¸¤ç‚¹ä¹‹é—´
 	bool IsBetweenPoints(const cVector2D<T>& begin, const cVector2D<T>& end) const
 	{
 		const T f = (end - begin).GetLengthSQ();
 		return GetDistanceSQ(begin) <= f && GetDistanceSQ(end) <= f;
 	}
-	//µ±Ç°µãÊÇ·ñÔÚÖ¸¶¨ Á½µãÖ®¼ä  ×ó±ÕÓÒ¿ª½á¹¹
+	//å½“å‰ç‚¹æ˜¯å¦åœ¨æŒ‡å®š ä¸¤ç‚¹ä¹‹é—´  å·¦é—­å³å¼€ç»“æ„
 	bool IsBetweenPointsRightOpen(const cVector2D<T>& begin, const cVector2D<T>& end) const
 	{
 		const T f = (end - begin).GetLengthSQ();
 		return GetDistanceSQ(begin) < f && GetDistanceSQ(end) <= f;
 	}
-	//µ±Ç°µãÊÇ·ñÔÚÖ¸¶¨ Á½µãÖ®¼ä  ×ó±ÕÓÒ¿ª½á¹¹
+	//å½“å‰ç‚¹æ˜¯å¦åœ¨æŒ‡å®š ä¸¤ç‚¹ä¹‹é—´  å·¦é—­å³å¼€ç»“æ„
 	bool LimitBetweenPointsRightOpen(const cVector2D<T>& begin, const cVector2D<T>& end)
 	{
 		cVector2D<T>& temp = *this;
@@ -186,7 +186,7 @@ public:
 		}
 		return true;
 	}
-	//µ±Ç°µãÊÇ·ñÔÚÖ¸¶¨ Á½µãÖ®¼ä  ×ó±ÕÓÒ¿ª½á¹¹
+	//å½“å‰ç‚¹æ˜¯å¦åœ¨æŒ‡å®š ä¸¤ç‚¹ä¹‹é—´  å·¦é—­å³å¼€ç»“æ„
 	bool LimitBetweenPoints(const cVector2D<T>& begin, const cVector2D<T>& end)
 	{
 		cVector2D<T>& temp = *this;
@@ -235,7 +235,7 @@ public:
 
 	bool IsEmpty() const {return x <= 0 || y <= 0;}
 
-	//Ëõ·Å£¬< 1.f ËõĞ¡£¬> 1.f ·Å´ó
+	//ç¼©æ”¾ï¼Œ< 1.f ç¼©å°ï¼Œ> 1.f æ”¾å¤§
 	void SetScale(float xscale, float yscale, float xfloat = 0.f, float yfloat = 0.f) {
 		x = x * xscale + xfloat;
 		y = y * yscale + yfloat;
@@ -308,7 +308,7 @@ inline int GetDir(const cPoint& pForm, const cPoint& pTo)
 /*
 7   0   1
 6       2
-5   4   3        ÆäÖĞ£ºpFormÔÚ0Î»ÖÃ£¬   ÆäËüµÄÊÇpToµÄÎ»ÖÃ   ÆäÖĞ½«8ÊÓÎª0
+5   4   3        å…¶ä¸­ï¼špFormåœ¨0ä½ç½®ï¼Œ   å…¶å®ƒçš„æ˜¯pToçš„ä½ç½®   å…¶ä¸­å°†8è§†ä¸º0
 */
 
 inline float GetDis(const cPoint& ptDes, const cPoint& ptSrc)
@@ -318,22 +318,22 @@ inline float GetDis(const cPoint& ptDes, const cPoint& ptSrc)
 }
 
 
-inline float GetDis2(const cPoint& ptDes, const cPoint& ptSrc ,float fScale = 1.0) //add by cgw ¾àÀëÆ½·½ fScale
+inline float GetDis2(const cPoint& ptDes, const cPoint& ptSrc ,float fScale = 1.0) //add by cgw è·ç¦»å¹³æ–¹ fScale
 {
 	cPoint pt = ptDes - ptSrc;
-	return pt.x * pt.x * fScale * fScale + pt.y * pt.y * 1.f; //fScaleÎª³¤¿íµÄµ¥Î»±ÈÀı£¬Ô­Òò£¬¸ñ×Ó´óĞ¡±ÈÀı¿ÉÄÜ²»Í¬£¬Èç64*32
+	return pt.x * pt.x * fScale * fScale + pt.y * pt.y * 1.f; //fScaleä¸ºé•¿å®½çš„å•ä½æ¯”ä¾‹ï¼ŒåŸå› ï¼Œæ ¼å­å¤§å°æ¯”ä¾‹å¯èƒ½ä¸åŒï¼Œå¦‚64*32
 }
 
 
-//Îª·½±ãÈ·¶¨Ò»¸öÄ¿±êµãÏà¶Ô±ğÒ»¸öÄ¿±êµãµÄÊÓÒ°¹ØÏµ£¬°ÑGetAngleFromDirºÍGetAngleByTwoPointÖĞµÄ½Ç¶È¶¼×ª»»³É0µ½360¶È
+//ä¸ºæ–¹ä¾¿ç¡®å®šä¸€ä¸ªç›®æ ‡ç‚¹ç›¸å¯¹åˆ«ä¸€ä¸ªç›®æ ‡ç‚¹çš„è§†é‡å…³ç³»ï¼ŒæŠŠGetAngleFromDirå’ŒGetAngleByTwoPointä¸­çš„è§’åº¦éƒ½è½¬æ¢æˆ0åˆ°360åº¦
 
-//angle£º¸ú¾İ·½ÏòÈ·¶¨¸Ã·½ÏòµÄËù¶ÔÓ¦µÄÊµ¼Ê½Ç¶È  ×¢ÒâÈç¹ûGetDirµÄ¶¨Òå±äÁË£¬ÕâÀïÒªÏàÓ¦¸Ä±ä
+//angleï¼šè·Ÿæ®æ–¹å‘ç¡®å®šè¯¥æ–¹å‘çš„æ‰€å¯¹åº”çš„å®é™…è§’åº¦  æ³¨æ„å¦‚æœGetDirçš„å®šä¹‰å˜äº†ï¼Œè¿™é‡Œè¦ç›¸åº”æ”¹å˜
 inline int GetAngleFromDir(int & nDir)
 {
 	return (450-45*nDir)%360;
 }
 
-//pFormµ½pTo·½ÏòµÄ½Ç¶È£¬´Ó0µ½360¶È
+//pFormåˆ°pToæ–¹å‘çš„è§’åº¦ï¼Œä»0åˆ°360åº¦
 inline int GetAngleByTwoPoint(const cPoint& pForm, const cPoint& pTo)
 {
 	float fDis = GetDis(pForm, pTo);
@@ -349,18 +349,18 @@ inline int GetAngleByTwoPoint(const cPoint& pForm, const cPoint& pTo)
 	return (360 + (int)fAngle)%360;
 }
 
-//pFormµ½pTo·½ÏòµÄ½Ç¶ÈÓë´ÓpForm³¯ÏòµÄ¼Ğ½Ç,ÓÃÓÚÊÓÒ°ÅĞ¶Ï
+//pFormåˆ°pToæ–¹å‘çš„è§’åº¦ä¸ä»pFormæœå‘çš„å¤¹è§’,ç”¨äºè§†é‡åˆ¤æ–­
 inline int GetBetweenAngle(const cPoint& pForm, const cPoint& pTo,int & nDir)
 {
 	return CrossMath::Abs(GetAngleByTwoPoint(pForm, pTo)-GetAngleFromDir(nDir));
 }
 
 
-//add by cgw »ñÈ¡pFormÏòpTo·½ÏòµÄ²½³¤£¬»ñÈ¡ÓëÄ¿±êµã×î½üµÄµã,ÓÃÓÚ½â¾ö²»ÓëÄ¿±êµãÖØºÏ
+//add by cgw è·å–pFormå‘pToæ–¹å‘çš„æ­¥é•¿ï¼Œè·å–ä¸ç›®æ ‡ç‚¹æœ€è¿‘çš„ç‚¹,ç”¨äºè§£å†³ä¸ä¸ç›®æ ‡ç‚¹é‡åˆ
 inline cPoint GetBestDirPoint(const cPoint& pForm, const cPoint& pTo/*, cPoint& pToNear*/)
 {
 	cPoint pToNear(0,0);
-	if(pForm.x > pTo.x){  //·ÀÖ¹ÖØµş
+	if(pForm.x > pTo.x){  //é˜²æ­¢é‡å 
 		pToNear.x++;
 	}
 	else if(pForm.x < pTo.x){
@@ -402,21 +402,21 @@ inline float Get2DTo3D_2(const cPoint&/* pt*/, float/* vdis*/)
 	return 0.f;
 }
 
-//ÅĞ¶ÏµãÔÚÏß¶ÎµÄ×ó±ßºÍÓÒ±ß
-//×ó-1,ÓÒ1,ÔÚÑÓ³¤ÏßÉÏ0
+//åˆ¤æ–­ç‚¹åœ¨çº¿æ®µçš„å·¦è¾¹å’Œå³è¾¹
+//å·¦-1,å³1,åœ¨å»¶é•¿çº¿ä¸Š0
 template<class T> inline int PointInLine(const cVector2D<T>& vFrom, const cVector2D<T>& vTo, const cVector2D<T>& vPoint)
 {
 	T r = (vFrom.x - vTo.x) * (vPoint.y - vTo.y) - (vFrom.y - vTo.y) * (vPoint.x - vTo.x);
 	if ( r > 0 ) {
-		//µãCÎ»ÓÚÓĞÏòÏß¶ÎABµÄ×ó²à
+		//ç‚¹Cä½äºæœ‰å‘çº¿æ®µABçš„å·¦ä¾§
 		return -1;
 	}
 	else if (r == 0) {
-		//µãCÎ»ÓÚÓĞÏòÏß¶ÎABÉÏ£¨Ò²ÓĞ¿ÉÄÜÔÚÑÓ³¤ÏßÉÏ£©
+		//ç‚¹Cä½äºæœ‰å‘çº¿æ®µABä¸Šï¼ˆä¹Ÿæœ‰å¯èƒ½åœ¨å»¶é•¿çº¿ä¸Šï¼‰
 		return 0;
 	}
 	else {
-		//µãCÎ»ÓÚÓĞÏòÏß¶ÎABµÄÓÒ²à
+		//ç‚¹Cä½äºæœ‰å‘çº¿æ®µABçš„å³ä¾§
 		return 1;
 	}
 }

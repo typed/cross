@@ -11,7 +11,7 @@
 
 //不是线程安全的
 
-namespace cm
+namespace cross
 {
 
 static cpstr g_sStreamError = "iStream";

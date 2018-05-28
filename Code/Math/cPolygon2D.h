@@ -5,7 +5,7 @@
 #include "cVector2D.h"
 #include "cvector.h"
 
-namespace cm
+namespace cross
 {
 
 typedef cvector< cPoint > aPoint;
@@ -15,7 +15,7 @@ class cPolygon2D
 public:
 	void AddPoint(const cPoint& pt);
 	bool Invalidate() const;
-	//只适合凸多边形
+	//鍙�傚悎鍑稿杈瑰舰
 	bool IsIn_Convex(const cPoint& pt) const;
 private:
 	aPoint	m_aPoint;
@@ -31,7 +31,7 @@ inline bool cPolygon2D::Invalidate() const
 	return m_aPoint.size() < 3;
 }
 
-//只适合凸多边形
+//鍙�傚悎鍑稿杈瑰舰
 inline bool cPolygon2D::IsIn_Convex(const cPoint& pt) const
 {
 	if (Invalidate())

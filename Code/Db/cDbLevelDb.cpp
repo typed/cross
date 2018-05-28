@@ -8,7 +8,7 @@ using namespace std;
 
 static const i32 c_iwrite_buffer_size = 32 * 1024 * 1024;
 
-namespace cm
+namespace cross
 {
 
 cDbLevelDb::cDbLevelDb()

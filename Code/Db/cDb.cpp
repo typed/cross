@@ -2,7 +2,7 @@
 #include "cDbSqlite.h"
 #include "cDbLevelDb.h"
 
-namespace cm
+namespace cross
 {
 
 iDb* iDb::Create(eDbType dt)

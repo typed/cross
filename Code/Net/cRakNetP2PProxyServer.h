@@ -8,7 +8,7 @@
 #include "raknet/RakString.h"
 #include "raknet/CloudClient.h"
 
-namespace cm
+namespace cross
 {
 
 struct SampleFramework;

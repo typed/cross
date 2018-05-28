@@ -2,10 +2,10 @@
 #include "../../inc/CrossString.h"
 
 using namespace std;
-using namespace cm;
+using namespace cross;
 using namespace RakNet;
 
-namespace cm
+namespace cross
 {
 
 cRakNetUDPSocket::cRakNetUDPSocket()

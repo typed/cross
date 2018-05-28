@@ -4,7 +4,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 
 static ui32 g_seed = 0;
@@ -67,7 +67,7 @@ b8 RandomChance(f32 chance)
 	return RandomFloat(0.f, 100.f) < chance;
 }
 
-//Ëæ»ú×Ö·û´®
+//éšæœºå­—ç¬¦ä¸²
 cpstr RandomChar(ui32 nChar)
 {
 	if (nChar == 0)
@@ -80,7 +80,7 @@ cpstr RandomChar(ui32 nChar)
 	return &s_aStr.front();
 }
 
-//Ëæ»úÓ¢ÎÄ
+//éšæœºè‹±æ–‡
 cpstr RandomEnglish(ui32 nChar)
 {
 	if (nChar == 0)
@@ -117,7 +117,7 @@ void RandomList(i32* aList, i32 len)
 	}
 }
 
-//Added by lkm,2011.2.10,²úÉú·ûºÏ¸ßË¹·Ö²¼µÄËæ»úÊý
+//Added by lkm,2011.2.10,äº§ç”Ÿç¬¦åˆé«˜æ–¯åˆ†å¸ƒçš„éšæœºæ•°
 f64 RandomGaussDouble(f64 dExpection /*= 0.0*/, f64 dSigma /*= 1.0*/)
 {
 	static f64 dV1,dV2,dS;
@@ -144,20 +144,20 @@ f64 RandomGaussDouble(f64 dExpection /*= 0.0*/, f64 dSigma /*= 1.0*/)
 	return dRes * dSigma + dExpection;
 }
 
-//? ÒÑ½â¾ö£¿
-//? È¡Õûºóµ¼ÖÂ¦Ì£¨ÆÚÍû£©´¦Ëæ»úÊýÊýÁ¿Æ«ÉÙ£¬½á¹ûÊÇ°°ÐÍµÄÇúÏß
-//Added by lkm,2011.2.10,²úÉú·ûºÏ¸ßË¹·Ö²¼µÄËæ»úÊý
+//? å·²è§£å†³ï¼Ÿ
+//? å–æ•´åŽå¯¼è‡´Î¼ï¼ˆæœŸæœ›ï¼‰å¤„éšæœºæ•°æ•°é‡åå°‘ï¼Œç»“æžœæ˜¯éžåž‹çš„æ›²çº¿
+//Added by lkm,2011.2.10,äº§ç”Ÿç¬¦åˆé«˜æ–¯åˆ†å¸ƒçš„éšæœºæ•°
 i32 RandomGaussInt(i32 nExpection, i32 nSigma)
 {
 	f64 dRes = RandomGaussDouble(nExpection,nSigma);
-	//return i32(dRes < 0.0 ? dRes - 0.5 : dRes + 0.5);//µ¼ÖÂ[¦Ì-n¦Ò,¦Ì+n¦Ò]Çø¼äÄÚËæ»úÊýÊýÁ¿¹ý¶à,ÓÈÆäÊÇn=1Ê±½ÏÃ÷ÏÔ
+	//return i32(dRes < 0.0 ? dRes - 0.5 : dRes + 0.5);//å¯¼è‡´[Î¼-nÏƒ,Î¼+nÏƒ]åŒºé—´å†…éšæœºæ•°æ•°é‡è¿‡å¤š,å°¤å…¶æ˜¯n=1æ—¶è¾ƒæ˜Žæ˜¾
 	//return i32(dRes + dRes - i32(dRes));
-	//return i32(dRes < 0.0 ? dRes - 1 + 0.00001 : dRes + 1 - 0.00001);//µ¼ÖÂ°°ÐÍÇúÏß
+	//return i32(dRes < 0.0 ? dRes - 1 + 0.00001 : dRes + 1 - 0.00001);//å¯¼è‡´éžåž‹æ›²çº¿
 	return i32((dRes < nExpection - nSigma || dRes > nExpection + nSigma ||
 					dRes < nExpection - 2 * nSigma || dRes > nExpection + 2 * nSigma ||
 					dRes < nExpection - 3 * nSigma || dRes > nExpection + 3 * nSigma) ? 
 				(dRes < 0.0 ? dRes - 1 + 0.00001 : dRes + 1 - 0.00001) : 
-				(dRes < 0.0 ? dRes - 0.5 : dRes + 0.5));//¿ÉÐÐ£¿
+				(dRes < 0.0 ? dRes - 0.5 : dRes + 0.5));//å¯è¡Œï¼Ÿ
 }
 
 }

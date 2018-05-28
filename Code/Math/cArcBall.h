@@ -7,7 +7,7 @@
 #include "cMatrix4X4.h"
 #include "cQuaternion.h"
 
-namespace cm
+namespace cross
 {
 
 class cArcBall

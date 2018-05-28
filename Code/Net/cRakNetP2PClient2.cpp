@@ -5,7 +5,7 @@
 using namespace std;
 using namespace RakNet;
 
-namespace cm
+namespace cross
 {
 
 cRakNetP2PClientStream2::cRakNetP2PClientStream2()

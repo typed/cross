@@ -7,7 +7,7 @@
 #include <map>
 #include <set>
 
-namespace cm
+namespace cross
 {
 
 static const ui32 c_nIStream_DS_MaxLen = 1000 * 1024;

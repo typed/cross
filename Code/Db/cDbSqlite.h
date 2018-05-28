@@ -10,7 +10,7 @@ int sqlite_main(int argc, char **argv);
 #include <map>
 #include <vector>
 
-namespace cm
+namespace cross
 {
 
 class cDbSqlite;

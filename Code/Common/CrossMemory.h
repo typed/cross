@@ -11,7 +11,7 @@
 
 #include "CommonDef.h"
 
-namespace cm
+namespace cross
 {
 
 //内存

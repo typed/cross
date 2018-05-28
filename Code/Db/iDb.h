@@ -6,7 +6,7 @@
 #include "Config.h"
 #include <string>
 
-namespace cm
+namespace cross
 {
 
 class iDbRecordSet

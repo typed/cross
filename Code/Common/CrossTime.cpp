@@ -1,4 +1,4 @@
-#include "../inc/CrossTime.h"
+#include "CrossTime.h"
 
 //包含文件版本区分
 
@@ -14,7 +14,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 	//时钟
 	TypeDate CrossTime::GetDate() {

@@ -8,11 +8,11 @@
 #include <string>
 #include <functional>
 
-namespace cm
+namespace cross
 {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//P2P½á¹¹
+//P2Pï¿½á¹¹
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class COMMON_API iP2PServer
 {
@@ -20,7 +20,7 @@ public:
 	static iP2PServer* CreateNormalInstance();
 	static iP2PServer* CreateProxyInstance();
 	virtual void Release() = 0;
-	//sBindºÍsProxy ¸ñÊ½Îª "127.0.0.1,1000,127.0.0.2,1001...."
+	//sBindï¿½ï¿½sProxy ï¿½ï¿½Ê½Îª "127.0.0.1,1000,127.0.0.2,1001...."
 	virtual bool Init(cpstr sBind, cpstr sProxy = 0, cpstr sClientConnect = 0) = 0;
 	virtual void RunOnce() = 0;
 };
@@ -35,9 +35,9 @@ class COMMON_API iP2PClientCallback
 {
 public:
 	virtual void OnRecv(cpbyte, ui32) = 0;
-	//ÊÂ¼þÍ¬²½
+	//ï¿½Â¼ï¿½Í¬ï¿½ï¿½
 	virtual void OnRecvAction(ui32 id, cpvd buf, ui32 len) = 0;
-	//Ö¡ÊôÐÔÍ¬²½
+	//Ö¡ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½
 	virtual void OnGet(ui32 id, iP2PClientStream* pStream) = 0;
 	virtual void OnSet(ui32 id, iP2PClientStream* pStream) = 0;
 };
@@ -67,25 +67,25 @@ public:
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//C/S½á¹¹
+//C/Sï¿½á¹¹
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 class COMMON_API iCSServerCallback
 {
 public:
-	//ÓÐ¿Í»§¶Ë½ÓÈëÊ±
+	//ï¿½Ð¿Í»ï¿½ï¿½Ë½ï¿½ï¿½ï¿½Ê±
 	virtual void OnConnect(ui32 id, i32 userdata) = 0;
-	//ÓÐ¿Í»§¶Ë¶Ï¿ªÊ±
+	//ï¿½Ð¿Í»ï¿½ï¿½Ë¶Ï¿ï¿½Ê±
 	virtual void OnDisconnect(ui32 id, i32 userdata) = 0;
-	//ÊÕµ½ÏûÏ¢
+	//ï¿½Õµï¿½ï¿½ï¿½Ï¢
 	virtual void OnRecv(ui32 id, cpvd buf, ui32 len, i32 userdata) = 0;
-	//Íæ¼ÒÃû
+	//ï¿½ï¿½ï¿½ï¿½ï¿½
 	virtual cpstr GetPlayerName(ui32 id) const {return "";}
 };
 class COMMON_API iCSServer
 {
 public:
 	static iCSServer* CreateInstance(b8 tcp);
-	//sBind ¸ñÊ½Îª "127.0.0.1,1000,127.0.0.2,1001...."
+	//sBind ï¿½ï¿½Ê½Îª "127.0.0.1,1000,127.0.0.2,1001...."
 	virtual bool Init(cpstr sBind, ui16 nMaxConnect = 0, ui32 nTimeout = 0) = 0;
 	virtual void Release() = 0;
 	virtual bool Send(ui32, cpvd, ui32) = 0;
@@ -108,9 +108,9 @@ enum eConnectType
 };
 enum eDisconnectType
 {
-	DT_ClientInitiative,		//¿Í»§¶ËÖ÷¶¯¶Ï¿ª
-	DT_ServerInitiative,		//·þÎñÆ÷Ö÷¶¯¶Ï¿ª
-	DT_Exception,				//Òì³£¶Ï¿ª
+	DT_ClientInitiative,		//ï¿½Í»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½
+	DT_ServerInitiative,		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½
+	DT_Exception,				//ï¿½ì³£ï¿½Ï¿ï¿½
 };
 
 class COMMON_API iCSClientCallback

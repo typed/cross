@@ -1,5 +1,5 @@
-#ifndef _common_matrix4x4_h_
-#define _common_matrix4x4_h_
+#ifndef _cross_math_matrix4x4_h_
+#define _cross_math_matrix4x4_h_
 
 #include "../CommonDef.h"
 #include "MathBase.h"
@@ -9,14 +9,14 @@
 #include "cAabbox.h"
 #include "../CrossMemory.h"
 
-namespace cm
+namespace cross
 {
 
 class cMatrix4X4
 {
 public:
 
-	//Ä¬ÈÏÎªµ¥Î»¾àÕó
+	//é»˜è®¤ä¸ºå•ä½è·é˜µ
 	cMatrix4X4() { Identity(); }
 	cMatrix4X4(const cMatrix4X4& other) { *this = other; }
 	cMatrix4X4& operator = (const cMatrix4X4& other);
@@ -27,10 +27,10 @@ public:
 	const f32& operator [] (ui32 id) const {return m[id];}
 	f32& operator () (const ui32 row, const ui32 col) {return m[row * 4 + col];}
 	const f32& operator () (const ui32 row, const ui32 col) const {return m[row * 4 + col];}
-	//ÉèÖÃÎªµ¥Î»¾àÕó
+	//è®¾ç½®ä¸ºå•ä½è·é˜µ
 	void Identity();
 	bool IsIdentity() const;
-	//¾àÕóÏà³Ë
+	//è·é˜µç›¸ä¹˜
 	cMatrix4X4 operator * (const cMatrix4X4& in) const;
 	cMatrix4X4& operator *= (const cMatrix4X4& in);
 	void Multiply(cMatrix4X4& out, const cMatrix4X4& in) const;
@@ -40,17 +40,17 @@ public:
 	void TransformVect(cVector3Df& out, const cVector3Df& in) const;
 	cVector3Df TransformVect(const cVector3Df& in) const;
 
-	//ÓÃÓÚÏòÁ¿µÄ±ä»»,ÏòÁ¿ºÍÎ»ÖÃÎŞ¹ØÏµ£¬ËùÒÔ²»ÓÃ¼ÆËãµÚËÄÎ¬
+	//ç”¨äºå‘é‡çš„å˜æ¢,å‘é‡å’Œä½ç½®æ— å…³ç³»ï¼Œæ‰€ä»¥ä¸ç”¨è®¡ç®—ç¬¬å››ç»´
 	void TransformVecNormal(cVector3Df& out, const cVector3Df& in) const;
 
-	//×ø±ê
+	//åæ ‡
 	void SetTranslation(const cVector3Df& in) { m[12] = in.x; m[13] = in.y; m[14] = in.z; }
 
 	void SetInverseTranslation(const cVector3Df& in) { m[12] = -in.x; m[13] = -in.y; m[14] = -in.z; }
 
 	cVector3Df GetTranslation() const { return cVector3Df(m[12], m[13], m[14]); }
 
-	//Ğı×ª
+	//æ—‹è½¬
 	void SetRotationDegree(const cVector3Df& v) { SetRotationRadian( v * c_fDegToRad ); }
 	cVector3Df GetRotationDegree() const;
 	void SetRotationRadian(const cVector3Df& v);
@@ -60,24 +60,24 @@ public:
 
 	//test add by yfw
 
-	//ÈÆ×ø±êÖáÖáĞı×ªyaw	
+	//ç»•åæ ‡è½´è½´æ—‹è½¬yaw	
 
-	//ÈÆxÖáĞı×ª
+	//ç»•xè½´æ—‹è½¬
 	//1,			0,				0,			0
 	//0,			CrossMath::Cos(fAngle),	CrossMath::Sin(fAngle),0
 	//0,			-CrossMath::Sin(fAngle),	CrossMath::Cos(fAngle),0
 	//0,			0,				0,			1
 	void MatrixRotationX(f32 fAngle);
 
-	//ÈÆYÖáĞı×ª
+	//ç»•Yè½´æ—‹è½¬
 	//CrossMath::Cos(fAngle),	0,	-CrossMath::Sin(fAngle), 0
 	//0,			1,			0,	  0
 	//CrossMath::Sin(fAngle),	0,	CrossMath::Cos(fAngle),  0
 	//0,			0,			0,	  1		
 	void MatrixRotationY(f32 fAngle);
 
-	//ÈÆZÖáĞı×ªyaw
-	//ÈÆyĞı×ª¾ØÕó
+	//ç»•Zè½´æ—‹è½¬yaw
+	//ç»•yæ—‹è½¬çŸ©é˜µ
 	//CrossMath::Cos(fAngle), CrossMath::Sin(fAngle),	0, 0
 	//-CrossMath::Sin(fAngle),CrossMath::Cos(fAngle),	0, 0
 	//0,			0,			1, 0
@@ -86,87 +86,87 @@ public:
 
 	//The order of transformations is roll first, then pitch, then yaw.
 	// Yaw around the y-axis; Pitch around the x-axis, in radians. Roll around the z-axis, in radians.
-	//Out:Ò»°ãÎªµ¥Î»¾ÙĞĞ
+	//Out:ä¸€èˆ¬ä¸ºå•ä½ä¸¾è¡Œ
 	void MatrixRotationYawPitchRoll(f32 fYaw, f32 fPitch, f32 fRoll);
 
 	void MatrixRotationAxis(const cVector3Df& vAxis, f32 fRad);
 
-	//Ëõ·Å
+	//ç¼©æ”¾
 	void SetScale(const cVector3Df& v) { m[0] = v.x; m[5] = v.y; m[10] = v.z; }
 	cVector3Df GetScale() const { return cVector3Df(m[0], m[5], m[10]); }
 
-	//¹Û²ì±ä»»
+	//è§‚å¯Ÿå˜æ¢
 	void LookAtLH(const cVector3Df& position, const cVector3Df& target, const cVector3Df& upVector);
 
-	//Õı½»Í¶Ó°
+	//æ­£äº¤æŠ•å½±
 	void OrthoProject(f32 widthOfViewVolume, f32 heightOfViewVolume, f32 zNear, f32 zFar);
 
 	void OrthoOffCenterProject(f32 l, f32 t, f32 r, f32 b, f32 zNear, f32 zFar);
 
-	//Í¸ÊÓÍ¶Ó°
+	//é€è§†æŠ•å½±
 	void PerspectiveProject(f32 widthOfViewVolume, f32 heightOfViewVolume, f32 zNear, f32 zFar);
 	void PerspectiveFovProject(f32 fovY, f32 aspect, f32 zNear, f32 zFar);
 
-	//ÊÓÇø±ä»»
+	//è§†åŒºå˜æ¢
 	void SetViewport(const cRectf& rc, f32 minZ, f32 maxZ);
 
-	//´´½¨Ò»¸öÒõÓ°¾ØÕó
-	void MatrixShadow(const cVector3Df &light,			//nLightTypeÎª0£¬±íÊ¾¹âµÄ·½Ïò£¬nLightTypeÎª1±íÊ¾¹âµÄÎ»ÖÃ
-					  int nLightType,					//¹âÏßµÄÀàĞÍ0,±íÊ¾Æ½ĞĞ¹â£¬1±íÊ¾µã¹âÔ´
-					  f32 a,f32 b,f32 c,f32 d   //Í¶Ó°Æ½Ãæ·½³Ìax + by + cz + d = 0µÄ¸÷¸ö²ÎÊı¡£
+	//åˆ›å»ºä¸€ä¸ªé˜´å½±çŸ©é˜µ
+	void MatrixShadow(const cVector3Df &light,			//nLightTypeä¸º0ï¼Œè¡¨ç¤ºå…‰çš„æ–¹å‘ï¼ŒnLightTypeä¸º1è¡¨ç¤ºå…‰çš„ä½ç½®
+					  int nLightType,					//å…‰çº¿çš„ç±»å‹0,è¡¨ç¤ºå¹³è¡Œå…‰ï¼Œ1è¡¨ç¤ºç‚¹å…‰æº
+					  f32 a,f32 b,f32 c,f32 d   //æŠ•å½±å¹³é¢æ–¹ç¨‹ax + by + cz + d = 0çš„å„ä¸ªå‚æ•°ã€‚
 					  );
 
-	//Çó¾ØÕóµÄÄæ¾ØÕó
+	//æ±‚çŸ©é˜µçš„é€†çŸ©é˜µ
 	/************************************************************************
-	* ²Î¿¼ogreµÄÊµÏÖ
-	*AµÄÄæ¾ØÕó = 1/|A| * {d00,d10,d20,d30,
+	* å‚è€ƒogreçš„å®ç°
+	*Açš„é€†çŸ©é˜µ = 1/|A| * {d00,d10,d20,d30,
 	*					   d01,d11,d21,d31,
 	*                      d02,d12,d22,d32,
 	*	                   d03,d13,d23,d33}		 	
-	*ÆäÖĞdijÎªÔªËØmijµÄÓà×ÓÊ½£¬¼´ÓÉĞĞÁĞÊ½A»®È¥µÚiĞĞ£¬µÚjÁĞÒÔºóÊ£ÏÂµÄ3ĞĞ3ÁĞËù
-	*×é³ÉµÄĞĞÁĞÊ½¡£
-	*ËùÒÔÎÊÌâ×ª»¯ÎªÇóAµÄĞĞÁĞÊ½ÒÔ¼°AµÄ16¸öÓà×ÓÊ½µÄĞĞÁĞÊ½
-	*ÏÈ½«ËÄ½×ĞĞÁĞÊ½»¯Îª3½×£¬ÔÙ½«»¯Îª2½×£¬×îºó¿ÉÇóµÃËÄ½×ĞĞÁĞÊ½µÄÖµ
+	*å…¶ä¸­dijä¸ºå…ƒç´ mijçš„ä½™å­å¼ï¼Œå³ç”±è¡Œåˆ—å¼Aåˆ’å»ç¬¬iè¡Œï¼Œç¬¬jåˆ—ä»¥åå‰©ä¸‹çš„3è¡Œ3åˆ—æ‰€
+	*ç»„æˆçš„è¡Œåˆ—å¼ã€‚
+	*æ‰€ä»¥é—®é¢˜è½¬åŒ–ä¸ºæ±‚Açš„è¡Œåˆ—å¼ä»¥åŠAçš„16ä¸ªä½™å­å¼çš„è¡Œåˆ—å¼
+	*å…ˆå°†å››é˜¶è¡Œåˆ—å¼åŒ–ä¸º3é˜¶ï¼Œå†å°†åŒ–ä¸º2é˜¶ï¼Œæœ€åå¯æ±‚å¾—å››é˜¶è¡Œåˆ—å¼çš„å€¼
 	**************************************************************************/
 	void Inverse(cMatrix4X4& out) const;
 
-	//3D¶¥µã±ä»»Îª2D¶¥µã£¬true ÔÚÊÓÇø£¬false ²»ÔÚÊÓÇø
+	//3Dé¡¶ç‚¹å˜æ¢ä¸º2Dé¡¶ç‚¹ï¼Œtrue åœ¨è§†åŒºï¼Œfalse ä¸åœ¨è§†åŒº
 	static bool Transform3DTo2D(cVector2Df& out,
-						const cVector3Df& in,												//ÊÀ½ç×ø±ê
-						const cVector3Df& eye, const cVector3Df& to, const cVector3Df& up,	//ÉãÏñ»ú
-						f32 fovY, f32 zNear, f32 zFar,								//Í¶Ó°
-						f32 width, f32 height											//ÊÓÇø
+						const cVector3Df& in,												//ä¸–ç•Œåæ ‡
+						const cVector3Df& eye, const cVector3Df& to, const cVector3Df& up,	//æ‘„åƒæœº
+						f32 fovY, f32 zNear, f32 zFar,								//æŠ•å½±
+						f32 width, f32 height											//è§†åŒº
 						);
 
-	//½«3DÊÀ½ç×ø±ê±ä»»Îª2DÆÁÄ»×ø±ê
-	static void Transform3DTo2D(cVector2Df& out,           //ÆÁÄ»×ø±ê
-		                  const cVector3Df& inWorld,       //ÊÀ½ç×ø±ê
-						  const cRect& viewPort,           //ÊÓÇø
-						  const cMatrix4X4& matrixProject, //Í¶Ó°¾ØÕó
-						  const cMatrix4X4& matrixView,    //ÊÓÍ¼±ä»»¾ØÕó
-						  bool  bOrtho                     //ÊÇ·ñÎªÕı½»Í¶Ó°
+	//å°†3Dä¸–ç•Œåæ ‡å˜æ¢ä¸º2Då±å¹•åæ ‡
+	static void Transform3DTo2D(cVector2Df& out,           //å±å¹•åæ ‡
+		                  const cVector3Df& inWorld,       //ä¸–ç•Œåæ ‡
+						  const cRect& viewPort,           //è§†åŒº
+						  const cMatrix4X4& matrixProject, //æŠ•å½±çŸ©é˜µ
+						  const cMatrix4X4& matrixView,    //è§†å›¾å˜æ¢çŸ©é˜µ
+						  bool  bOrtho                     //æ˜¯å¦ä¸ºæ­£äº¤æŠ•å½±
 						  );
 	
-	//½«2DÆÁÄ»×ø±ê±ä»»ÎªÊÀ½ç×ø±ê
-	//½«2DÆÁÄ»×ø±ê±ä»»Îª3D¿Õ¼äÖĞ½üÆ½ÃæÉÏÍ¶Ó°µÄ×ø±ê
-	//pickËã·¨·¢Éú¸Ä±ä
-	//Õı½»Í¶Ó° Wp = 1
-	static void OrthoTransform2DTo3D(cVector3Df &eye,		//eyeÏà»úÎ»ÖÃ(ÊÓÇøµ½ÊÀ½ç×ø±ê)
-		                  cVector3Df &dir,					//dirÏà»ú·½Ïò(ÊÓÇøµ½ÊÀ½ç×ø±ê)
-						  const cRect& viewport,			//ÊÓÇø
-						  const cMatrix4X4 &matrixproject,	//Í¶Ó°¾ØÕó
-						  const cMatrix4X4 &matrixview		//ÊÓÍ¼±ä»»¾ØÕó
+	//å°†2Då±å¹•åæ ‡å˜æ¢ä¸ºä¸–ç•Œåæ ‡
+	//å°†2Då±å¹•åæ ‡å˜æ¢ä¸º3Dç©ºé—´ä¸­è¿‘å¹³é¢ä¸ŠæŠ•å½±çš„åæ ‡
+	//pickç®—æ³•å‘ç”Ÿæ”¹å˜
+	//æ­£äº¤æŠ•å½± Wp = 1
+	static void OrthoTransform2DTo3D(cVector3Df &eye,		//eyeç›¸æœºä½ç½®(è§†åŒºåˆ°ä¸–ç•Œåæ ‡)
+		                  cVector3Df &dir,					//dirç›¸æœºæ–¹å‘(è§†åŒºåˆ°ä¸–ç•Œåæ ‡)
+						  const cRect& viewport,			//è§†åŒº
+						  const cMatrix4X4 &matrixproject,	//æŠ•å½±çŸ©é˜µ
+						  const cMatrix4X4 &matrixview		//è§†å›¾å˜æ¢çŸ©é˜µ
 						  );
 
-	//Í¸ÊÓÍ¶Ó°
-	static void ProjectTransform2DTo3D(cVector3Df &eye,	//eyeÏà»úÎ»ÖÃ(ÊÓÇøµ½ÊÀ½ç×ø±ê)
-		cVector3Df &dir,							//dirÏà»ú·½Ïò(ÊÓÇøµ½ÊÀ½ç×ø±ê)
-		const cRect &viewport,						//ÊÓÇø
-		const cMatrix4X4 &matrixproject,			//Í¶Ó°¾ØÕó
-		const cMatrix4X4 &matrixview				//ÊÓÍ¼±ä»»¾ØÕó
+	//é€è§†æŠ•å½±
+	static void ProjectTransform2DTo3D(cVector3Df &eye,	//eyeç›¸æœºä½ç½®(è§†åŒºåˆ°ä¸–ç•Œåæ ‡)
+		cVector3Df &dir,							//dirç›¸æœºæ–¹å‘(è§†åŒºåˆ°ä¸–ç•Œåæ ‡)
+		const cRect &viewport,						//è§†åŒº
+		const cMatrix4X4 &matrixproject,			//æŠ•å½±çŸ©é˜µ
+		const cMatrix4X4 &matrixview				//è§†å›¾å˜æ¢çŸ©é˜µ
 		);
 
-	//¸ù¾İÆ½Ãæ»ñµÃÖ¸¶¨µÄ¾ØÕó
+	//æ ¹æ®å¹³é¢è·å¾—æŒ‡å®šçš„çŸ©é˜µ
 	static cMatrix4X4 buildReflectionMatrix(const cPlane3Df& p);
 
 	f32 m[16];
@@ -322,7 +322,7 @@ inline cVector3Df cMatrix4X4::TransformVect(const cVector3Df& in) const
 	return out;
 }
 
-//ÓÃÓÚÏòÁ¿µÄ±ä»»,ÏòÁ¿ºÍÎ»ÖÃÎŞ¹ØÏµ£¬ËùÒÔ²»ÓÃ¼ÆËãµÚËÄÎ¬
+//ç”¨äºå‘é‡çš„å˜æ¢,å‘é‡å’Œä½ç½®æ— å…³ç³»ï¼Œæ‰€ä»¥ä¸ç”¨è®¡ç®—ç¬¬å››ç»´
 inline void cMatrix4X4::TransformVecNormal(cVector3Df& out, const cVector3Df& in) const
 {
 	out.x = in.x * m[0] + in.y * m[4] + in.z * m[8];
@@ -409,7 +409,7 @@ inline void cMatrix4X4::MatrixRotationX(f32 fAngle)
 	m[15] = 1.0f;
 }
 
-//ÈÆYÖáĞı×ª
+//ç»•Yè½´æ—‹è½¬
 //CrossMath::Cos(fAngle),	0,	-CrossMath::Sin(fAngle), 0
 //0,			1,			0,	  0
 //CrossMath::Sin(fAngle),	0,	CrossMath::Cos(fAngle),  0
@@ -425,8 +425,8 @@ inline void cMatrix4X4::MatrixRotationY(f32 fAngle)
 	m[15] = 1.0f;
 }
 
-//ÈÆZÖáĞı×ªyaw
-//ÈÆyĞı×ª¾ØÕó
+//ç»•Zè½´æ—‹è½¬yaw
+//ç»•yæ—‹è½¬çŸ©é˜µ
 //CrossMath::Cos(fAngle), CrossMath::Sin(fAngle),	0, 0
 //-CrossMath::Sin(fAngle),CrossMath::Cos(fAngle),	0, 0
 //0,			0,			1, 0
@@ -444,7 +444,7 @@ inline void cMatrix4X4::MatrixRotationZ(f32 fAngle)
 
 //The order of transformations is roll first, then pitch, then yaw.
 // Yaw around the y-axis; Pitch around the x-axis, in radians. Roll around the z-axis, in radians.
-//Out:Ò»°ãÎªµ¥Î»¾ÙĞĞ
+//Out:ä¸€èˆ¬ä¸ºå•ä½ä¸¾è¡Œ
 inline void cMatrix4X4::MatrixRotationYawPitchRoll(f32 fYaw, f32 fPitch, f32 fRoll)
 {
 	cMatrix4X4 Out;
@@ -459,7 +459,7 @@ inline void cMatrix4X4::MatrixRotationYawPitchRoll(f32 fYaw, f32 fPitch, f32 fRo
 	mOutTemp = Out;
 	Out.Set0();
 	mRotationM.MatrixRotationX(fPitch);
-	//mOutTemp£º×ó³ËÊı£» mRotationM:ÓÒ³ËÊı
+	//mOutTempï¼šå·¦ä¹˜æ•°ï¼› mRotationM:å³ä¹˜æ•°
 	mRotationM.Multiply(Out, mOutTemp);
 
 	mOutTemp = Out;
@@ -500,7 +500,7 @@ inline void cMatrix4X4::MatrixRotationAxis(const cVector3Df& vAxis, f32 fRad)
 
 }
 
-//¹Û²ì±ä»»
+//è§‚å¯Ÿå˜æ¢
 inline void cMatrix4X4::LookAtLH(const cVector3Df& position, const cVector3Df& target, const cVector3Df& upVector)
 {
 	cVector3Df zaxis = target - position;
@@ -533,7 +533,7 @@ inline void cMatrix4X4::LookAtLH(const cVector3Df& position, const cVector3Df& t
 
 }
 
-//Õı½»Í¶Ó°
+//æ­£äº¤æŠ•å½±
 inline void cMatrix4X4::OrthoProject(f32 widthOfViewVolume, f32 heightOfViewVolume, f32 zNear, f32 zFar)
 {
 	m[0] = 2.f / widthOfViewVolume;
@@ -581,7 +581,7 @@ inline void cMatrix4X4::OrthoOffCenterProject(f32 l, f32 t, f32 r, f32 b, f32 zN
 	m[15] = 1.f;
 }
 
-//Í¸ÊÓÍ¶Ó°
+//é€è§†æŠ•å½±
 inline void cMatrix4X4::PerspectiveProject(f32 widthOfViewVolume, f32 heightOfViewVolume, f32 zNear, f32 zFar)
 {
 	m[0] = 2.f * zNear / widthOfViewVolume;
@@ -633,7 +633,7 @@ inline void cMatrix4X4::PerspectiveFovProject(f32 fovY, f32 aspect, f32 zNear, f
 
 }
 
-//ÊÓÇø±ä»»
+//è§†åŒºå˜æ¢
 inline void cMatrix4X4::SetViewport(const cRectf& rc, f32 minZ, f32 maxZ)
 {
 	m[0] = rc.GetWidth() / 2;
@@ -657,10 +657,10 @@ inline void cMatrix4X4::SetViewport(const cRectf& rc, f32 minZ, f32 maxZ)
 	m[15] = 1;
 }
 
-//´´½¨Ò»¸öÒõÓ°¾ØÕó
-inline void cMatrix4X4::MatrixShadow(const cVector3Df &light,			//nLightTypeÎª0£¬±íÊ¾¹âµÄ·½Ïò£¬nLightTypeÎª1±íÊ¾¹âµÄÎ»ÖÃ
-					int nLightType,					//¹âÏßµÄÀàĞÍ0,±íÊ¾Æ½ĞĞ¹â£¬1±íÊ¾µã¹âÔ´
-					f32 a,f32 b,f32 c,f32 d   //Í¶Ó°Æ½Ãæ·½³Ìax + by + cz + d = 0µÄ¸÷¸ö²ÎÊı¡£
+//åˆ›å»ºä¸€ä¸ªé˜´å½±çŸ©é˜µ
+inline void cMatrix4X4::MatrixShadow(const cVector3Df &light,			//nLightTypeä¸º0ï¼Œè¡¨ç¤ºå…‰çš„æ–¹å‘ï¼ŒnLightTypeä¸º1è¡¨ç¤ºå…‰çš„ä½ç½®
+					int nLightType,					//å…‰çº¿çš„ç±»å‹0,è¡¨ç¤ºå¹³è¡Œå…‰ï¼Œ1è¡¨ç¤ºç‚¹å…‰æº
+					f32 a,f32 b,f32 c,f32 d   //æŠ•å½±å¹³é¢æ–¹ç¨‹ax + by + cz + d = 0çš„å„ä¸ªå‚æ•°ã€‚
 					)
 {
 	f32  dot;
@@ -699,17 +699,17 @@ inline void cMatrix4X4::MatrixShadow(const cVector3Df &light,			//nLightTypeÎª0£
 	m[15] = dot - d * nLightType;
 }
 
-//Çó¾ØÕóµÄÄæ¾ØÕó
+//æ±‚çŸ©é˜µçš„é€†çŸ©é˜µ
 /************************************************************************
-* ²Î¿¼ogreµÄÊµÏÖ
-*AµÄÄæ¾ØÕó = 1/|A| * {d00,d10,d20,d30,
+* å‚è€ƒogreçš„å®ç°
+*Açš„é€†çŸ©é˜µ = 1/|A| * {d00,d10,d20,d30,
 *					   d01,d11,d21,d31,
 *                      d02,d12,d22,d32,
 *	                   d03,d13,d23,d33}		 	
-*ÆäÖĞdijÎªÔªËØmijµÄÓà×ÓÊ½£¬¼´ÓÉĞĞÁĞÊ½A»®È¥µÚiĞĞ£¬µÚjÁĞÒÔºóÊ£ÏÂµÄ3ĞĞ3ÁĞËù
-*×é³ÉµÄĞĞÁĞÊ½¡£
-*ËùÒÔÎÊÌâ×ª»¯ÎªÇóAµÄĞĞÁĞÊ½ÒÔ¼°AµÄ16¸öÓà×ÓÊ½µÄĞĞÁĞÊ½
-*ÏÈ½«ËÄ½×ĞĞÁĞÊ½»¯Îª3½×£¬ÔÙ½«»¯Îª2½×£¬×îºó¿ÉÇóµÃËÄ½×ĞĞÁĞÊ½µÄÖµ
+*å…¶ä¸­dijä¸ºå…ƒç´ mijçš„ä½™å­å¼ï¼Œå³ç”±è¡Œåˆ—å¼Aåˆ’å»ç¬¬iè¡Œï¼Œç¬¬jåˆ—ä»¥åå‰©ä¸‹çš„3è¡Œ3åˆ—æ‰€
+*ç»„æˆçš„è¡Œåˆ—å¼ã€‚
+*æ‰€ä»¥é—®é¢˜è½¬åŒ–ä¸ºæ±‚Açš„è¡Œåˆ—å¼ä»¥åŠAçš„16ä¸ªä½™å­å¼çš„è¡Œåˆ—å¼
+*å…ˆå°†å››é˜¶è¡Œåˆ—å¼åŒ–ä¸º3é˜¶ï¼Œå†å°†åŒ–ä¸º2é˜¶ï¼Œæœ€åå¯æ±‚å¾—å››é˜¶è¡Œåˆ—å¼çš„å€¼
 **************************************************************************/
 inline void cMatrix4X4::Inverse(cMatrix4X4& out) const
 {
@@ -790,14 +790,14 @@ inline void cMatrix4X4::Inverse(cMatrix4X4& out) const
 }
 
 inline bool cMatrix4X4::Transform3DTo2D(cVector2Df& out,
-					const cVector3Df& in,												//ÊÀ½ç×ø±ê
-					const cVector3Df& eye, const cVector3Df& to, const cVector3Df& up,	//ÉãÏñ»ú
-					f32 fovY, f32 zNear, f32 zFar,								//Í¶Ó°
-					f32 width, f32 height											//ÊÓÇø
+					const cVector3Df& in,												//ä¸–ç•Œåæ ‡
+					const cVector3Df& eye, const cVector3Df& to, const cVector3Df& up,	//æ‘„åƒæœº
+					f32 fovY, f32 zNear, f32 zFar,								//æŠ•å½±
+					f32 width, f32 height											//è§†åŒº
 					)
 {
 
-	cMatrix4X4 mView;						//¹Û²ì¾ØÕó
+	cMatrix4X4 mView;						//è§‚å¯ŸçŸ©é˜µ
 	mView.LookAtLH(eye, to, up);
 
 	cVector3Df temp1, temp2;
@@ -815,12 +815,12 @@ inline bool cMatrix4X4::Transform3DTo2D(cVector2Df& out,
 
 }
 
-inline void cMatrix4X4::Transform3DTo2D(cVector2Df& out,           //ÆÁÄ»×ø±ê
-		                const cVector3Df& inWorld,       //ÊÀ½ç×ø±ê
-						const cRect& viewPort,           //ÊÓÇø
-						const cMatrix4X4& matrixProject, //Í¶Ó°¾ØÕó
-						const cMatrix4X4& matrixView,    //ÊÓÍ¼±ä»»¾ØÕó
-						bool  bOrtho                     //ÊÇ·ñÎªÕı½»Í¶Ó°
+inline void cMatrix4X4::Transform3DTo2D(cVector2Df& out,           //å±å¹•åæ ‡
+		                const cVector3Df& inWorld,       //ä¸–ç•Œåæ ‡
+						const cRect& viewPort,           //è§†åŒº
+						const cMatrix4X4& matrixProject, //æŠ•å½±çŸ©é˜µ
+						const cMatrix4X4& matrixView,    //è§†å›¾å˜æ¢çŸ©é˜µ
+						bool  bOrtho                     //æ˜¯å¦ä¸ºæ­£äº¤æŠ•å½±
 						)
 {
 	/*cVector3Df posProject;
@@ -835,24 +835,24 @@ inline void cMatrix4X4::Transform3DTo2D(cVector2Df& out,           //ÆÁÄ»×ø±ê
 	out.y = (1.0f - posProject.y) * viewPort.GetHeight() * 0.5f + viewPort.GetTop();
 }
 	
-//½«2DÆÁÄ»×ø±ê±ä»»ÎªÊÀ½ç×ø±ê
-//½«2DÆÁÄ»×ø±ê±ä»»Îª3D¿Õ¼äÖĞ½üÆ½ÃæÉÏÍ¶Ó°µÄ×ø±ê
-//pickËã·¨·¢Éú¸Ä±ä
-//Õı½»Í¶Ó° Wp = 1
-inline void cMatrix4X4::OrthoTransform2DTo3D(cVector3Df &eye,		//eyeÏà»úÎ»ÖÃ(ÊÓÇøµ½ÊÀ½ç×ø±ê)
-		                cVector3Df &dir,					//dirÏà»ú·½Ïò(ÊÓÇøµ½ÊÀ½ç×ø±ê)
-						const cRect& viewport,			//ÊÓÇø
-						const cMatrix4X4 &matrixproject,	//Í¶Ó°¾ØÕó
-						const cMatrix4X4 &matrixview		//ÊÓÍ¼±ä»»¾ØÕó
+//å°†2Då±å¹•åæ ‡å˜æ¢ä¸ºä¸–ç•Œåæ ‡
+//å°†2Då±å¹•åæ ‡å˜æ¢ä¸º3Dç©ºé—´ä¸­è¿‘å¹³é¢ä¸ŠæŠ•å½±çš„åæ ‡
+//pickç®—æ³•å‘ç”Ÿæ”¹å˜
+//æ­£äº¤æŠ•å½± Wp = 1
+inline void cMatrix4X4::OrthoTransform2DTo3D(cVector3Df &eye,		//eyeç›¸æœºä½ç½®(è§†åŒºåˆ°ä¸–ç•Œåæ ‡)
+		                cVector3Df &dir,					//dirç›¸æœºæ–¹å‘(è§†åŒºåˆ°ä¸–ç•Œåæ ‡)
+						const cRect& viewport,			//è§†åŒº
+						const cMatrix4X4 &matrixproject,	//æŠ•å½±çŸ©é˜µ
+						const cMatrix4X4 &matrixview		//è§†å›¾å˜æ¢çŸ©é˜µ
 						)
 {
 	cMatrix4X4 projectviewmatrix =  /*matrixproject * */matrixview;
 	cMatrix4X4 inversematrix;
 
-	//ÇóµÃÊÓÍ¼±ä»»¾ØÕóºÍÍ¶Ó°±ä»»¾ØÕó³Ë»ıµÄÄæ¾ØÕó
+	//æ±‚å¾—è§†å›¾å˜æ¢çŸ©é˜µå’ŒæŠ•å½±å˜æ¢çŸ©é˜µä¹˜ç§¯çš„é€†çŸ©é˜µ
 	projectviewmatrix.Inverse(inversematrix);
 
-	//ÆÁÄ»×ø±êµ½Í¶Ó°Æ½Ãæ
+	//å±å¹•åæ ‡åˆ°æŠ•å½±å¹³é¢
 	cVector3Df vecproj;
 	//vecproj.x = (2.0f * (dir.x - viewport.GetLeft()) / viewport.GetWidth() - 1.0f) / matrixproject.m[0] + 1 / matrixproject.m[0];
 	//vecproj.y = (1.0f - 2.0f * (dir.y -  viewport.GetTop()) / viewport.GetHeight()) / matrixproject.m[5] - 1 / matrixproject.m[5];
@@ -862,9 +862,9 @@ inline void cMatrix4X4::OrthoTransform2DTo3D(cVector3Df &eye,		//eyeÏà»úÎ»ÖÃ(ÊÓÇ
 	vecproj.z = (dir.z - 0) / (1 - 0);
 
 	cVector3Df vecT(vecproj);
-	//½«Í¶Ó°Æ½Ãæ×ø±ê±ä»»ÎªÊÀ½ç×ø±ê
+	//å°†æŠ•å½±å¹³é¢åæ ‡å˜æ¢ä¸ºä¸–ç•Œåæ ‡
 	inversematrix.TransformVect(eye, vecT);
-	//Ïà»ú·½Ïòµ½ÊÀ½ç×ø±ê
+	//ç›¸æœºæ–¹å‘åˆ°ä¸–ç•Œåæ ‡
 	vecproj = cVector3Df(0, 0, 1);
 
 	projectviewmatrix = matrixview;
@@ -873,35 +873,35 @@ inline void cMatrix4X4::OrthoTransform2DTo3D(cVector3Df &eye,		//eyeÏà»úÎ»ÖÃ(ÊÓÇ
 	dir.Normalize();
 }
 
-//Í¸ÊÓÍ¶Ó°
-inline void cMatrix4X4::ProjectTransform2DTo3D(cVector3Df &eye,	//eyeÏà»úÎ»ÖÃ(ÊÓÇøµ½ÊÀ½ç×ø±ê)
-	cVector3Df &dir,							//dirÏà»ú·½Ïò(ÊÓÇøµ½ÊÀ½ç×ø±ê)
-	const cRect &viewport,						//ÊÓÇø
-	const cMatrix4X4 &matrixproject,			//Í¶Ó°¾ØÕó
-	const cMatrix4X4 &matrixview				//ÊÓÍ¼±ä»»¾ØÕó
+//é€è§†æŠ•å½±
+inline void cMatrix4X4::ProjectTransform2DTo3D(cVector3Df &eye,	//eyeç›¸æœºä½ç½®(è§†åŒºåˆ°ä¸–ç•Œåæ ‡)
+	cVector3Df &dir,							//dirç›¸æœºæ–¹å‘(è§†åŒºåˆ°ä¸–ç•Œåæ ‡)
+	const cRect &viewport,						//è§†åŒº
+	const cMatrix4X4 &matrixproject,			//æŠ•å½±çŸ©é˜µ
+	const cMatrix4X4 &matrixview				//è§†å›¾å˜æ¢çŸ©é˜µ
 	)
 {
 	cMatrix4X4 projectviewmatrix =  /*matrixproject * */matrixview;
 	cMatrix4X4 inversematrix;
 
-	//ÇóµÃÊÓÍ¼±ä»»¾ØÕóºÍÍ¶Ó°±ä»»¾ØÕó³Ë»ıµÄÄæ¾ØÕó
+	//æ±‚å¾—è§†å›¾å˜æ¢çŸ©é˜µå’ŒæŠ•å½±å˜æ¢çŸ©é˜µä¹˜ç§¯çš„é€†çŸ©é˜µ
 	projectviewmatrix.Inverse(inversematrix);
 
-	//ÆÁÄ»×ø±êµ½Í¶Ó°Æ½Ãæ
+	//å±å¹•åæ ‡åˆ°æŠ•å½±å¹³é¢
 	cVector3Df vecproj;
 	vecproj.x = (2.0f * (dir.x - viewport.GetLeft()) / viewport.GetWidth() - 1.0f) / matrixproject.m[0];
 	vecproj.y = (1.0f - 2.0f * (dir.y -  viewport.GetTop()) / viewport.GetHeight()) / matrixproject.m[5];
 	vecproj.z = (dir.z - 0) / (1 - 0);
 
-	//½«Í¶Ó°Æ½Ãæ×ø±ê±ä»»ÎªÊÀ½ç×ø±ê
+	//å°†æŠ•å½±å¹³é¢åæ ‡å˜æ¢ä¸ºä¸–ç•Œåæ ‡
 	inversematrix.TransformVecNormal(dir, vecproj);
-	//Ïà»ú·½Ïòµ½ÊÀ½ç×ø±ê
+	//ç›¸æœºæ–¹å‘åˆ°ä¸–ç•Œåæ ‡
 	dir.Normalize();
 	cVector3Df vecT;
 	inversematrix.TransformVect(eye, vecT);
 }
 //-----------------------------------------------------------------------
-//¸ù¾İÆ½Ãæ»ñµÃÖ¸¶¨µÄ¾ØÕó
+//æ ¹æ®å¹³é¢è·å¾—æŒ‡å®šçš„çŸ©é˜µ
 inline  cMatrix4X4 cMatrix4X4::buildReflectionMatrix(const cPlane3Df& p)
 {
 	cMatrix4X4 mTemp;

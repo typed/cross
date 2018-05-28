@@ -10,7 +10,7 @@
 #include "RakNetConfig.h"
 #include <map>
 
-namespace cm
+namespace cross
 {
 
 typedef std::map<ui32, RakNet::SystemAddress> mapLinkID_To_SystemAddress;

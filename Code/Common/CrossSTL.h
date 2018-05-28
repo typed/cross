@@ -13,7 +13,7 @@
 #include <vector>
 #include <algorithm>
 
-namespace cm
+namespace cross
 {
 
 //STL简化函数

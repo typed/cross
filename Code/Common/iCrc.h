@@ -3,7 +3,7 @@
 
 #include "CommonDef.h"
 
-namespace cm
+namespace cross
 {
 
 COMMON_API bool StringCrc32(cpstr szString, ui32& ulCrc32);

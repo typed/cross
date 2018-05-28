@@ -1,6 +1,6 @@
 #include "cCmdLine.h"
 
-namespace cm
+namespace cross
 {
 
 cCmdLine::cCmdLine()

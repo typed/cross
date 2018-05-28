@@ -1,5 +1,5 @@
-#ifndef _common_posrotscl_h_
-#define _common_posrotscl_h_
+#ifndef _cross_math_posrotscl_h_
+#define _cross_math_posrotscl_h_
 
 #include "../CommonDef.h"
 #include "MathBase.h"
@@ -7,7 +7,7 @@
 #include "cQuaternion.h"
 #include "cMatrix4X4.h"
 
-namespace cm
+namespace cross
 {
 
 class cPosRotScl

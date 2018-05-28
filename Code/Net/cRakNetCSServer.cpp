@@ -4,10 +4,10 @@
 #include "../../inc/cThread.h"
 
 using namespace std;
-using namespace cm;
+using namespace cross;
 using namespace RakNet;
 
-namespace cm
+namespace cross
 {
 
 stLink::stLink() : m_id(0), m_guid(UNASSIGNED_RAKNET_GUID), m_address(UNASSIGNED_SYSTEM_ADDRESS)
@@ -259,11 +259,11 @@ void cRakNetCSServer::RunOnce()
 		//		itMapServerLink it = m_mapServerLink.find(pPacket->guid);
 		//		if (it != m_mapServerLink.end()) {
 		//			m_pPeer->CloseConnection(pPacket->guid, true);
-		//			//LogError("使用加速器") << m_pCallback->GetPlayerName(it->second->m_id) << " sumtime:" << t << "ms ipport:" << pPacket->systemAddress.ToString() << LEnd;
+		//			//LogError("使锟矫硷拷锟斤拷锟斤拷") << m_pCallback->GetPlayerName(it->second->m_id) << " sumtime:" << t << "ms ipport:" << pPacket->systemAddress.ToString() << LEnd;
 		//		}
 		//		else {
 		//			m_pPeer->CloseConnection(pPacket->guid, true);
-		//			//LogError("使用加速器") << " sumtime:" << t << "ms ipport:" << pPacket->systemAddress.ToString() << LEnd;
+		//			//LogError("使锟矫硷拷锟斤拷锟斤拷") << " sumtime:" << t << "ms ipport:" << pPacket->systemAddress.ToString() << LEnd;
 		//		}
 		//	}
 		//}

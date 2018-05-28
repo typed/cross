@@ -3,7 +3,7 @@
 #include "quicklz.h"
 #include "../inc/cThread.h"
 
-namespace cm
+namespace cross
 {
 
 MUTEX& GetMutex()

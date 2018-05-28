@@ -10,7 +10,7 @@
 #include "iStream_DS.h"
 #include "cstring.h"
 
-namespace cm
+namespace cross
 {
 
 struct stVertex
@@ -32,9 +32,9 @@ struct stWeight
 struct stBone
 {
 	cstring			m_name;
-	ui32				m_idxParent;		//¸¸½áµã
-	cMatrix4X4			m_mxInit;			//³õÊ¼¾àÕó
-	cMatrix4X4			m_mxOffset;			//Æ«ÒÆ¾àÕó
+	ui32				m_idxParent;		//çˆ¶ç»“ç‚¹
+	cMatrix4X4			m_mxInit;			//åˆå§‹è·é˜µ
+	cMatrix4X4			m_mxOffset;			//åç§»è·é˜µ
 	bool IsSameName(const cstring& s) const {return m_name == s;}
 };
 
@@ -54,15 +54,15 @@ public:
 
 struct stAniBone
 {
-	ui32				idxBone;			//±»¿ØÖÆµÄ¹ÇÍ·µÄindex
-	ui32				nKey;				//Ani¶ÔÓ¦µÄkeyµÄ¸öÊı
-	ui32				nKeyOffset;			//¿ªÊ¼Key Index
+	ui32				idxBone;			//è¢«æ§åˆ¶çš„éª¨å¤´çš„index
+	ui32				nKey;				//Aniå¯¹åº”çš„keyçš„ä¸ªæ•°
+	ui32				nKeyOffset;			//å¼€å§‹Key Index
 };
 
 struct stAniKey
 {
-	ui32				nTime;				//Ê±¼äµã
-	cMatrix4X4			mat;				//±ä»»
+	ui32				nTime;				//æ—¶é—´ç‚¹
+	cMatrix4X4			mat;				//å˜æ¢
 };
 
 class cAni
@@ -101,8 +101,8 @@ public:
 	cSkeletonData& operator = (const cSkeletonData& sd);
 	bool ToStream(cOStream& os) const;
 	bool FromStream(cIStream& is);
-	cvector<stBone>					m_aSkl;				//³õÊ¼¹Ç¼Ü
-	cAniSet							m_aniset;			//¶¯×÷
+	cvector<stBone>					m_aSkl;				//åˆå§‹éª¨æ¶
+	cAniSet							m_aniset;			//åŠ¨ä½œ
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

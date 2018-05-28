@@ -1,11 +1,11 @@
-#ifndef _common_line3d_h_
-#define _common_line3d_h_
+#ifndef _cross_math_line3d_h_
+#define _cross_math_line3d_h_
 
 #include "../CommonDef.h"
 #include "MathBase.h"
 #include "cVector3D.h"
 
-namespace cm
+namespace cross
 {
 
 template<class T>
@@ -29,7 +29,7 @@ public:
 	void SetLine(const cLine3D<T>& line) {from.Set(line.from); to.Set(line.to);}
 	void SetLine(const cVector3D<T>& start, const cVector3D<T>& vDir, T len) {from = start; to = start + vDir * len;}
 
-	//æ‡¿Î
+	//Ë∑ùÁ¶ª
 	T GetLength() const { cVector3D<T> v = to - from; return (T)v.GetLength();}
 	//
 	cVector3D<T> GetMiddle() const {return (from + to) * (T)0.5;}
@@ -79,7 +79,7 @@ inline bool cLine3D<T>::GetIntersectionWithSphere(cVector3D<T> sorigin, T sradiu
 	return true;
 }
 
-//…‰œﬂ
+//Â∞ÑÁ∫ø
 template<class T>
 class cRay3D
 {

@@ -10,7 +10,7 @@
 #include <map>
 #include <vector>
 
-namespace cm
+namespace cross
 {
 
 typedef std::map<std::string, std::string> hmAttributes;

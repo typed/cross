@@ -5,7 +5,7 @@
 #include "MathBase.h"
 #include "cTriangle3D.h"
 
-namespace cm
+namespace cross
 {
 
 class cGridHeight
@@ -16,7 +16,7 @@ public:
 	void Reset(i32 x, i32 y);
 	i32 GetWidthCount() const {return m_x;}
 	i32 GetHeightCount() const {return m_y;}
-	//ÎªÁËĞ§ÂÊÕâÀï¾Í²»×öÓĞĞ§ĞÔÑéÖ¤
+	//ä¸ºäº†æ•ˆç‡è¿™é‡Œå°±ä¸åšæœ‰æ•ˆæ€§éªŒè¯
 	f32 GetData(i32 xidx, i32 yidx) const {return m_data[yidx * m_x + xidx];}
 	f32* GetDataPtr() const {return m_data;}
 	void SetData(i32 xidx, i32 yidx, f32 f) {m_data[yidx * m_x + xidx] = f;}

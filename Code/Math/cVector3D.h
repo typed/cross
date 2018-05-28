@@ -1,10 +1,10 @@
-#ifndef _common_vector3d_h_
-#define _common_vector3d_h_
+#ifndef _cross_math_vector3d_h_
+#define _cross_math_vector3d_h_
 
 #include "../CommonDef.h"
 #include "MathBase.h"
 
-namespace cm
+namespace cross
 {
 
 template<class T>
@@ -42,35 +42,35 @@ public:
 	bool operator > (const cVector3D<T>& other) const { return x > other.x && y > other.y && z > other.z;}
 	T& operator [] (ui32 i) const { return ((T*)&x)[i];}
 
-	//ÏòÁ¿µÄ´óĞ¡
+	//å‘é‡çš„å¤§å°
 	T GetLength() const { return CrossMath::Sqrt(x * x + y * y + z * z); }
 	T GetLengthSQ() const { return (x * x + y * y + z * z); }
-	//¹æ¸ñ»¯
+	//è§„æ ¼åŒ–
 	cVector3D<T>& Normalize();
-	//²æ»ı
+	//å‰ç§¯
 	cVector3D<T> CrossProduct(const cVector3D<T>& v) const { return cVector3D<T>(y * v.z - z * v.y, z * v.x - x * v.z, x * v.y - y * v.x); }
-	//µã»ı
+	//ç‚¹ç§¯
 	T DotProduct(const cVector3D<T>& other) const { return x * other.x + y * other.y + z * other.z; }
-	//¾àÀë
+	//è·ç¦»
 	T GetDistance(const cVector3D<T>& des) const { return (des - *this).GetLength(); }
 	T GetDistanceSQ(const cVector3D<T>& des) const { return (des - *this).GetLengthSQ(); }
 
-	//²åÖµ
+	//æ’å€¼
 	cVector3D<T> GetInterpolated(const cVector3D<T>& other, float d) const;
 
 	void RotateXZBy(float degrees, const cVector3D<T>& center=cVector3D<T>());
 	void RotateXYBy(float degrees, const cVector3D<T>& center=cVector3D<T>());
 	void RotateYZBy(float degrees, const cVector3D<T>& center=cVector3D<T>());
 
-	//ÈÆÈÎÒâÖáĞı×ª£¬ÖáÍ¨¹ıÔ­µã
+	//ç»•ä»»æ„è½´æ—‹è½¬ï¼Œè½´é€šè¿‡åŸç‚¹
 	void RotateRadianByAnyAxis(const cVector3D<T>& axis, float radian) {RotateRadianByAnyAxis(axis, radian, cVector3D<T>());}
 	void RotateRadianByAnyAxis(const cVector3D<T>& axis, float radian, const cVector3D<T>& center);
 	void RotateDegreeByAnyAxis(const cVector3D<T>& axis, float degree) {RotateDegreeByAnyAxis(axis, degree, cVector3D<T>());}
 	void RotateDegreeByAnyAxis(const cVector3D<T>& axis, float degree, const cVector3D<T>& center);
 
-	//¸ù¾İ¹«Ê½ a.b = |a|*|b|*cos(theta); ÍÆµ¼³ö
+	//æ ¹æ®å…¬å¼ a.b = |a|*|b|*cos(theta); æ¨å¯¼å‡º
 	float GetTheta(const cVector3D<T>& vDes) const;
-	//ÏòÈÎÒâÆ½ÃæÍ¶Ó°£¬Æ½ÃæÍ¨¹ıÔ­µã
+	//å‘ä»»æ„å¹³é¢æŠ•å½±ï¼Œå¹³é¢é€šè¿‡åŸç‚¹
 	void ProjectByAnyPlane(const cVector3D<T>& directNor, const cVector3D<T>& center);
 
 	void Reverse() { x = -x; y = -y; z = -z; }
@@ -98,15 +98,15 @@ public:
 	cSize3DTemplate(const cVector3D<T>& a) { x = a.x; y = a.y; z = a.z; }
 	void SetWidth(T t) { x = t; }			//
 	T GetWidth() const { return x; }
-	void SetHeight(T t) { y = t; }			//¸ß¶È(´¹Ö±ÓÚË®Æ½)
+	void SetHeight(T t) { y = t; }			//é«˜åº¦(å‚ç›´äºæ°´å¹³)
 	T GetHeight() const { return y; }
-	void SetUpWidth(T t) { z = t; }			//zµÄ¿í¶È£¨ÔÚË®Æ½ÖĞ£¬ÊúÖ±µÄ¸ß¶È£©
+	void SetUpWidth(T t) { z = t; }			//zçš„å®½åº¦ï¼ˆåœ¨æ°´å¹³ä¸­ï¼Œç«–ç›´çš„é«˜åº¦ï¼‰
 	T GetUpWidth() const { return z; }
 	void SetSize(T cx, T cy, T cz) { x = cx; y = cy; z = cz;}
-	//yÌØÊâ´¦Àí£¬ÔÚ3d×ø±êÖĞ£¬Ö»¿¼ÂÇxzÒ»ÃæÊ±
+	//yç‰¹æ®Šå¤„ç†ï¼Œåœ¨3dåæ ‡ä¸­ï¼Œåªè€ƒè™‘xzä¸€é¢æ—¶
 	bool IsIn(T tx, T ty, T tz) const { return (tx >= 0 && tx < x && ((ty >= 0 && ty < y) || (y==0 && ty==y)) && tz >= 0 && tz < z); }
 	bool IsEmpty() const {return x <= 0 || y <0 || z<=0;}
-	//Ëõ·Å£¬< 1.f ËõĞ¡£¬> 1.f ·Å´ó
+	//ç¼©æ”¾ï¼Œ< 1.f ç¼©å°ï¼Œ> 1.f æ”¾å¤§
 	void SetScale(float xscale, float yscale, float zscale, float xfloat = 0.f, float yfloat = 0.f, float zfloat=0.0f) {
 		x = x * xscale + xfloat;
 		y = y * yscale + yfloat;

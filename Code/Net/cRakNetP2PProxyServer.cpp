@@ -17,7 +17,7 @@
 using namespace std;
 using namespace RakNet;
 
-namespace cm
+namespace cross
 {
 
 cRakNetP2PProxyServer::cRakNetP2PProxyServer()

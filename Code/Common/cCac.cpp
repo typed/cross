@@ -1,7 +1,7 @@
 #include "cCac.h"
 #include "../inc/math/Random.h"
 
-namespace cm
+namespace cross
 {
 
 iCac* iCac::Create()

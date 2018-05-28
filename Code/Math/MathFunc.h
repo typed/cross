@@ -1,21 +1,13 @@
-//程序名称：Cross.h
-//功能描述：跨平台中间件
-//开发人：	龚晓剑
-//开发时间：2012-11-9
-//修改者：
-//修改时间：
-//修改说明：
+#ifndef _cross_mathfunc_h
+#define _cross_mathfunc_h
 
-#ifndef crossmath_h
-#define crossmath_h
+#include "Config.h"
 
-#include "CommonDef.h"
-
-namespace cm
+namespace cross
 {
 
 //数学
-class CrossMath
+class MathFunc
 {
 public:
 

@@ -5,7 +5,7 @@
 #include "MathBase.h"
 #include "cVector2D.h"
 
-namespace cm
+namespace cross
 {
 
 class cLine2D
@@ -30,12 +30,12 @@ public:
 		PIL_InExNearTo
 	};
 	ePointInLine GetPointInLine(const cPoint& v) const;
-	//≈–∂œ¡Ω œﬂ∂Œ Œª÷√πÿœµ
+	//Âà§Êñ≠‰∏§ Á∫øÊÆµ ‰ΩçÁΩÆÂÖ≥Á≥ª
 	enum ePositionRelation {
-		Cross,		//œ‡Ωª
-		Coincide,	//÷ÿ∫œ
-		NotCross,	//≤ªœ‡Ωª
-		Parallel,	//∆Ω––
+		Cross,		//Áõ∏‰∫§
+		Coincide,	//ÈáçÂêà
+		NotCross,	//‰∏çÁõ∏‰∫§
+		Parallel,	//Âπ≥Ë°å
 	};
 	ePositionRelation GetPositionRelation(const cLine2D& ln, cPoint& ptCross) const;
 	cPoint	from;
@@ -123,11 +123,11 @@ inline cLine2D::ePositionRelation cLine2D::GetPositionRelation(const cLine2D& ln
 	}
 	else
 	{
-		//«Ûx◊¯±Í
+		//Ê±ÇxÂùêÊ†á
 		i32 tempLeft = (ln.to.x - ln.from.x) * (from.y - to.y) - (to.x - from.x) * (ln.from.y - ln.to.y);
 		i32 tempRight = (from.y - ln.from.y) * (to.x - from.x) * (ln.to.x - ln.from.x) + ln.from.x * (ln.to.y - ln.from.y) * (to.x - from.x) - from.x * (to.y - from.y) * (ln.to.x - ln.from.x);
 		ptCross.x = (i32)( (f32)tempRight / (f32)tempLeft );
-		//«Ûy◊¯±Í
+		//Ê±ÇyÂùêÊ†á
 		tempLeft = (from.x - to.x) * (ln.to.y - ln.from.y) - (to.y - from.y) * (ln.from.x - ln.to.x);
 		tempRight = to.y * (from.x - to.x) * (ln.to.y - ln.from.y) + (ln.to.x - to.x) * (ln.to.y - ln.from.y) * (from.y - to.y) - ln.to.y * (ln.from.x - ln.to.x) * (to.y - from.y);
 		ptCross.y = (i32)( (f32)tempRight / (f32)tempLeft );

@@ -22,7 +22,7 @@
 #include "math/cPosRotScl.h"
 #include <vector>
 
-namespace cm
+namespace cross
 {
 
 typedef std::vector<matrix> aMatrix;

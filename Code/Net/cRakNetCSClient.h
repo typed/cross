@@ -1,23 +1,22 @@
-#ifndef craknetcsclienttcp_h
-#define craknetcsclienttcp_h
+#ifndef craknetcsclient_h
+#define craknetcsclient_h
 
 #include "../../inc/iNet.h"
 #include "raknet/RakNetTypes.h"
 #include "raknet/RakPeerInterface.h"
 #include "raknet/BitStream.h"
-#include "raknet/TCPInterface.h"
 
 #include "RakNetConfig.h"
 
-namespace cm
+namespace cross
 {
 
-class cRakNetCSClientTCP :
+class cRakNetCSClient :
 	public iCSClient
 {
 public:
-	cRakNetCSClientTCP();
-	~cRakNetCSClientTCP();
+	cRakNetCSClient();
+	~cRakNetCSClient();
 	bool Init(ui32 nTimeout, b8 bCheckTime);
 	void Release();
 	bool Connect(cpstr ip, ui16 port);
@@ -30,13 +29,15 @@ public:
 	i32 GetUserData() const {return m_userdata;}
 	bool Send(cpvd, ui32);
 	void SetCallback(iCSClientCallback* p) {m_pCallback = p;}
-	i32 GetPing() {return 0;}
-	void SendPackage(ui32 waittime) {}
-	void RecvPackage(i8* pData, ui32 len) {}
+	i32 GetPing();
+	void SendPackage(ui32 waittime);
+	void RecvPackage(i8* pData, ui32 len);
 private:
+	void SendTime();
+	bool _Send(cpvd, ui32);
 	void AutoReconnect();
 	iCSClientCallback*					m_pCallback;
-	RakNet::TCPInterface*				m_pTcp;
+	RakNet::RakPeerInterface*			m_pPeer;
 	RakNet::SystemAddress				m_server;
 	std::string							m_ip;
 	ui16								m_port;
@@ -45,10 +46,12 @@ private:
 	RakNet::Time						m_autoreconnecttime;
 	b8									m_bTrace;
 	b8									m_bCompress;
+	b8									m_bCheckTime;
 	b8									m_bAutoReconnect;
+	std::vector<RakNet::SystemAddress>	m_aPing;
 	std::vector< std::vector<i8> >		m_aSend;
 	i32									m_userdata;
-	stTCPPack							m_pack;
+	b8									m_bConnecting;
 };
 
 }

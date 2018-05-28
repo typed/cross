@@ -1,7 +1,7 @@
 #ifndef icmdline_h
 #define icmdline_h
 #include "CommonDef.h"
-namespace cm
+namespace cross
 {
 
 class COMMON_API iCmdLine

@@ -11,7 +11,7 @@
 using namespace std;
 using namespace RakNet;
 
-namespace cm
+namespace cross
 {
 
 CloudKey& GetCloudKeyClientInfo() {

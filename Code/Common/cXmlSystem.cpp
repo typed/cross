@@ -3,7 +3,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 
 //static cpstr c_sXmlCac = "xmlcac";

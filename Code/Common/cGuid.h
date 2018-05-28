@@ -5,7 +5,7 @@
 #include <string>
 #include <string.h>
 
-namespace cm
+namespace cross
 {
 
 class COMMON_API cGuid

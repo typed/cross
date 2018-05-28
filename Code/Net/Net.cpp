@@ -1,4 +1,4 @@
-#include "../../inc/iNet.h"
+#include "iNet.h"
 #include "cRakNetP2PServer.h"
 #include "cRakNetCSServer.h"
 #include "cRakNetCSClient.h"
@@ -10,14 +10,14 @@
 #include "cRakNetTCPSocket.h"
 #include "cRakNetUDPSocket.h"
 #include "cNetMapping.h"
-#include "../../inc/CrossString.h"
-#include "../../inc/cThread.h"
+#include "Common/CrossString.h"
+#include "Common/cThread.h"
 #include "raknet/HTTPConnection.h"
 
 using namespace std;
 using namespace RakNet;
 
-namespace cm
+namespace cross
 {
 
 iP2PServer* iP2PServer::CreateNormalInstance()

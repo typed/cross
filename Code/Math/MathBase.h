@@ -1,13 +1,12 @@
-#ifndef _common_mathbase_h_
-#define _common_mathbase_h_
+#ifndef _cross_math_mathbase_h_
+#define _cross_math_mathbase_h_
 
-#include "../CommonDef.h"
-#include "../CrossMath.h"
+#include "Config.h"
 
-namespace cm
+namespace cross
 {
 
-//3D¹ØÏµÀàĞÍ
+//3Då…³ç³»ç±»å‹
 enum eIntersectionRelation3D
 {
 	IR_Front,
@@ -44,7 +43,7 @@ inline f32 Rad2Deg(f32 rad) {
 	return rad * c_fRadToDeg;
 }
 
-//Æ½·½¸ùµÄµ¹Êı£º1.f/CrossMath::Sqrt(num) ²»¾«È·
+//å¹³æ–¹æ ¹çš„å€’æ•°ï¼š1.f/MathFunc::Sqrt(num) ä¸ç²¾ç¡®
 inline f32 Reciprocal_SquareRoot(f32 x)
 {
 	f32* pf = (f32*)&x;
@@ -55,7 +54,7 @@ inline f32 Reciprocal_SquareRoot(f32 x)
 	return y * (1.47f - 0.47f * x * y * y);
 }
 
-//¿ìËÙÆ½·½¸ù,²»¾«È·
+//å¿«é€Ÿå¹³æ–¹æ ¹,ä¸ç²¾ç¡®
 inline f32 Faster_Sqrt(f32 x)
 {
 	union {
@@ -73,7 +72,7 @@ inline f32 Faster_Sqrt(f32 x)
 	return 0.5f * ( convertor.floatPart + (x * convertor2.floatPart) );
 }
 
-//ÊıÖµÏàµÈ(´¦Àí¸¡µãÊı)
+//æ•°å€¼ç›¸ç­‰(å¤„ç†æµ®ç‚¹æ•°)
 inline bool Equals(const f32 a, const f32 b)
 {
 	static const f32 c_fPar = 0.000001f;
@@ -96,7 +95,7 @@ inline bool Equals(const i32 a, const i32 b)
 	return a == b;
 }
 
-//add by yfw ÊıÖµĞ¡ÓÚ»òµÈÓÚ(´óÓÚ»òµÈÓÚ) Àı£ºa = 0.0000001 Ê±£¬Ê¹ÓÃa<=0.0fÅĞ¶Ï£¬½«µ¼ÖÂ ·µ»Øfalse£¬µ«Ê¹ÓÃEqualsÅĞ¶Ï½«ÓÖµÈÓÚ0
+//add by yfw æ•°å€¼å°äºæˆ–ç­‰äº(å¤§äºæˆ–ç­‰äº) ä¾‹ï¼ša = 0.0000001 æ—¶ï¼Œä½¿ç”¨a<=0.0fåˆ¤æ–­ï¼Œå°†å¯¼è‡´ è¿”å›falseï¼Œä½†ä½¿ç”¨Equalsåˆ¤æ–­å°†åˆç­‰äº0
 inline bool LessOrEquals(const f32 a, const f32 b)
 {
 	static const f32 c_fPar = 0.000001f;

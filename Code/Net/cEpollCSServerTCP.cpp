@@ -6,9 +6,9 @@
 #include "../../inc/CrossString.h"
 
 using namespace std;
-using namespace cm;
+using namespace cross;
 
-namespace cm
+namespace cross
 {
 
 inline void setnonblocking(int sock) {

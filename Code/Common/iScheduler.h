@@ -3,7 +3,7 @@
 
 #include "CommonDef.h"
 
-namespace cm
+namespace cross
 {
 
 enum eTaskEnd

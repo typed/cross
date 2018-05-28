@@ -7,7 +7,7 @@
 #include <fstream>
 #include <map>
 
-namespace cm
+namespace cross
 {
 
 typedef std::map<std::string, std::string> iniMap;

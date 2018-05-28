@@ -6,7 +6,7 @@
 
 using namespace std;
 
-namespace cm
+namespace cross
 {
 
 cDbSqliteRecordSet::cDbSqliteRecordSet(cDbSqlite* pDb, sqlite3_stmt* p)

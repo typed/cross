@@ -14,7 +14,7 @@
 #include <map>
 #include <set>
 
-namespace cm
+namespace cross
 {
 
 static RakNet::SystemAddress c_saNatTypeServer("8.17.250.34", 60481);
@@ -91,7 +91,7 @@ struct stPlayer
 {
 	RakNet::RakNetGUID		guid;
 	RakNet::SystemAddress	sa;
-	RakNet::RakString		sRoom;	//·¿¼äÃû,Èç¹ûÎª"",±íÊ¾Ã»ÓÐÔÚ·¿¼äÀï
+	RakNet::RakString		sRoom;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½Îª"",ï¿½ï¿½Ê¾Ã»ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½ï¿½ï¿½
 	i32						nPing;
 	stPlayer():nPing(-1){}
 };

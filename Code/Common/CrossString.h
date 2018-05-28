@@ -14,7 +14,7 @@
 #include <string>
 #include <string.h>
 
-namespace cm
+namespace cross
 {
 
 //字符

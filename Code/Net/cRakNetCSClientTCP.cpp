@@ -2,10 +2,10 @@
 #include "../../inc/iCompress.h"
 
 using namespace std;
-using namespace cm;
+using namespace cross;
 using namespace RakNet;
 
-namespace cm
+namespace cross
 {
 
 cRakNetCSClientTCP::cRakNetCSClientTCP()
@@ -140,7 +140,7 @@ void cRakNetCSClientTCP::RunOnce()
 						nLen = 0;
 					}
 					if (pk.data.size() < pk.header.lenData) {
-						//ÐèÒª×é°ü
+						//ï¿½ï¿½Òªï¿½ï¿½ï¿½
 						break;
 					}
 				} else {

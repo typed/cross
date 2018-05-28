@@ -6,7 +6,7 @@
 #include "raknet/RakNetTypes.h"
 #include "raknet/RakPeerInterface.h"
 
-namespace cm
+namespace cross
 {
 
 struct SampleFramework;

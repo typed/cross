@@ -1,12 +1,12 @@
-#ifndef _common_quaternion_h_
-#define _common_quaternion_h_
+#ifndef _cross_math_quaternion_h_
+#define _cross_math_quaternion_h_
 
-//ËÄÔªÊı
+//å››å…ƒæ•°
 #include "../CommonDef.h"
 #include "cVector3D.h"
 #include "cMatrix4X4.h"
 
-namespace cm
+namespace cross
 {
 
 class cQuaternion
@@ -31,7 +31,7 @@ public:
 	cQuaternion& Slerp(cQuaternion q1, cQuaternion q2, f32 time);
 	void GetMatrix_Transposed(cMatrix4X4& dest) const;
 	cMatrix4X4 GetMatrix() const {cMatrix4X4 m; GetMatrix_Transposed(m); return m;}
-	//ÉèÖÃÎªµ¥Î»ËÄÔªÊı
+	//è®¾ç½®ä¸ºå•ä½å››å…ƒæ•°
 	void Identity() { w = 1.f; x = y = z = 0.f; }
 	f32	w,x,y,z;
 };
