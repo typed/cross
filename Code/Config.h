@@ -44,9 +44,9 @@ typedef const f64*			cpf64;
 typedef ui8					byte;
 typedef pui8				pbyte;
 typedef cpui8				cpbyte;
-typedef ui64				TypeTime;
+typedef ui64				tTime;
 typedef ui32				commonid;
-typedef i32					TypeDate;
+typedef i32					tDate;
 typedef ui32				color32;
 typedef ui16				color16;
 
@@ -85,6 +85,7 @@ typedef ui16				color16;
 #endif
 #define DEL_ARRAY(p) if ((p)) { delete[] (p); (p) = 0;}
 
+//对齐
 #define Ali(num,align) (((num)+((align)-1))&(~((align)-1)))
 
 #endif
