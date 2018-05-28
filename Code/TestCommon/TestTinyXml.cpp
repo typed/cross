@@ -4,5 +4,5 @@ using namespace std;
 
 void TestTinyXml()
 {
-	cout << "TestTinyXml." << endl;
+    cout << "TestTinyXml." << endl;
 }

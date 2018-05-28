@@ -15,7 +15,10 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libs)
 # 设置可执行文件目录，同样设成和库目录相同
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
+add_subdirectory(Sqlite)
 add_subdirectory(QuickLZ)
 add_subdirectory(TinyXml)
 add_subdirectory(Lua)
+add_subdirectory(Db)
+add_subdirectory(Common)
 add_subdirectory(TestCommon)

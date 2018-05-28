@@ -6,7 +6,7 @@ void TestTinyXml();
 
 int main(int argc, char const *argv[])
 {
-	cout << "test common." << endl;
-	TestTinyXml();
-	return 0;
+    cout << "test common." << endl;
+    TestTinyXml();
+    return 0;
 }
