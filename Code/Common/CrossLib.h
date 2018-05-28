@@ -6,12 +6,12 @@
 //修改时间：
 //修改说明：
 
-#ifndef crosslib_h
-#define crosslib_h
+#ifndef _cross_common_crosslib_h
+#define _cross_common_crosslib_h
 
-#include "CommonDef.h"
+#include "Common.h"
 
-namespace nsCommon
+namespace cross
 {
 
 //动态库

@@ -1,8 +1,8 @@
-#ifndef _cnetmapping_h_
-#define _cnetmapping_h_
+#ifndef cross_net_cnetmapping_h_
+#define cross_net_cnetmapping_h_
 
-#include "../../inc/CommonDef.h"
-#include "../../inc/iNet.h"
+#include "Common/Common.h"
+#include "iNet.h"
 #include <string>
 #include <map>
 

@@ -1,10 +1,10 @@
 #ifndef craknetudpsocket_h
 #define craknetudpsocket_h
 
-#include "../../inc/iNet.h"
-#include "raknet/RakNetTypes.h"
-#include "raknet/RakPeerInterface.h"
-#include "raknet/BitStream.h"
+#include "iNet.h"
+#include "Raknet/RakNetTypes.h"
+#include "Raknet/RakPeerInterface.h"
+#include "Raknet/BitStream.h"
 
 #include "RakNetConfig.h"
 

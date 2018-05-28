@@ -1,7 +1,7 @@
-#include "../inc/cGuid.h"
-#include "../inc/math/Random.h"
-#include "../inc/iCrc.h"
-#include "../inc/CrossString.h"
+#include "cGuid.h"
+#include "Math/Random.h"
+#include "iCrc.h"
+#include "CrossString.h"
 
 namespace cross
 {

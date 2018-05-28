@@ -1,4 +1,4 @@
-#include "../inc/iCrc.h"
+#include "iCrc.h"
 #include "Crc32Static.h"
 
 namespace cross

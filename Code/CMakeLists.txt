@@ -28,5 +28,6 @@ add_subdirectory(Raknet)
 add_subdirectory(Net)
 
 add_subdirectory(TestAES)
+add_subdirectory(TestTinyXml)
 add_subdirectory(TestCommon)
 add_subdirectory(TestLuaBridge)

@@ -1,7 +1,7 @@
-#ifndef istate_h
-#define istate_h
+#ifndef cross_common_istate_h
+#define cross_common_istate_h
 
-#include "CommonDef.h"
+#include "Common.h"
 
 namespace cross
 {

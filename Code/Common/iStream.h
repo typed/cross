@@ -1,7 +1,7 @@
-#ifndef istream_h
-#define istream_h
+#ifndef cross_common_istream_h
+#define cross_common_istream_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include "iLog.h"
 #include "CrossMemory.h"
 #include "CrossString.h"

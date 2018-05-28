@@ -1,7 +1,7 @@
 #ifndef clistenable_h
 #define clistenable_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include "CrossSTL.h"
 #include <vector>
 
@@ -12,8 +12,8 @@ template <typename T>
 class cListenable
 {
 public:
-	void RegisterListener(T *pListener) {if (pListener) cm::VectorInsertOnly(m_Listeners, pListener);}
-	void UnregisterListener(T *pListener) {cm::VectorRemove(m_Listeners, pListener);}
+	void RegisterListener(T *pListener) {if (pListener) cross::VectorInsertOnly(m_Listeners, pListener);}
+	void UnregisterListener(T *pListener) {cross::VectorRemove(m_Listeners, pListener);}
 	void UnregisterAllListener() {m_Listeners.clear();}
 	std::vector<T*>& GetListeners() {return m_Listeners;}
 private:

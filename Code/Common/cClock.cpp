@@ -1,9 +1,9 @@
-#include "../inc/cClock.h"
-#include "../inc/iCrc.h"
-#include "../inc/CrossTime.h"
-#include "../inc/CrossString.h"
-#include "../inc/iLog.h"
-#include "../inc/cGuid.h"
+#include "cClock.h"
+#include "iCrc.h"
+#include "CrossTime.h"
+#include "CrossString.h"
+#include "iLog.h"
+#include "cGuid.h"
 #include <map>
 
 using namespace std;
@@ -115,7 +115,7 @@ TypeTime GetPerformanceTime()
 
 ui32 BeginCheckTime()
 {
-	cm::cGuid guid;
+	cross::cGuid guid;
 	ui32 id = guid.ToUint();
 	GetCheckTimeHm()[id] = _GetCurTime();
 	return id;

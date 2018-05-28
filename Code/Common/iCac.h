@@ -1,13 +1,13 @@
-#ifndef icac_h
-#define icac_h
+#ifndef cross_common_icac_h
+#define cross_common_icac_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include <string>
 
 namespace cross
 {
 
-class COMMON_API iCac
+class iCac
 {
 public:
 	static iCac* Create();

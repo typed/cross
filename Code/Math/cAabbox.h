@@ -115,21 +115,21 @@ inline bool cAabbox<T>::IntersectsWithLine(const cVector3D<T>& linemiddle, const
 	const cVector3D<T> e = GetExtent() * (T)0.5;
 	const cVector3D<T> t = GetCenter() - linemiddle;
 
-	if ((CrossMath::Abs(t.x) > e.x + halflength * CrossMath::Abs(linevect.x)) ||
-		(CrossMath::Abs(t.y) > e.y + halflength * CrossMath::Abs(linevect.y)) ||
-		(CrossMath::Abs(t.z) > e.z + halflength * CrossMath::Abs(linevect.z)) )
+	if ((MathFunc::Abs(t.x) > e.x + halflength * MathFunc::Abs(linevect.x)) ||
+		(MathFunc::Abs(t.y) > e.y + halflength * MathFunc::Abs(linevect.y)) ||
+		(MathFunc::Abs(t.z) > e.z + halflength * MathFunc::Abs(linevect.z)) )
 		return false;
 
-	T r = e.y * (T)CrossMath::Abs(linevect.z) + e.z * (T)CrossMath::Abs(linevect.y);
-	if (CrossMath::Abs(t.y * linevect.z - t.z *linevect.y) > r )
+	T r = e.y * (T)MathFunc::Abs(linevect.z) + e.z * (T)MathFunc::Abs(linevect.y);
+	if (MathFunc::Abs(t.y * linevect.z - t.z *linevect.y) > r )
 		return false;
 
-	r = e.x * (T)CrossMath::Abs(linevect.z) + e.z * (T)CrossMath::Abs(linevect.x);
-	if (CrossMath::Abs(t.z * linevect.x - t.x * linevect.z) > r )
+	r = e.x * (T)MathFunc::Abs(linevect.z) + e.z * (T)MathFunc::Abs(linevect.x);
+	if (MathFunc::Abs(t.z * linevect.x - t.x * linevect.z) > r )
 		return false;
 
-	r = e.x * (T)CrossMath::Abs(linevect.y) + e.y * (T)CrossMath::Abs(linevect.x);
-	if (CrossMath::Abs(t.x * linevect.y - t.y * linevect.x) > r)
+	r = e.x * (T)MathFunc::Abs(linevect.y) + e.y * (T)MathFunc::Abs(linevect.x);
+	if (MathFunc::Abs(t.x * linevect.y - t.y * linevect.x) > r)
 		return false;
 
 	return true;
@@ -605,6 +605,6 @@ typedef cAabbox<long>		cAabboxl;
 
 }
 
-typedef cm::cAabboxf	aabb;
+typedef cross::cAabboxf	aabb;
 
 #endif

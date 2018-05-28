@@ -1,5 +1,5 @@
 #include "cRakNetUDPSocket.h"
-#include "../../inc/CrossString.h"
+#include "Common/CrossString.h"
 
 using namespace std;
 using namespace cross;

@@ -9,10 +9,10 @@
 //修改说明：
 //版本：2.0
 
-#ifndef manager_h
-#define manager_h
+#ifndef cross_common_manager_h
+#define cross_common_manager_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include "iCrc.h"
 #include "iReference.h"
 #include "cGuid.h"

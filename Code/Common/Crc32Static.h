@@ -1,7 +1,7 @@
-#ifndef _CRC32STATIC_H_
-#define _CRC32STATIC_H_
+#ifndef _cross_common_CRC32STATIC_H_
+#define _cross_common_CRC32STATIC_H_
 
-#include "../inc/CommonDef.h"
+#include "Common.h"
 
 #define NO_ERROR 0
 #define ERROR_CRC 2

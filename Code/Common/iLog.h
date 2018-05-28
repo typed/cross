@@ -1,14 +1,14 @@
-#ifndef ilog_h
-#define ilog_h
+#ifndef cross_common_ilog_h
+#define cross_common_ilog_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include "CrossApp.h"
 #include <string>
 
 namespace cross
 {
 
-class COMMON_API iLog
+class iLog
 {
 public:
 
@@ -69,45 +69,45 @@ public:
 };
 
 //创建与销毁单独日志
-//COMMON_API iLog* CreateALog();
-//COMMON_API void DestroyALog(iLog*);
+//iLog* CreateALog();
+//void DestroyALog(iLog*);
 
 //直接查找日志，如果没有就返回0
-COMMON_API iLog* FindLog(cpstr sName);
+iLog* FindLog(cpstr sName);
 
 //查找日志，如果没有就创建一个新的日志
-COMMON_API iLog* GetLog(cpstr sName);
+iLog* GetLog(cpstr sName);
 
-COMMON_API void InitLog(bool bCloseAllLog = false);
+void InitLog(bool bCloseAllLog = false);
 
 //详细日志
-COMMON_API iLog& LogOut(iLog* log, iLog::eLog_Type type);
+iLog& LogOut(iLog* log, iLog::eLog_Type type);
 
 }
 
 #define DLog "defaultlog"
-#define LogEnter cm::iLog::Log_Enter
-#define LogFlush cm::iLog::Log_Flush
+#define LogEnter cross::iLog::Log_Enter
+#define LogFlush cross::iLog::Log_Flush
 #define Endl "\n"
 #define LEnd LogEnter
 #define LFlush LogFlush
 
-#define LCWhite cm::iLog::LC_White
-#define LCYellow cm::iLog::LC_Yellow
-#define LCRed cm::iLog::LC_Red
-#define LCGreen cm::iLog::LC_Green
-#define LCBlue cm::iLog::LC_Blue
-#define LCCyan cm::iLog::LC_Cyan
+#define LCWhite cross::iLog::LC_White
+#define LCYellow cross::iLog::LC_Yellow
+#define LCRed cross::iLog::LC_Red
+#define LCGreen cross::iLog::LC_Green
+#define LCBlue cross::iLog::LC_Blue
+#define LCCyan cross::iLog::LC_Cyan
 
-#define LogInfoPtr(plog) cm::LogOut(plog, cm::iLog::LT_Info) << cm::iLog::LC_White
-#define LogWarningPtr(plog) cm::LogOut(plog, cm::iLog::LT_Warning) << cm::iLog::LC_Yellow
-#define LogErrorPtr(plog) cm::LogOut(plog, cm::iLog::LT_Error) << cm::iLog::LC_Red
-#define LogOkPtr(plog) cm::LogOut(plog, cm::iLog::LT_Ok) << cm::iLog::LC_Green
+#define LogInfoPtr(plog) cross::LogOut(plog, cross::iLog::LT_Info) << cross::iLog::LC_White
+#define LogWarningPtr(plog) cross::LogOut(plog, cross::iLog::LT_Warning) << cross::iLog::LC_Yellow
+#define LogErrorPtr(plog) cross::LogOut(plog, cross::iLog::LT_Error) << cross::iLog::LC_Red
+#define LogOkPtr(plog) cross::LogOut(plog, cross::iLog::LT_Ok) << cross::iLog::LC_Green
 
-#define LogInfo(logName) cm::LogOut(cm::GetLog(logName), cm::iLog::LT_Info) << cm::iLog::LC_White
-#define LogWarning(logName) cm::LogOut(cm::GetLog(logName), cm::iLog::LT_Warning) << cm::iLog::LC_Yellow
-#define LogError(logName) cm::LogOut(cm::GetLog(logName), cm::iLog::LT_Error) << cm::iLog::LC_Red
-#define LogOk(logName) cm::LogOut(cm::GetLog(logName), cm::iLog::LT_Ok) << cm::iLog::LC_Green
+#define LogInfo(logName) cross::LogOut(cross::GetLog(logName), cross::iLog::LT_Info) << cross::iLog::LC_White
+#define LogWarning(logName) cross::LogOut(cross::GetLog(logName), cross::iLog::LT_Warning) << cross::iLog::LC_Yellow
+#define LogError(logName) cross::LogOut(cross::GetLog(logName), cross::iLog::LT_Error) << cross::iLog::LC_Red
+#define LogOk(logName) cross::LogOut(cross::GetLog(logName), cross::iLog::LT_Ok) << cross::iLog::LC_Green
 
 #define LInfo LogInfo(DLog)
 #define LWarning LogWarning(DLog)
@@ -125,7 +125,7 @@ COMMON_API iLog& LogOut(iLog* log, iLog::eLog_Type type);
 #endif
 
 #ifdef _DEBUG
-//#define Assert(c) if(c) 0; else cm::CrossApp::Assert4(#c, __FILE__, __FUNCTION__, __LINE__)
+//#define Assert(c) if(c) 0; else cross::CrossApp::Assert4(#c, __FILE__, __FUNCTION__, __LINE__)
 #	include <assert.h>
 #	define Assert(c) assert(c)
 #else

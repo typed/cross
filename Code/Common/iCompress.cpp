@@ -1,7 +1,7 @@
 
-#include "../inc/iCompress.h"
-#include "quicklz.h"
-#include "../inc/cThread.h"
+#include "iCompress.h"
+#include "QuickLZ/quicklz.h"
+#include "cThread.h"
 
 namespace cross
 {

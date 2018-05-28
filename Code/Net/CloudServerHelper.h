@@ -1,7 +1,7 @@
 #ifndef __CLOUD_SERVER_HELPER_H
 #define __CLOUD_SERVER_HELPER_H
 
-#include "raknet/CloudServer.h"
+#include "Raknet/CloudServer.h"
 
 namespace RakNet
 {

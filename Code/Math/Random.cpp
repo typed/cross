@@ -1,5 +1,5 @@
-#include "../../inc/math/Random.h"
-#include "../../inc/CrossMath.h"
+#include "Random.h"
+#include "MathFunc.h"
 #include <vector>
 
 using namespace std;
@@ -21,7 +21,7 @@ static const ui32 g_nPar7 = 0x7fffffff;
 
 void RandomSeed()
 {
-	g_seed64 = CrossMath::RandomSeed();
+	g_seed64 = MathFunc::RandomSeed();
 	g_seed = (ui32)g_seed64;
 }
 
@@ -134,11 +134,11 @@ f64 RandomGaussDouble(f64 dExpection /*= 0.0*/, f64 dSigma /*= 1.0*/)
 			dS = dV1 * dV1 + dV2 * dV2;
 		}
 		while(dS >= 1.0 || dS == 0.0);
-		dRes = dV1 * CrossMath::SqrtD(-2.0 * CrossMath::LogD(dS) / dS);
+		dRes = dV1 * MathFunc::SqrtD(-2.0 * MathFunc::LogD(dS) / dS);
 	}
 	else
 	{
-		dRes = dV2 * CrossMath::SqrtD(-2.0 * CrossMath::LogD(dS) / dS);
+		dRes = dV2 * MathFunc::SqrtD(-2.0 * MathFunc::LogD(dS) / dS);
 	}
 	bSet = !bSet;
 	return dRes * dSigma + dExpection;

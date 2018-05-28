@@ -1,7 +1,7 @@
 #ifndef _cross_math_line3d_h_
 #define _cross_math_line3d_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 #include "cVector3D.h"
 
@@ -106,7 +106,7 @@ typedef cRay3D<i32> cRay3Dl;
 
 }
 
-typedef cm::cLine3Df		line3d;
-typedef cm::cRay3Df		ray3d;
+typedef cross::cLine3Df		line3d;
+typedef cross::cRay3Df		ray3d;
 
 #endif

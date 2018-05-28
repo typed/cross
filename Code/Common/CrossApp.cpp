@@ -1,5 +1,5 @@
-#include "../inc/CrossApp.h"
-#include "../inc/CrossString.h"
+#include "CrossApp.h"
+#include "CrossString.h"
 
 #if (defined(WIN32) || defined(_WIN32) || defined (WINDOWS) || defined (_WINDOWS))
 #	include <windows.h>

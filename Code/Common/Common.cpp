@@ -1,8 +1,8 @@
-#include "../inc/CommonDef.h"
-#include "../inc/iLog.h"
-#include "../inc/math/Random.h"
-#include "../inc/CrossConsole.h"
-#include "../inc/CrossFileOP.h"
+#include "Common.h"
+#include "iLog.h"
+#include "Math/Random.h"
+#include "CrossConsole.h"
+#include "CrossFileOP.h"
 #include <string>
 #if (defined(WIN32) || defined(_WIN32))
 #	include <windows.h>

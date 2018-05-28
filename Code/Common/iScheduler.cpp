@@ -1,6 +1,6 @@
-#include "../inc/iScheduler.h"
-#include "../inc/iLog.h"
-#include "../inc/cClock.h"
+#include "iScheduler.h"
+#include "iLog.h"
+#include "cClock.h"
 #include <vector>
 #include <map>
 #include <set>

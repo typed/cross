@@ -2,7 +2,7 @@
 #define _cross_math_quaternion_h_
 
 //四元数
-#include "../CommonDef.h"
+#include "Config.h"
 #include "cVector3D.h"
 #include "cMatrix4X4.h"
 
@@ -49,8 +49,8 @@ inline cQuaternion cQuaternion::operator * (const cQuaternion& other) const
 inline cQuaternion& cQuaternion::FromAngleAxis(f32 rfRadian, const cVector3Df& rkAxis)
 {
 	f32 fHalfRadian = 0.5f * rfRadian;
-	f32 fSin = CrossMath::Sin(fHalfRadian);
-	w = CrossMath::Cos(fHalfRadian);
+	f32 fSin = MathFunc::Sin(fHalfRadian);
+	w = MathFunc::Cos(fHalfRadian);
 	x = fSin * rkAxis.x;
 	y = fSin * rkAxis.y;
 	z = fSin * rkAxis.z;
@@ -62,7 +62,7 @@ inline cQuaternion& cQuaternion::FromMatrix(const cMatrix4X4& m)
 	const f32 diag = m(0,0) + m(1,1) + m(2,2) + 1.f;
 	if( diag > 0.0f )
 	{
-		const f32 scale = CrossMath::Sqrt(diag) * 2.0f; // get scale from diagonal
+		const f32 scale = MathFunc::Sqrt(diag) * 2.0f; // get scale from diagonal
 		// TODO: speed this up
 		x = ( m(2,1) - m(1,2)) / scale;
 		y = ( m(0,2) - m(2,0)) / scale;
@@ -75,7 +75,7 @@ inline cQuaternion& cQuaternion::FromMatrix(const cMatrix4X4& m)
 		{
 			// 1st element of diag is greatest value
 			// find scale according to 1st element, and double it
-			const f32 scale = CrossMath::Sqrt( 1.0f + m(0,0) - m(1,1) - m(2,2)) * 2.0f;
+			const f32 scale = MathFunc::Sqrt( 1.0f + m(0,0) - m(1,1) - m(2,2)) * 2.0f;
 
 			// TODO: speed this up
 			x = 0.25f * scale;
@@ -87,7 +87,7 @@ inline cQuaternion& cQuaternion::FromMatrix(const cMatrix4X4& m)
 		{
 			// 2nd element of diag is greatest value
 			// find scale according to 2nd element, and double it
-			const f32 scale = CrossMath::Sqrt( 1.0f + m(1,1) - m(0,0) - m(2,2)) * 2.0f;
+			const f32 scale = MathFunc::Sqrt( 1.0f + m(1,1) - m(0,0) - m(2,2)) * 2.0f;
 
 			// TODO: speed this up
 			x = (m(0,1) + m(1,0) ) / scale;
@@ -99,7 +99,7 @@ inline cQuaternion& cQuaternion::FromMatrix(const cMatrix4X4& m)
 		{
 			// 3rd element of diag is greatest value
 			// find scale according to 3rd element, and double it
-			const f32 scale = CrossMath::Sqrt( 1.0f + m(2,2) - m(0,0) - m(1,1)) * 2.0f;
+			const f32 scale = MathFunc::Sqrt( 1.0f + m(2,2) - m(0,0) - m(1,1)) * 2.0f;
 
 			// TODO: speed this up
 			x = (m(0,2) + m(2,0)) / scale;
@@ -116,7 +116,7 @@ inline cQuaternion& cQuaternion::Normalize()
 	const f32 n = x*x + y*y + z*z + w*w;
 	if (n == 1)
 		return *this;
-	return (*this *= (1.0f / CrossMath::Sqrt(n)));
+	return (*this *= (1.0f / MathFunc::Sqrt(n)));
 }
 
 inline void cQuaternion::GetMatrix_Transposed(cMatrix4X4& dest) const
@@ -160,10 +160,10 @@ inline cQuaternion& cQuaternion::Slerp(cQuaternion q1, cQuaternion q2, f32 time)
 	{
 		if ((1.0f - angle) >= 0.05f) // spherical interpolation
 		{
-			const f32 theta = CrossMath::Acos(angle);
-			const f32 invsintheta = 1.f / CrossMath::Sin(theta);
-			scale = CrossMath::Sin(theta * (1.0f - time)) * invsintheta;
-			invscale = CrossMath::Sin(theta * time) * invsintheta;
+			const f32 theta = MathFunc::Acos(angle);
+			const f32 invsintheta = 1.f / MathFunc::Sin(theta);
+			scale = MathFunc::Sin(theta * (1.0f - time)) * invsintheta;
+			invscale = MathFunc::Sin(theta * time) * invsintheta;
 		}
 		else // linear interploation
 		{
@@ -174,14 +174,14 @@ inline cQuaternion& cQuaternion::Slerp(cQuaternion q1, cQuaternion q2, f32 time)
 	else
 	{
 		q2.Set(-q1.y, q1.x, -q1.w, q1.z);
-		scale = CrossMath::Sin(c_fPI * (0.5f - time));
-		invscale = CrossMath::Sin(c_fPI * time);
+		scale = MathFunc::Sin(c_fPI * (0.5f - time));
+		invscale = MathFunc::Sin(c_fPI * time);
 	}
 	return *this = ( q1 * scale + q2 * invscale );
 }
 
 }
 
-typedef cm::cQuaternion	quat;
+typedef cross::cQuaternion	quat;
 
 #endif

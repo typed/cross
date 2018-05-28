@@ -1,15 +1,15 @@
-#ifndef raknetconfig_h
-#define raknetconfig_h
+#ifndef cross_net_raknetconfig_h
+#define cross_net_raknetconfig_h
 
-#include "../../inc/CommonDef.h"
-#include "raknet/CloudCommon.h"
-#include "raknet/RakNetTypes.h"
-#include "raknet/GetTime.h"
-#include "raknet/RakPeerInterface.h"
-#include "raknet/MessageIdentifiers.h"
+#include "Common/Common.h"
+#include "Raknet/CloudCommon.h"
+#include "Raknet/RakNetTypes.h"
+#include "Raknet/GetTime.h"
+#include "Raknet/RakPeerInterface.h"
+#include "Raknet/MessageIdentifiers.h"
 
-#include "../../inc/iLog.h"
-#include "../../inc/iCompress.h"
+#include "Common/iLog.h"
+#include "Common/iCompress.h"
 #include <vector>
 #include <map>
 #include <set>

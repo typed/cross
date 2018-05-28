@@ -1,6 +1,7 @@
-#ifndef ireference_h
-#define ireference_h
-#include "CommonDef.h"
+#ifndef cross_common_ireference_h
+#define cross_common_ireference_h
+
+#include "Common.h"
 
 #ifdef _DEBUG
 #	define TRACE_REF

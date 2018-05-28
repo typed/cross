@@ -1,5 +1,5 @@
 #include "cRakNetCSClient.h"
-#include "../../inc/iCompress.h"
+#include "Common/iCompress.h"
 
 using namespace std;
 using namespace cross;

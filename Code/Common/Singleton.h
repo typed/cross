@@ -1,7 +1,5 @@
-#ifndef singleton_h
-#define singleton_h
-
-#include "CommonDef.h"
+#ifndef cross_common_singleton_h
+#define cross_common_singleton_h
 
 #define DEF_CSINGLETON(T) \
 	static void CreateSingleton();\

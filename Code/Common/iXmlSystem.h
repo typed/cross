@@ -1,13 +1,13 @@
-#ifndef ixmlsystem_h
-#define ixmlsystem_h
+#ifndef cross_common_ixmlsystem_h
+#define cross_common_ixmlsystem_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include <string>
 
 namespace cross
 {
 
-class COMMON_API iXmlAttributes
+class iXmlAttributes
 {
 public:
 	virtual bool GetValueAsString(cpstr attr, cpstr&, cpstr def = "") const = 0;
@@ -26,14 +26,14 @@ public:
 	virtual cpstr GetCurName() = 0;
 };
 
-class COMMON_API iXmlReaderHandler
+class iXmlReaderHandler
 {
 public:
 	virtual void ElementStart(cpstr element, iXmlAttributes& attributes, cpstr elementTxt) {}
 	virtual void ElementEnd(cpstr element) {}
 };
 
-class COMMON_API iXmlReader
+class iXmlReader
 {
 public:
 	static iXmlReader* CreateInstance();

@@ -1,5 +1,5 @@
-#ifndef idb_h
-#define idb_h
+#ifndef _cross_db_idb_h
+#define _cross_db_idb_h
 
 //非线程安全
 

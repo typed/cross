@@ -1,20 +1,19 @@
-#ifndef cclock_h
-#define cclock_h
+#ifndef cross_common_cclock_h
+#define cross_common_cclock_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include "cGuid.h"
 #include <string>
-//#include <string.h>
 
 namespace cross
 {
 
 class cClock;
-COMMON_API cClock* GetClock();
-COMMON_API TypeTime GetCurTime();
+cClock* GetClock();
+TypeTime GetCurTime();
 
 //时钟
-class COMMON_API cClock
+class cClock
 {
 public:
 
@@ -49,8 +48,8 @@ private:
 
 	TypeTime GetCurTimeReal();
 
-	friend COMMON_API cClock* GetClock();
-	friend COMMON_API TypeTime GetCurTime();
+	friend cClock* GetClock();
+	friend TypeTime GetCurTime();
 
 	bool		m_running;
 
@@ -72,7 +71,7 @@ private:
 
 };
 
-class COMMON_API cDate
+class cDate
 {
 public:
 
@@ -148,21 +147,21 @@ protected:
 	i32			m_second;
 };
 
-COMMON_API TypeTime GetCheckNowTime();
-COMMON_API TypeTime GetPerformanceTime();
-COMMON_API ui64 GetCurLongTime();	
-COMMON_API ui32 BeginCheckTime();
-COMMON_API TypeTime EndCheckTime(ui32 id);
-COMMON_API void BeginCheckTime(cpstr name);
-COMMON_API TypeTime EndCheckTime(cpstr name);
-COMMON_API void PrintEndCheckTime(cpstr name, TypeTime lessNotDisplay = 0);
-COMMON_API void MsgBoxEndCheckTime(cpstr name, TypeTime lessNotDisplay = 0);
-#define BeginCheckTimeCurFunc cm::BeginCheckTime(__FUNCTION__);
-#define EndCheckTimeCurFunc cm::EndCheckTime(__FUNCTION__);
-#define PrintEndCheckTimeCurFunc cm::PrintEndCheckTime(__FUNCTION__);
-#define MsgBoxEndCheckTimeCurFunc cm::MsgBoxEndCheckTime(__FUNCTION__);
+TypeTime GetCheckNowTime();
+TypeTime GetPerformanceTime();
+ui64 GetCurLongTime();	
+ui32 BeginCheckTime();
+TypeTime EndCheckTime(ui32 id);
+void BeginCheckTime(cpstr name);
+TypeTime EndCheckTime(cpstr name);
+void PrintEndCheckTime(cpstr name, TypeTime lessNotDisplay = 0);
+void MsgBoxEndCheckTime(cpstr name, TypeTime lessNotDisplay = 0);
+#define BeginCheckTimeCurFunc cross::BeginCheckTime(__FUNCTION__);
+#define EndCheckTimeCurFunc cross::EndCheckTime(__FUNCTION__);
+#define PrintEndCheckTimeCurFunc cross::PrintEndCheckTime(__FUNCTION__);
+#define MsgBoxEndCheckTimeCurFunc cross::MsgBoxEndCheckTime(__FUNCTION__);
 
-#define DateTime cm::cDate::GetCurDateTime()
+#define DateTime cross::cDate::GetCurDateTime()
 
 inline std::string GetCurTimeString() {
 	return cDate::GetCurDate().GetTimeString();

@@ -1,9 +1,9 @@
 
 
-#ifndef inet_h
-#define inet_h
+#ifndef cross_net_inet_h
+#define cross_net_inet_h
 
-#include "CommonDef.h"
+#include "Common/Common.h"
 #include <vector>
 #include <string>
 #include <functional>
@@ -12,36 +12,36 @@ namespace cross
 {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//P2P�ṹ
+//P2P结构
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-class COMMON_API iP2PServer
+class iP2PServer
 {
 public:
 	static iP2PServer* CreateNormalInstance();
 	static iP2PServer* CreateProxyInstance();
 	virtual void Release() = 0;
-	//sBind��sProxy ��ʽΪ "127.0.0.1,1000,127.0.0.2,1001...."
+	//sBind和sProxy 格式为 "127.0.0.1,1000,127.0.0.2,1001...."
 	virtual bool Init(cpstr sBind, cpstr sProxy = 0, cpstr sClientConnect = 0) = 0;
 	virtual void RunOnce() = 0;
 };
 
-class COMMON_API iP2PClientStream
+class iP2PClientStream
 {
 public:
 	virtual void Write(cpvd buf, ui32 len) = 0;
 	virtual bool Read(pvd buf, ui32 len) = 0;
 };
-class COMMON_API iP2PClientCallback
+class iP2PClientCallback
 {
 public:
 	virtual void OnRecv(cpbyte, ui32) = 0;
-	//�¼�ͬ��
+	//事件同步
 	virtual void OnRecvAction(ui32 id, cpvd buf, ui32 len) = 0;
-	//֡����ͬ��
+	//帧属性同步
 	virtual void OnGet(ui32 id, iP2PClientStream* pStream) = 0;
 	virtual void OnSet(ui32 id, iP2PClientStream* pStream) = 0;
 };
-class COMMON_API iP2PClient
+class iP2PClient
 {
 public:
 	static iP2PClient* CreateInstance();
@@ -67,25 +67,25 @@ public:
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//C/S�ṹ
+//C/S结构
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-class COMMON_API iCSServerCallback
+class iCSServerCallback
 {
 public:
-	//�пͻ��˽���ʱ
+	//有客户端接入时
 	virtual void OnConnect(ui32 id, i32 userdata) = 0;
-	//�пͻ��˶Ͽ�ʱ
+	//有客户端断开时
 	virtual void OnDisconnect(ui32 id, i32 userdata) = 0;
-	//�յ���Ϣ
+	//收到消息
 	virtual void OnRecv(ui32 id, cpvd buf, ui32 len, i32 userdata) = 0;
-	//�����
+	//玩家名
 	virtual cpstr GetPlayerName(ui32 id) const {return "";}
 };
-class COMMON_API iCSServer
+class iCSServer
 {
 public:
 	static iCSServer* CreateInstance(b8 tcp);
-	//sBind ��ʽΪ "127.0.0.1,1000,127.0.0.2,1001...."
+	//sBind 格式为 "127.0.0.1,1000,127.0.0.2,1001...."
 	virtual bool Init(cpstr sBind, ui16 nMaxConnect = 0, ui32 nTimeout = 0) = 0;
 	virtual void Release() = 0;
 	virtual bool Send(ui32, cpvd, ui32) = 0;
@@ -108,19 +108,19 @@ enum eConnectType
 };
 enum eDisconnectType
 {
-	DT_ClientInitiative,		//�ͻ��������Ͽ�
-	DT_ServerInitiative,		//�����������Ͽ�
-	DT_Exception,				//�쳣�Ͽ�
+	DT_ClientInitiative,		//客户端主动断开
+	DT_ServerInitiative,		//服务器主动断开
+	DT_Exception,				//异常断开
 };
 
-class COMMON_API iCSClientCallback
+class iCSClientCallback
 {
 public:
 	virtual void OnConnect(eConnectType ct, i32 userdata) = 0;
 	virtual void OnDisconnect(eDisconnectType ct, i32 userdata) = 0;
 	virtual void OnRecv(cpvd buf, ui32 len, i32 userdata) = 0;
 };
-class COMMON_API iCSClient
+class iCSClient
 {
 public:
 	static iCSClient* CreateInstance(b8 tcp);
@@ -155,7 +155,7 @@ struct stTCPSocketCallbackParam
 	stTCPSocketCallbackParam() : type(TCPC_OnConnect), linkid(0), bConnected(false) {}
 };
 typedef std::function<void(const stTCPSocketCallbackParam&)> funcTCPCallback;
-class COMMON_API iTCPSocket
+class iTCPSocket
 {
 public:
 	static iTCPSocket* CreateInstance();
@@ -170,7 +170,7 @@ public:
 };
 
 typedef std::function<std::string(const std::string&)> funcUDPCallback;
-class COMMON_API iUDPSocket
+class iUDPSocket
 {
 public:
 	static iUDPSocket* CreateInstance();
@@ -181,13 +181,13 @@ public:
 	virtual void SetCallback(funcUDPCallback) = 0;
 };
 
-COMMON_API std::string DomainToIP(cpstr sdomain);
-COMMON_API void HTTPPostRTVoid(std::string host, i32 port, std::string dir, std::string data);
-COMMON_API cpstr GetLocalMac();
-COMMON_API void UseNetMapped(bool);
+std::string DomainToIP(cpstr sdomain);
+void HTTPPostRTVoid(std::string host, i32 port, std::string dir, std::string data);
+cpstr GetLocalMac();
+void UseNetMapped(bool);
 typedef std::vector< std::pair<std::string, ui16> > addrs;
-COMMON_API bool StrToAddress(addrs& as, std::string s);
-COMMON_API ui64 NetNewGUID();
+bool StrToAddress(addrs& as, std::string s);
+ui64 NetNewGUID();
 
 }
 

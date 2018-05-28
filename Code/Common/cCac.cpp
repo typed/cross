@@ -1,5 +1,5 @@
 #include "cCac.h"
-#include "../inc/math/Random.h"
+#include "Math/Random.h"
 
 namespace cross
 {

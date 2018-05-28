@@ -1,6 +1,6 @@
-#include "../inc/iCac.h"
-#include "../inc/iStream_DS.h"
-#include "../inc/iCompress.h"
+#include "iCac.h"
+#include "iStream_DS.h"
+#include "iCompress.h"
 #include <map>
 
 typedef std::map<std::string, std::string> mapCac;

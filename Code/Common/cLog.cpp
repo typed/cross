@@ -1,7 +1,7 @@
 #include "cLog.h"
-#include "../inc/CrossString.h"
-#include "../inc/CrossFileOP.h"
-#include "../inc/cClock.h"
+#include "CrossString.h"
+#include "CrossFileOP.h"
+#include "cClock.h"
 
 using namespace std;
 

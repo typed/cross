@@ -1,7 +1,7 @@
 #ifndef _cross_math_triangle3d_h_
 #define _cross_math_triangle3d_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 #include "cVector3D.h"
 #include "cAabbox.h"
@@ -117,7 +117,7 @@ inline bool cTriangle3D<T>::GetIntersectionOfPlaneWithLine(const cVector3D<T>& l
 {
 	const cVector3D<T> normal = GetNormal().Normalize();
 	T t2;
-	if ( cm::Equals( t2 = normal.DotProduct(lineVect), (T)0 ) )
+	if ( cross::Equals( t2 = normal.DotProduct(lineVect), (T)0 ) )
 		return false;
 	T d = m_v1.DotProduct(normal);
 	T t = -(normal.DotProduct(linePoint) - d) / t2;
@@ -130,6 +130,6 @@ typedef cTriangle3D<f32> cTriangle3Df;
 
 }
 
-typedef cm::cTriangle3Df	tri;
+typedef cross::cTriangle3Df	tri;
 
 #endif

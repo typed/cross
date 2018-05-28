@@ -1,7 +1,8 @@
-#ifndef carcball_h
-#define carcball_h
-#include "../CommonDef.h"
-#include "../CrossMath.h"
+#ifndef _cross_math_carcball_h
+#define _cross_math_carcball_h
+
+#include "Config.h"
+#include "MathFunc.h"
 #include "cVector3D.h"
 #include "cRect.h"
 #include "cMatrix4X4.h"
@@ -63,12 +64,12 @@ public:
 
 		if( mag > 1.0f )
 		{
-			f32 scale = 1.f / CrossMath::Sqrt(mag);
+			f32 scale = 1.f / MathFunc::Sqrt(mag);
 			x *= scale;
 			y *= scale;
 		}
 		else
-			z = CrossMath::Sqrt(1.f - mag);
+			z = MathFunc::Sqrt(1.f - mag);
 
 		// Return vector
 		return cVector3Df( x, y, z );

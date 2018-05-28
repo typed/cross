@@ -1,17 +1,19 @@
-#ifndef icmdline_h
-#define icmdline_h
-#include "CommonDef.h"
+#ifndef cross_common_icmdline_h
+#define cross_common_icmdline_h
+
+#include "Common.h"
+
 namespace cross
 {
 
-class COMMON_API iCmdLine
+class iCmdLine
 {
 public:
 	virtual void Build(i32 argc, i8** argv) = 0;
 	virtual cpstr GetCmd(i32) const = 0;
 };
 
-COMMON_API iCmdLine* GetCmdLine();
+iCmdLine* GetCmdLine();
 
 }
 #endif

@@ -1,14 +1,14 @@
-#ifndef cguid_h
-#define cguid_h
+#ifndef cross_common_cguid_h
+#define cross_common_cguid_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include <string>
 #include <string.h>
 
 namespace cross
 {
 
-class COMMON_API cGuid
+class cGuid
 {
 public:
 
@@ -50,11 +50,11 @@ protected:
 
 };
 
-COMMON_API bool operator == (ui32 v, const cGuid& guid);
+bool operator == (ui32 v, const cGuid& guid);
 
-COMMON_API bool operator != (ui32 v, const cGuid& guid);
+bool operator != (ui32 v, const cGuid& guid);
 
-COMMON_API std::string NewGUID();
+std::string NewGUID();
 
 }
 

@@ -1,7 +1,7 @@
 #ifndef _cross_math_posrotscl_h_
 #define _cross_math_posrotscl_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 #include "cVector3D.h"
 #include "cQuaternion.h"

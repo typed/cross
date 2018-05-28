@@ -1,7 +1,7 @@
 #ifndef _cross_math_color_h_
 #define _cross_math_color_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "cRect.h"
 #include "cVector4D.h"
 #include "Random.h"
@@ -22,7 +22,7 @@ namespace cross
 	}
 
 
-class COMMON_API cColor
+class cColor
 {
 public:
 
@@ -183,7 +183,7 @@ public:
 
 };
 
-class COMMON_API cColor32_4
+class cColor32_4
 {
 public:
 
@@ -203,32 +203,32 @@ public:
 	}
 
 	void SetColor(ui32 c) {
-		for (i32 i = 0; i < cm::DR_Num; i++) {
+		for (i32 i = 0; i < cross::DR_Num; i++) {
 			col[i] = c;
 		}
 	}
 
-	void SetColor(cm::eDirRect e, ui32 c) {
+	void SetColor(cross::eDirRect e, ui32 c) {
 		col[e] = c;
 	}
 
-	void SetAlpha(cm::eDirRect e, ui8 c) {
+	void SetAlpha(cross::eDirRect e, ui8 c) {
 		ui32 cc = c << 24;
 		col[e] = (col[e] & 0x00ffffff) | cc;
 	}
 
 	void SetAlpha(ui8 c) {
 		ui32 cc = c << 24;
-		for (i32 i = 0; i < cm::DR_Num; i++) {
+		for (i32 i = 0; i < cross::DR_Num; i++) {
 			col[i] = (col[i] & 0x00ffffff) | cc;
 		}
 	}
 
-	ui8 GetAlpha(cm::eDirRect e = cm::DR_TopLeft) const {
+	ui8 GetAlpha(cross::eDirRect e = cross::DR_TopLeft) const {
 		return (ui8) ( col[e] >> 24 );
 	}
 
-	ui32 GetColor(cm::eDirRect e) const {
+	ui32 GetColor(cross::eDirRect e) const {
 		return col[e];
 	}
 
@@ -237,7 +237,7 @@ public:
 	}
 
 	bool operator == (const cColor32_4& c) const {
-		for (int i = 0; i < cm::DR_Num; i++)
+		for (int i = 0; i < cross::DR_Num; i++)
 			if (col[i] != c.col[i])
 				return false;
 		return true;
@@ -248,12 +248,12 @@ public:
 	}
 
 	cColor32_4& operator = (const cColor32_4& c) {
-		for (int i = 0; i < cm::DR_Num; i++)
+		for (int i = 0; i < cross::DR_Num; i++)
 			col[i] = c.col[i];
 		return *this;
 	}
 protected:
-	ui32 col[cm::DR_Num];
+	ui32 col[cross::DR_Num];
 };
 
 inline ui32 RandomColor32(ui32 colMin, ui32 colMax)
@@ -271,8 +271,8 @@ inline ui32 RandomColor32(ui32 colMin, ui32 colMax)
 
 }
 
-typedef cm::cColor		color;
+typedef cross::cColor		color;
 
-typedef cm::cColor32_4	color32_4;
+typedef cross::cColor32_4	color32_4;
 
 #endif

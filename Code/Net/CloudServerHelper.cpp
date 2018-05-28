@@ -1,16 +1,16 @@
 #include "CloudServerHelper.h"
-#include "raknet/RakSleep.h"
+#include "Raknet/RakSleep.h"
 
-#include "raknet/Gets.h"
-#include "raknet/MessageIdentifiers.h"
-#include "raknet/BitStream.h"
-#include "raknet/FullyConnectedMesh2.h"
-#include "raknet/TwoWayAuthentication.h"
-#include "raknet/CloudClient.h"
-#include "raknet/DynDNS.h"
-#include "raknet/SocketLayer.h"
-#include "raknet/RakPeerInterface.h"
-#include "raknet/ConnectionGraph2.h"
+#include "Raknet/Gets.h"
+#include "Raknet/MessageIdentifiers.h"
+#include "Raknet/BitStream.h"
+#include "Raknet/FullyConnectedMesh2.h"
+#include "Raknet/TwoWayAuthentication.h"
+#include "Raknet/CloudClient.h"
+#include "Raknet/DynDNS.h"
+#include "Raknet/SocketLayer.h"
+#include "Raknet/RakPeerInterface.h"
+#include "Raknet/ConnectionGraph2.h"
 #include <stdlib.h>
 
 using namespace RakNet;

@@ -1,7 +1,7 @@
-#ifndef cline2d_h
-#define cline2d_h
+#ifndef _cross_math_cline2d_h
+#define _cross_math_cline2d_h
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 #include "cVector2D.h"
 

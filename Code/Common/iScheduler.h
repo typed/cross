@@ -1,7 +1,7 @@
-#ifndef ischeduler_h
-#define ischeduler_h
+#ifndef cross_common_ischeduler_h
+#define cross_common_ischeduler_h
 
-#include "CommonDef.h"
+#include "Common.h"
 
 namespace cross
 {
@@ -29,7 +29,7 @@ struct stTaskParam
 	TypeTime sumTime;
 };
 
-class COMMON_API iTaskObj
+class iTaskObj
 {
 public:
 	iTaskObj();
@@ -55,14 +55,14 @@ private:
 	ui64 m_id;
 };
 
-class COMMON_API iScheduler
+class iScheduler
 {
 public:
 	virtual ~iScheduler() {}
 	virtual void RunOnce() = 0;
 };
 
-COMMON_API iScheduler* GetScheduler();
+iScheduler* GetScheduler();
 
 }
 #endif

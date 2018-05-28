@@ -1,16 +1,16 @@
 #ifndef craknetp2pclient2_h
 #define craknetp2pclient2_h
 
-#include "../../inc/iNet.h"
-#include "../../inc/iReference.h"
+#include "iNet.h"
+#include "Common/iReference.h"
 #include "RakNetConfig.h"
-#include "raknet/MessageIdentifiers.h"
-#include "raknet/RakPeerInterface.h"
-#include "raknet/RakNetTypes.h"
-#include "raknet/BitStream.h"
-#include "raknet/NatTypeDetectionClient.h"
-#include "raknet/CloudClient.h"
-#include "raknet/NatPunchthroughClient.h"
+#include "Raknet/MessageIdentifiers.h"
+#include "Raknet/RakPeerInterface.h"
+#include "Raknet/RakNetTypes.h"
+#include "Raknet/BitStream.h"
+#include "Raknet/NatTypeDetectionClient.h"
+#include "Raknet/CloudClient.h"
+#include "Raknet/NatPunchthroughClient.h"
 #include <map>
 #include <set>
 #include <vector>

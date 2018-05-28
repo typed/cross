@@ -1,7 +1,7 @@
-#ifndef crectset_h
-#define crectset_h
+#ifndef _cross_math_crectset_h
+#define _cross_math_crectset_h
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "cRect.h"
 #include "vector"
 

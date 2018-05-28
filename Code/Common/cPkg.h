@@ -1,13 +1,13 @@
-#ifndef cPkg_h_
-#define cPkg_h_
+#ifndef _cross_common_cPkg_h_
+#define _cross_common_cPkg_h_
 
-#include "../inc/iPkg.h"
-#include "../inc/iCrc.h"
-#include "../inc/iStream_DS.h"
-#include "../inc/iDb.h"
-#include "../inc/iReference.h"
-#include "../inc/CrossFileOP.h"
-#include "../inc/iCompress.h"
+#include "iPkg.h"
+#include "iCrc.h"
+#include "iStream_DS.h"
+#include "Db/iDb.h"
+#include "iReference.h"
+#include "CrossFileOP.h"
+#include "iCompress.h"
 #include <string>
 #include <vector>
 #include <map>

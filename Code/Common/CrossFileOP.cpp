@@ -1,6 +1,6 @@
-#include "../inc/CrossFileOP.h"
-#include "../inc/CrossString.h"
-#include "../inc/iCrc.h"
+#include "CrossFileOP.h"
+#include "CrossString.h"
+#include "iCrc.h"
 #include <string>
 #include <string.h>
 #include <vector>

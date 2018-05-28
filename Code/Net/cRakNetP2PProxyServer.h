@@ -1,12 +1,12 @@
 #ifndef craknetp2pproxyserver_h
 #define craknetp2pproxyserver_h
 
-#include "../../inc/iNet.h"
-#include "../../inc/iReference.h"
-#include "raknet/RakNetTypes.h"
-#include "raknet/RakPeerInterface.h"
-#include "raknet/RakString.h"
-#include "raknet/CloudClient.h"
+#include "iNet.h"
+#include "Common/iReference.h"
+#include "Raknet/RakNetTypes.h"
+#include "Raknet/RakPeerInterface.h"
+#include "Raknet/RakString.h"
+#include "Raknet/CloudClient.h"
 
 namespace cross
 {

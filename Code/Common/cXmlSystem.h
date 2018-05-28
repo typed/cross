@@ -1,11 +1,11 @@
 #ifndef cxmlsystem_h
 #define cxmlsystem_h
 
-#include "../../inc/iXmlSystem.h"
-#include "tinyxml.h"
-#include "../../inc/CrossString.h"
-#include "../../inc/CrossSTL.h"
-#include "../../inc/iStream_DS.h"
+#include "iXmlSystem.h"
+#include "TinyXml/tinyxml.h"
+#include "CrossString.h"
+#include "CrossSTL.h"
+#include "iStream_DS.h"
 #include <string>
 #include <map>
 #include <vector>

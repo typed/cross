@@ -1,7 +1,7 @@
 
 #include "cDbSqlite.h"
-#include "../../inc/CrossString.h"
-#include "../../inc/iLog.h"
+#include "Common/CrossString.h"
+#include "Common/iLog.h"
 #include <fstream>
 
 using namespace std;

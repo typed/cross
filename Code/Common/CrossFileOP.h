@@ -6,10 +6,10 @@
 //修改时间：
 //修改说明：
 
-#ifndef crossfileop_h
-#define crossfileop_h
+#ifndef _cross_common_crossfileop_h
+#define _cross_common_crossfileop_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include "CrossString.h"
 #include <string>
 #include <vector>

@@ -1,9 +1,9 @@
-#ifndef cdbsqlite_h
-#define cdbsqlite_h
+#ifndef _cross_db_cdbsqlite_h
+#define _cross_db_cdbsqlite_h
 
 extern "C"
 {
-#include "sqlite/sqlite3.h"
+#include "Sqlite/sqlite3.h"
 int sqlite_main(int argc, char **argv);
 }
 #include "iDb.h"

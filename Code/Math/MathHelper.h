@@ -1,25 +1,24 @@
-#ifndef mathhelper_h
-#define mathhelper_h
+#ifndef cross_math_mathhelper_h
+#define cross_math_mathhelper_h
 
-#include "CommonDef.h"
-#include "math/MathBase.h"
-#include "math/cVector2D.h"
-#include "math/cVector3D.h"
-#include "math/cVector4D.h"
-#include "math/cVectorND.h"		//add by yfw 主要为了后续引用，
-#include "math/cRect.h"
-#include "math/cRectSet.h"
-#include "math/cMatrix4X4.h"
-#include "math/cQuaternion.h"
-#include "math/cLine3D.h"
-#include "math/cPlane3D.h"
-#include "math/cAabbox.h"
-#include "math/cViewFrustum.h"
-#include "math/cTriangle3D.h"
-#include "math/cColor.h"
-#include "math/Random.h"
-#include "math/cGridHeight.h"
-#include "math/cPosRotScl.h"
+#include "Config.h"
+#include "MathBase.h"
+#include "cVector2D.h"
+#include "cVector3D.h"
+#include "cVector4D.h"
+#include "cRect.h"
+#include "cRectSet.h"
+#include "cMatrix4X4.h"
+#include "cQuaternion.h"
+#include "cLine3D.h"
+#include "cPlane3D.h"
+#include "cAabbox.h"
+#include "cViewFrustum.h"
+#include "cTriangle3D.h"
+#include "cColor.h"
+#include "Random.h"
+#include "cGridHeight.h"
+#include "cPosRotScl.h"
 #include <vector>
 
 namespace cross
@@ -32,7 +31,7 @@ typedef std::vector<vector3d> aVector3D;
 //两点间距离
 template<class T> inline T GetDistance(const cVector2D<T>& v1, const cVector2D<T>& v2)
 {
-	return (T) CrossMath::Sqrt( (f32) (v1.x - v2.x) * (v1.x - v2.x) + (v1.y - v2.y) * (v1.y - v2.y) );
+	return (T) MathFunc::Sqrt( (f32) (v1.x - v2.x) * (v1.x - v2.x) + (v1.y - v2.y) * (v1.y - v2.y) );
 }
 
 //求直线斜率
@@ -99,7 +98,7 @@ inline i32 RadianToDir8(cVector3Df v3dRadian)
 	i32 nIndex = 4;
 	for(i32 i = 0; i < 8; i++)
 	{
-		if(CrossMath::Abs(v3dRadian.y - c_fRadian[i]) <= 22.5f * c_fDegToRad)
+		if(MathFunc::Abs(v3dRadian.y - c_fRadian[i]) <= 22.5f * c_fDegToRad)
 		{
 			nIndex=i;
 		}

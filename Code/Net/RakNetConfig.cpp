@@ -1,12 +1,12 @@
 #include "RakNetConfig.h"
-#include "raknet/RakPeerInterface.h"
-#include "raknet/SocketLayer.h"
-#include "raknet/MessageIdentifiers.h"
-#include "raknet/Gets.h"
-#include "raknet/RakSleep.h"
-#include "raknet/Itoa.h"
+#include "Raknet/RakPeerInterface.h"
+#include "Raknet/SocketLayer.h"
+#include "Raknet/MessageIdentifiers.h"
+#include "Raknet/Gets.h"
+#include "Raknet/RakSleep.h"
+#include "Raknet/Itoa.h"
 #include "cNetMapping.h"
-#include "../../inc/CrossString.h"
+#include "Common/CrossString.h"
 
 using namespace std;
 using namespace RakNet;

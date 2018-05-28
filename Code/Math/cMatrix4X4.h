@@ -1,13 +1,12 @@
 #ifndef _cross_math_matrix4x4_h_
 #define _cross_math_matrix4x4_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 #include "cVector3D.h"
 #include "cPlane3D.h"
 #include "cRect.h"
 #include "cAabbox.h"
-#include "../CrossMemory.h"
 
 namespace cross
 {
@@ -64,22 +63,22 @@ public:
 
 	//绕x轴旋转
 	//1,			0,				0,			0
-	//0,			CrossMath::Cos(fAngle),	CrossMath::Sin(fAngle),0
-	//0,			-CrossMath::Sin(fAngle),	CrossMath::Cos(fAngle),0
+	//0,			MathFunc::Cos(fAngle),	MathFunc::Sin(fAngle),0
+	//0,			-MathFunc::Sin(fAngle),	MathFunc::Cos(fAngle),0
 	//0,			0,				0,			1
 	void MatrixRotationX(f32 fAngle);
 
 	//绕Y轴旋转
-	//CrossMath::Cos(fAngle),	0,	-CrossMath::Sin(fAngle), 0
+	//MathFunc::Cos(fAngle),	0,	-MathFunc::Sin(fAngle), 0
 	//0,			1,			0,	  0
-	//CrossMath::Sin(fAngle),	0,	CrossMath::Cos(fAngle),  0
+	//MathFunc::Sin(fAngle),	0,	MathFunc::Cos(fAngle),  0
 	//0,			0,			0,	  1		
 	void MatrixRotationY(f32 fAngle);
 
 	//绕Z轴旋转yaw
 	//绕y旋转矩阵
-	//CrossMath::Cos(fAngle), CrossMath::Sin(fAngle),	0, 0
-	//-CrossMath::Sin(fAngle),CrossMath::Cos(fAngle),	0, 0
+	//MathFunc::Cos(fAngle), MathFunc::Sin(fAngle),	0, 0
+	//-MathFunc::Sin(fAngle),MathFunc::Cos(fAngle),	0, 0
 	//0,			0,			1, 0
 	//0,			0,			0, 1
 	void MatrixRotationZ(f32 fAngle);
@@ -348,12 +347,12 @@ inline cVector3Df cMatrix4X4::GetRotationDegree() const
 
 inline void cMatrix4X4::SetRotationRadian(const cVector3Df& v)
 {
-	f32 cr = CrossMath::Cos( v.x );
-	f32 sr = CrossMath::Sin( v.x );
-	f32 cp = CrossMath::Cos( v.y );
-	f32 sp = CrossMath::Sin( v.y );
-	f32 cy = CrossMath::Cos( v.z );
-	f32 sy = CrossMath::Sin( v.z );
+	f32 cr = MathFunc::Cos( v.x );
+	f32 sr = MathFunc::Sin( v.x );
+	f32 cp = MathFunc::Cos( v.y );
+	f32 sp = MathFunc::Sin( v.y );
+	f32 cy = MathFunc::Cos( v.z );
+	f32 sy = MathFunc::Sin( v.z );
 
 	m[0] = cp * cy;
 	m[1] = cp * sy;
@@ -373,26 +372,26 @@ inline void cMatrix4X4::SetRotationRadian(const cVector3Df& v)
 
 inline cVector3Df cMatrix4X4::GetRotationRadian() const
 {
-	f32 Y = -CrossMath::Asin(m[2]);
-	f32 C = CrossMath::Cos(Y);
+	f32 Y = -MathFunc::Asin(m[2]);
+	f32 C = MathFunc::Cos(Y);
 
 	f32 rotx, roty, X, Z;
 
-	if (CrossMath::Abs(C)>0.0005f)
+	if (MathFunc::Abs(C)>0.0005f)
 	{
 		rotx = m[10] / C;
 		roty = m[6] / C;
-		X = CrossMath::Atan2( roty, rotx );
+		X = MathFunc::Atan2( roty, rotx );
 		rotx = m[0] / C;
 		roty = m[1] / C;
-		Z = CrossMath::Atan2( roty, rotx );
+		Z = MathFunc::Atan2( roty, rotx );
 	}
 	else
 	{
 		X = 0.f;
 		rotx = m[5];
 		roty = -m[4];
-		Z = CrossMath::Atan2( roty, rotx );
+		Z = MathFunc::Atan2( roty, rotx );
 	}
 
 	return cVector3Df(X, Y, Z);
@@ -402,42 +401,42 @@ inline void cMatrix4X4::MatrixRotationX(f32 fAngle)
 {
 	Set0();
 	m[0] = 1;
-	m[5] = CrossMath::Cos(fAngle);
-	m[6] = CrossMath::Sin(fAngle);
-	m[9] = -CrossMath::Sin(fAngle);
-	m[10] = CrossMath::Cos(fAngle);
+	m[5] = MathFunc::Cos(fAngle);
+	m[6] = MathFunc::Sin(fAngle);
+	m[9] = -MathFunc::Sin(fAngle);
+	m[10] = MathFunc::Cos(fAngle);
 	m[15] = 1.0f;
 }
 
 //绕Y轴旋转
-//CrossMath::Cos(fAngle),	0,	-CrossMath::Sin(fAngle), 0
+//MathFunc::Cos(fAngle),	0,	-MathFunc::Sin(fAngle), 0
 //0,			1,			0,	  0
-//CrossMath::Sin(fAngle),	0,	CrossMath::Cos(fAngle),  0
+//MathFunc::Sin(fAngle),	0,	MathFunc::Cos(fAngle),  0
 //0,			0,			0,	  1		
 inline void cMatrix4X4::MatrixRotationY(f32 fAngle)
 {
 	Set0();
-	m[0] = CrossMath::Cos(fAngle);
-	m[2] = -CrossMath::Sin(fAngle);
+	m[0] = MathFunc::Cos(fAngle);
+	m[2] = -MathFunc::Sin(fAngle);
 	m[5] = 1.0f;
-	m[8] = CrossMath::Sin(fAngle);
-	m[10] = CrossMath::Cos(fAngle);
+	m[8] = MathFunc::Sin(fAngle);
+	m[10] = MathFunc::Cos(fAngle);
 	m[15] = 1.0f;
 }
 
 //绕Z轴旋转yaw
 //绕y旋转矩阵
-//CrossMath::Cos(fAngle), CrossMath::Sin(fAngle),	0, 0
-//-CrossMath::Sin(fAngle),CrossMath::Cos(fAngle),	0, 0
+//MathFunc::Cos(fAngle), MathFunc::Sin(fAngle),	0, 0
+//-MathFunc::Sin(fAngle),MathFunc::Cos(fAngle),	0, 0
 //0,			0,			1, 0
 //0,			0,			0, 1
 inline void cMatrix4X4::MatrixRotationZ(f32 fAngle)
 {
 	Set0();
-	m[0] = CrossMath::Cos(fAngle);
-	m[1] = CrossMath::Sin(fAngle);
-	m[4] = -CrossMath::Sin(fAngle);
-	m[5] = CrossMath::Cos(fAngle);
+	m[0] = MathFunc::Cos(fAngle);
+	m[1] = MathFunc::Sin(fAngle);
+	m[4] = -MathFunc::Sin(fAngle);
+	m[5] = MathFunc::Cos(fAngle);
 	m[10] = 1.0f;
 	m[15] = 1.0f;
 }
@@ -474,7 +473,7 @@ inline void cMatrix4X4::MatrixRotationYawPitchRoll(f32 fYaw, f32 fPitch, f32 fRo
 inline void cMatrix4X4::MatrixRotationAxis(const cVector3Df& vAxis, f32 fRad)
 {
 
-	f32 cost = CrossMath::Cos(fRad), sint = CrossMath::Sin(fRad), one_sub_cost = 1 - cost;
+	f32 cost = MathFunc::Cos(fRad), sint = MathFunc::Sin(fRad), one_sub_cost = 1 - cost;
 	cVector3Df v(vAxis);
 	v.Normalize();
 
@@ -608,7 +607,7 @@ inline void cMatrix4X4::PerspectiveProject(f32 widthOfViewVolume, f32 heightOfVi
 
 inline void cMatrix4X4::PerspectiveFovProject(f32 fovY, f32 aspect, f32 zNear, f32 zFar)
 {
-	f32 h = 1.f / CrossMath::Tan( fovY / 2.f );
+	f32 h = 1.f / MathFunc::Tan( fovY / 2.f );
 	f32 w = h / aspect;
 
 	m[0] = w;
@@ -666,7 +665,7 @@ inline void cMatrix4X4::MatrixShadow(const cVector3Df &light,			//nLightType为0
 	f32  dot;
 	f32  norm;
 
-	norm = CrossMath::Sqrt(a * a + b * b + c * c);
+	norm = MathFunc::Sqrt(a * a + b * b + c * c);
 	if ( norm ){
 		a = a / norm;
 		b = b / norm;
@@ -803,8 +802,8 @@ inline bool cMatrix4X4::Transform3DTo2D(cVector2Df& out,
 	cVector3Df temp1, temp2;
 	mView.TransformVect(temp1, in);
 
-	temp2.y = temp1.y / ( temp1.z * CrossMath::Tan( fovY / 2 ) );
-	temp2.x = temp1.x / ( temp1.z * CrossMath::Tan( fovY / 2 * ( width / height ) ) );
+	temp2.y = temp1.y / ( temp1.z * MathFunc::Tan( fovY / 2 ) );
+	temp2.x = temp1.x / ( temp1.z * MathFunc::Tan( fovY / 2 * ( width / height ) ) );
 
 	out.x = ( 1.f + temp2.x ) * width / 2;
 	out.y = ( 1.f - temp2.y ) * height / 2;
@@ -937,6 +936,6 @@ inline  cMatrix4X4 cMatrix4X4::buildReflectionMatrix(const cPlane3Df& p)
 
 }
 
-typedef cm::cMatrix4X4	matrix;
+typedef cross::cMatrix4X4	matrix;
 
 #endif

@@ -1,10 +1,10 @@
 #ifndef craknetp2pserver_h
 #define craknetp2pserver_h
 
-#include "../../inc/iNet.h"
-#include "../../inc/iReference.h"
-#include "raknet/RakNetTypes.h"
-#include "raknet/RakPeerInterface.h"
+#include "iNet.h"
+#include "Common/iReference.h"
+#include "Raknet/RakNetTypes.h"
+#include "Raknet/RakPeerInterface.h"
 
 namespace cross
 {

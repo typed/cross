@@ -1,4 +1,4 @@
-#include "../inc/CrossLib.h"
+#include "CrossLib.h"
 
 struct HINSTANCE__;
 typedef struct HINSTANCE__* hInstance;
@@ -27,7 +27,7 @@ typedef struct HINSTANCE__* hInstance;
 
 #endif
 
-namespace nsCommon
+namespace cross
 {
 #if (defined(WIN32) || defined(_WIN32))
 	pvd CrossLib::LoadLib(cpstr sLib) {

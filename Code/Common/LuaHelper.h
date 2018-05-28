@@ -1,11 +1,12 @@
-#ifndef _luahelper_h_
-#define _luahelper_h_
+#ifndef _cross_common_luahelper_h_
+#define _cross_common_luahelper_h_
+
 extern "C" {
 #include "lua.h"
 #include "lualib.h"
 #include "lauxlib.h"
 }
-#include "CommonDef.h"
+#include "Common.h"
 #include "iLog.h"
 #include "iStream.h"
 #include "CrossMemory.h"
@@ -1199,8 +1200,8 @@ inline void LuaConstant(lua_State* L, cpstr name, i32 v)
 
 }
 
-#define REGFUNC(s,f) cm::RegAFunc(L,s,f);
-#define REGFUNC0(f) cm::RegAFunc(L,#f,f);
+#define REGFUNC(s,f) cross::RegAFunc(L,s,f);
+#define REGFUNC0(f) cross::RegAFunc(L,#f,f);
 #define REGCFUNC(s,f) lua_register(L, s, f);
 #define REGCFUNC0(f) lua_register(L, #f, f);
 

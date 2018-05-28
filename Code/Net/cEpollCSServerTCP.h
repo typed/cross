@@ -1,11 +1,11 @@
-#ifndef cepollcsservertcp_h
-#define cepollcsservertcp_h
+#ifndef cross_net_cepollcsservertcp_h
+#define cross_net_cepollcsservertcp_h
 
 #ifdef BUILD_EPOLL
 
 #include "RakNetConfig.h"
-#include "../../inc/iNet.h"
-#include "../../inc/cThread.h"
+#include "iNet.h"
+#include "Common/cThread.h"
 #include <sys/socket.h>
 #include <sys/epoll.h>
 #include <netinet/in.h>

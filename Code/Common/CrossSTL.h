@@ -6,10 +6,10 @@
 //修改时间：
 //修改说明：
 
-#ifndef crossstl_h
-#define crossstl_h
+#ifndef cross_common_crossstl_h
+#define cross_common_crossstl_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include <vector>
 #include <algorithm>
 

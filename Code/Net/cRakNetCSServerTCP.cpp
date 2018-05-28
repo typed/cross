@@ -1,6 +1,6 @@
 #include "cRakNetCSServerTCP.h"
-#include "../../inc/iCompress.h"
-#include "../../inc/CrossString.h"
+#include "Common/iCompress.h"
+#include "Common/CrossString.h"
 
 using namespace std;
 using namespace cross;

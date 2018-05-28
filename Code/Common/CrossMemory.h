@@ -6,16 +6,16 @@
 //修改时间：
 //修改说明：
 
-#ifndef crossmemory_h
-#define crossmemory_h
+#ifndef _cross_common_crossmemory_h
+#define _cross_common_crossmemory_h
 
-#include "CommonDef.h"
+#include "Common.h"
 
 namespace cross
 {
 
 //内存
-class COMMON_API CrossMemory
+class CrossMemory
 {
 public:
 	static void MemCpy(pvd des, cpvd src, ui32 sz);
@@ -30,9 +30,9 @@ public:
 
 }
 
-#define cmemcpy cm::CrossMemory::MemCpy
-#define cmemset cm::CrossMemory::MemSet
-#define cmemmove cm::CrossMemory::MemMove
-#define czeromem cm::CrossMemory::ZeroMem
+#define cmemcpy cross::CrossMemory::MemCpy
+#define cmemset cross::CrossMemory::MemSet
+#define cmemmove cross::CrossMemory::MemMove
+#define czeromem cross::CrossMemory::ZeroMem
 
 #endif

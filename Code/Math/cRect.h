@@ -1,7 +1,7 @@
 #ifndef _cross_math_rect_h_
 #define _cross_math_rect_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 #include "cVector2D.h"
 #include "cLine2D.h"
@@ -610,9 +610,9 @@ typedef cRectTemplate<ui8> cRectuc;
 
 END_COMMON
 
-typedef cm::cRect		rect;
-typedef cm::cRectf		rectf;
-typedef cm::cRectuc		rectuc;
+typedef cross::cRect		rect;
+typedef cross::cRectf		rectf;
+typedef cross::cRectuc		rectuc;
 
 #endif
 

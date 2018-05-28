@@ -1,7 +1,7 @@
 #ifndef _cross_math_viewfrustum_h_
 #define _cross_math_viewfrustum_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "cVector3D.h"
 #include "cLine3D.h"
 #include "cPlane3D.h"
@@ -401,6 +401,6 @@ inline bool cViewFrustum::BuildPerspectiveViewFrustum(const cAabboxf& box, const
 
 }
 
-typedef cm::cViewFrustum	viewfrustum;
+typedef cross::cViewFrustum	viewfrustum;
 
 #endif

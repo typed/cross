@@ -1,4 +1,5 @@
-#include "../inc/cThread.h"
+#include "cThread.h"
+
 #if (defined(WIN32) || defined(_WIN32))
 #	ifndef intmax_t
 	typedef signed long long intmax_t;

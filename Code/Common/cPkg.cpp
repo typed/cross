@@ -548,9 +548,9 @@ void cPkgSqlite::ClearData()
 iPkg* iPkg::Create(ePkgType pt)
 {
 	switch (pt) {
-	case cm::PT_Normal:
+	case cross::PT_Normal:
 		return new cPkgNormal();
-	case cm::PT_Sqlite:
+	case cross::PT_Sqlite:
 		return new cPkgSqlite();
 	default:
 		return nullptr;

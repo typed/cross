@@ -1,9 +1,9 @@
-#ifndef idb_h
-#define idb_h
+#ifndef cross_common_idb_h
+#define cross_common_idb_h
 
 //非线程安全
 
-#include "CommonDef.h"
+#include "Common.h"
 #include "CrossMemory.h"
 #include <string>
 

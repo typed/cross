@@ -1,7 +1,7 @@
 #ifndef _cross_math_vector4d_h_
 #define _cross_math_vector4d_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 #include "cVector3D.h"
 
@@ -56,7 +56,7 @@ typedef cVector4D<ui16>			cVector4Dus;
 
 }
 
-typedef cm::cVector4Df	vector4d;
-typedef cm::cVector4Dus	vector4dus;
+typedef cross::cVector4Df	vector4d;
+typedef cross::cVector4Dus	vector4dus;
 
 #endif

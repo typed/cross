@@ -6,10 +6,10 @@
 //修改时间：
 //修改说明：
 
-#ifndef crossstring_h
-#define crossstring_h
+#ifndef _cross_common_crossstring_h
+#define _cross_common_crossstring_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include <vector>
 #include <string>
 #include <string.h>
@@ -136,11 +136,9 @@ public:
 	static std::string ToMD5(const std::string& sz);
 	static std::string ToMD5Lower(const std::string& sz);
 
-	static std::string EncryptAES(const std::string& sz, const std::string& key, const std::string& iv);
-	static std::string DecryptAES(const std::string& sz, const std::string& key, const std::string& iv);
+	static std::string EncryptAES(const std::string& sz, const std::string& key);
+	static std::string DecryptAES(const std::string& sz, const std::string& key);
 
-	static std::string MyEncrypt(std::string src);
-	static std::string MyDecrypt(std::string src);
 };
 
 }

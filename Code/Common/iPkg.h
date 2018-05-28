@@ -1,7 +1,7 @@
-#ifndef iPkg_h_
-#define iPkg_h_
+#ifndef cross_common_iPkg_h_
+#define cross_common_iPkg_h_
 
-#include "CommonDef.h"
+#include "Common.h"
 #include <string>
 #include <map>
 #include <vector>

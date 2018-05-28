@@ -12,7 +12,7 @@
 #include "cNetMapping.h"
 #include "Common/CrossString.h"
 #include "Common/cThread.h"
-#include "raknet/HTTPConnection.h"
+#include "Raknet/HTTPConnection.h"
 
 using namespace std;
 using namespace RakNet;

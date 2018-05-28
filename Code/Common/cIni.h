@@ -1,7 +1,7 @@
-#ifndef cini_h
-#define cini_h
+#ifndef cross_common_cini_h
+#define cross_common_cini_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include <string>
 #include <sstream>
 #include <fstream>

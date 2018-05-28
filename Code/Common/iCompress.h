@@ -1,7 +1,7 @@
-#ifndef icompress_h
-#define icompress_h
+#ifndef cross_common_icompress_h
+#define cross_common_icompress_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include <vector>
 #include <string>
 
@@ -21,17 +21,17 @@ enum eCompress
 	C_TypeError,
 };
 
-COMMON_API cpstr GetCompressErrString(eCompress);
+cpstr GetCompressErrString(eCompress);
 
 //得到压缩后目标buffer的最大size
-COMMON_API ui32 GetCompressSized(cpvd pSrc, ui32 iSrc, eCompressType t = CT_Qlz);
+ui32 GetCompressSized(cpvd pSrc, ui32 iSrc, eCompressType t = CT_Qlz);
 
 //得到解压后目标buffer的最大size
-COMMON_API ui32 GetDecompressSized(cpvd pSrc, ui32 iSrc, eCompressType t = CT_Qlz);
+ui32 GetDecompressSized(cpvd pSrc, ui32 iSrc, eCompressType t = CT_Qlz);
 
-COMMON_API eCompress Compress(cpvd pSrc, ui32 iSrc, pvd pDes, ui32& iDes, eCompressType t = CT_Qlz);
+eCompress Compress(cpvd pSrc, ui32 iSrc, pvd pDes, ui32& iDes, eCompressType t = CT_Qlz);
 
-COMMON_API eCompress Decompress(cpvd pSrc, ui32 iSrc, pvd pDes, ui32& iDes, eCompressType t = CT_Qlz);
+eCompress Decompress(cpvd pSrc, ui32 iSrc, pvd pDes, ui32& iDes, eCompressType t = CT_Qlz);
 
 inline eCompress Compress(const std::vector<i8>& src, std::vector<i8>& des, eCompressType t = CT_Qlz)
 {

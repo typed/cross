@@ -6,10 +6,10 @@
 //修改时间：
 //修改说明：
 
-#ifndef crosswindow_h
-#define crosswindow_h
+#ifndef _cross_common_crossapp_h
+#define _cross_common_crossapp_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include "cListenable.h"
 #include <vector>
 #include <string>

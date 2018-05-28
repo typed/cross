@@ -1,8 +1,8 @@
-#include "../inc/CrossConsole.h"
-#include "../inc/CrossString.h"
-#include "../inc/CrossMemory.h"
-#include "../inc/cThread.h"
-#include "../inc/iReference.h"
+#include "CrossConsole.h"
+#include "CrossString.h"
+#include "CrossMemory.h"
+#include "cThread.h"
+#include "iReference.h"
 
 //包含文件版本区分
 

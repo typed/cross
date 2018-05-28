@@ -1,7 +1,7 @@
-#ifndef ccmdline_h
-#define ccmdline_h
+#ifndef cross_common_ccmdline_h
+#define cross_common_ccmdline_h
 
-#include "../inc/iCmdLine.h"
+#include "iCmdLine.h"
 #include <vector>
 #include <string>
 

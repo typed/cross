@@ -1,7 +1,7 @@
-#ifndef cdbleveldb_h
-#define cdbleveldb_h
+#ifndef _cross_db_cdbleveldb_h
+#define _cross_db_cdbleveldb_h
 
-#include "../../inc/iDb.h"
+#include "iDb.h"
 
 #if USE_LEVELDB
 

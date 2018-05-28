@@ -1,7 +1,7 @@
-#ifndef cgridheight_h
-#define cgridheight_h
+#ifndef _cross_math_cgridheight_h
+#define _cross_math_cgridheight_h
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 #include "cTriangle3D.h"
 

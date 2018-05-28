@@ -1,6 +1,7 @@
-#ifndef cpolygon2d_h
-#define cpolygon2d_h
-#include "CommonDef.h"
+#ifndef _cross_math_cpolygon2d_h
+#define _cross_math_cpolygon2d_h
+
+#include "Config.h"
 #include "MathBase.h"
 #include "cVector2D.h"
 #include "cvector.h"

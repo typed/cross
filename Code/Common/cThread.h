@@ -1,7 +1,7 @@
-#ifndef cthread_h
-#define cthread_h
+#ifndef cross_common_cthread_h
+#define cross_common_cthread_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include <string>
 #include <functional>
 
@@ -48,8 +48,8 @@ private:
 
 }
 
-#define MUTEX cm::cMutex
-#define LOCK(mt) cm::cMutexBind lk(mt)
-#define SLEEP(tm) cm::cThread::Sleep(tm)
+#define MUTEX cross::cMutex
+#define LOCK(mt) cross::cMutexBind lk(mt)
+#define SLEEP(tm) cross::cThread::Sleep(tm)
 
 #endif

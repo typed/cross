@@ -6,10 +6,10 @@
 //修改时间：
 //修改说明：
 
-#ifndef crossconsole_h
-#define crossconsole_h
+#ifndef _cross_common_crossconsole_h
+#define _cross_common_crossconsole_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include <string>
 
 namespace cross

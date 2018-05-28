@@ -1,7 +1,7 @@
 #ifndef _cross_math_cvector2d_h_
 #define _cross_math_cvector2d_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 
 namespace cross
@@ -140,17 +140,17 @@ public:
 		T l = x * x + y * y;
 		if (l == 0)
 			return *this;
-		l = (T) ( 1 / CrossMath::Sqrt(l) );
+		l = (T) ( 1 / MathFunc::Sqrt(l) );
 		x *= l; y *= l;
 		return *this;
 	}
 
 	//向量的大小
 	T GetLength() const {
-		return (T)CrossMath::Sqrt((f32)GetLengthSQ());
+		return (T)MathFunc::Sqrt((f32)GetLengthSQ());
 	}
 	T GetDistance(const cVector2D<T>& des) const {
-		return (T)CrossMath::Sqrt((f32)GetDistanceSQ(des));
+		return (T)MathFunc::Sqrt((f32)GetDistanceSQ(des));
 	}
 
 	//add by yfw 2012.08.30
@@ -314,7 +314,7 @@ inline int GetDir(const cPoint& pForm, const cPoint& pTo)
 inline float GetDis(const cPoint& ptDes, const cPoint& ptSrc)
 {
 	cPoint pt = ptDes - ptSrc;
-	return CrossMath::Sqrt(pt.x * pt.x * 1.f + pt.y * pt.y * 1.f);
+	return MathFunc::Sqrt(pt.x * pt.x * 1.f + pt.y * pt.y * 1.f);
 }
 
 
@@ -341,7 +341,7 @@ inline int GetAngleByTwoPoint(const cPoint& pForm, const cPoint& pTo)
 	{
 		return 0;
 	}
-	float fAngle = 180.f * c_fM_1_PI * CrossMath::Asin((pTo.y - pForm.y)/fDis);
+	float fAngle = 180.f * c_fM_1_PI * MathFunc::Asin((pTo.y - pForm.y)/fDis);
 	if((pTo.x - pForm.x) < 0)
 	{
 		fAngle = 180.f - fAngle;
@@ -352,7 +352,7 @@ inline int GetAngleByTwoPoint(const cPoint& pForm, const cPoint& pTo)
 //pForm到pTo方向的角度与从pForm朝向的夹角,用于视野判断
 inline int GetBetweenAngle(const cPoint& pForm, const cPoint& pTo,int & nDir)
 {
-	return CrossMath::Abs(GetAngleByTwoPoint(pForm, pTo)-GetAngleFromDir(nDir));
+	return MathFunc::Abs(GetAngleByTwoPoint(pForm, pTo)-GetAngleFromDir(nDir));
 }
 
 
@@ -380,25 +380,25 @@ inline cPoint GetBestDirPoint(const cPoint& pForm, const cPoint& pTo/*, cPoint& 
 inline float Get2DTo3D(const cPoint& pt, float vdis)
 {
 	if (pt.x >= 0 && pt.y >= 0)
-		return c_fPI * 1.5f + CrossMath::Asin((float)pt.y / vdis);
+		return c_fPI * 1.5f + MathFunc::Asin((float)pt.y / vdis);
 	else if (pt.x >= 0 && pt.y < 0)
-		return c_fPI + CrossMath::Asin((float)pt.x / vdis);
+		return c_fPI + MathFunc::Asin((float)pt.x / vdis);
 	else if (pt.x < 0 && pt.y < 0)
-		return c_fPI * 0.5f + CrossMath::Asin((float)CrossMath::Abs(pt.y) / vdis);
+		return c_fPI * 0.5f + MathFunc::Asin((float)MathFunc::Abs(pt.y) / vdis);
 	else
-		return CrossMath::Asin((float)CrossMath::Abs(pt.x) / vdis);
+		return MathFunc::Asin((float)MathFunc::Abs(pt.x) / vdis);
 }
 
 inline float Get2DTo3D_2(const cPoint&/* pt*/, float/* vdis*/)
 {
 	//if (pt.x >= 0 && pt.y >= 0)
-	//	return c_fPI * 1.5f + CrossMath::Asin(pt.y / vdis);
+	//	return c_fPI * 1.5f + MathFunc::Asin(pt.y / vdis);
 	//else if (pt.x >= 0 && pt.y < 0)
-	//	return c_fPI + CrossMath::Asin(pt.x / vdis);
+	//	return c_fPI + MathFunc::Asin(pt.x / vdis);
 	//else if (pt.x < 0 && pt.y < 0)
-	//	return c_fPI * 0.5f + CrossMath::Asin(abs(pt.y) / vdis);
+	//	return c_fPI * 0.5f + MathFunc::Asin(abs(pt.y) / vdis);
 	//else
-	//	return CrossMath::Asin(abs(pt.x) / vdis);
+	//	return MathFunc::Asin(abs(pt.x) / vdis);
 	return 0.f;
 }
 
@@ -434,10 +434,10 @@ cVector2D<T1> TransVector2DTo2D(cVector2D<T1>& vOut, const cVector2D<T0>& vIn)
 
 }
 
-typedef cm::cVector2Df	vector2d;
-typedef cm::cPoint		point;
-typedef cm::cPointf		pointf;
-typedef cm::cSize			size;
-typedef cm::cSizef		sizef;
+typedef cross::cVector2Df	vector2d;
+typedef cross::cPoint		point;
+typedef cross::cPointf		pointf;
+typedef cross::cSize			size;
+typedef cross::cSizef		sizef;
 
 #endif

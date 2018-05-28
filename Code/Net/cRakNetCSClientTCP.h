@@ -1,11 +1,11 @@
 #ifndef craknetcsclienttcp_h
 #define craknetcsclienttcp_h
 
-#include "../../inc/iNet.h"
-#include "raknet/RakNetTypes.h"
-#include "raknet/RakPeerInterface.h"
-#include "raknet/BitStream.h"
-#include "raknet/TCPInterface.h"
+#include "iNet.h"
+#include "Raknet/RakNetTypes.h"
+#include "Raknet/RakPeerInterface.h"
+#include "Raknet/BitStream.h"
+#include "Raknet/TCPInterface.h"
 
 #include "RakNetConfig.h"
 

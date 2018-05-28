@@ -1,5 +1,5 @@
-#ifndef _common_CommonDef_h_
-#define _common_CommonDef_h_
+#ifndef _cross_common_common_h
+#define _cross_common_common_h
 
 #include "Config.h"
 

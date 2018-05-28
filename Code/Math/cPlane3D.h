@@ -1,7 +1,7 @@
 #ifndef _cross_math_plane3d_h_
 #define _cross_math_plane3d_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 #include "cVector3D.h"
 #include "cLine3D.h"
@@ -130,7 +130,7 @@ inline bool cPlane3D<T>::GetIntersectionWithPlane(const cPlane3D<T>& other, cVec
 	const T fn11 = other.m_vNormal.GetLength();
 	const double det = fn00 * fn11 - fn01 * fn01;
 
-	if (CrossMath::Abs(det) < c_dRounding_Error )
+	if (MathFunc::Abs(det) < c_dRounding_Error )
 		return false;
 
 	const double invdet = 1.0 / det;
@@ -187,6 +187,6 @@ typedef cPlane3D<long>			cPlane3Dl;
 
 }
 
-typedef cm::cPlane3Df		plane3d;
+typedef cross::cPlane3Df		plane3d;
 
 #endif

@@ -1,5 +1,5 @@
 #include "cNetMapping.h"
-#include "../../inc/CrossString.h"
+#include "Common/CrossString.h"
 #include <fstream>
 
 using namespace std;

@@ -1,9 +1,9 @@
-#ifndef clog_h
-#define clog_h
+#ifndef _cross_common_clog_h
+#define _cross_common_clog_h
 
-#include "../inc/iLog.h"
-#include "../inc/CrossConsole.h"
-#include "../inc/cThread.h"
+#include "iLog.h"
+#include "CrossConsole.h"
+#include "cThread.h"
 #include <vector>
 #include <map>
 #include <iostream>

@@ -1,16 +1,16 @@
-#ifndef icrc_h
-#define icrc_h
+#ifndef cross_common_icrc_h
+#define cross_common_icrc_h
 
-#include "CommonDef.h"
+#include "Common.h"
 
 namespace cross
 {
 
-COMMON_API bool StringCrc32(cpstr szString, ui32& ulCrc32);
-COMMON_API bool StringIgnoCrc32(cpstr szString, ui32 ulBufSize, ui32& ulCrc32);
-COMMON_API bool BufferCrc32(cpvd pBuffer, ui32 ulBufSize, ui32& ulCrc32);
-COMMON_API bool FileCrc32(cpstr szFilename, ui32& ulCrc32);
-COMMON_API bool FilePathCrc32(cpstr szFilePath, ui32& ulCrc32);
+bool StringCrc32(cpstr szString, ui32& ulCrc32);
+bool StringIgnoCrc32(cpstr szString, ui32 ulBufSize, ui32& ulCrc32);
+bool BufferCrc32(cpvd pBuffer, ui32 ulBufSize, ui32& ulCrc32);
+bool FileCrc32(cpstr szFilename, ui32& ulCrc32);
+bool FilePathCrc32(cpstr szFilePath, ui32& ulCrc32);
 
 inline ui32 FilePathCrc32Easy(cpstr szFilePath) {
 	ui32 crc = 0;

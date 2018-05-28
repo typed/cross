@@ -1,6 +1,6 @@
 #include "cRakNetP2PClient2.h"
-#include "raknet/GetTime.h"
-#include "../../inc/iCrc.h"
+#include "Raknet/GetTime.h"
+#include "Common/iCrc.h"
 
 using namespace std;
 using namespace RakNet;

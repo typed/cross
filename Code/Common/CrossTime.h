@@ -6,10 +6,10 @@
 //修改时间：
 //修改说明：
 
-#ifndef crosstime_h
-#define crosstime_h
+#ifndef _cross_common_crosstime_h
+#define _cross_common_crosstime_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include <string>
 
 namespace cross

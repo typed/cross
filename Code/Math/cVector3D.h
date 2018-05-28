@@ -1,7 +1,7 @@
 #ifndef _cross_math_vector3d_h_
 #define _cross_math_vector3d_h_
 
-#include "../CommonDef.h"
+#include "Config.h"
 #include "MathBase.h"
 
 namespace cross
@@ -43,7 +43,7 @@ public:
 	T& operator [] (ui32 i) const { return ((T*)&x)[i];}
 
 	//向量的大小
-	T GetLength() const { return CrossMath::Sqrt(x * x + y * y + z * z); }
+	T GetLength() const { return MathFunc::Sqrt(x * x + y * y + z * z); }
 	T GetLengthSQ() const { return (x * x + y * y + z * z); }
 	//规格化
 	cVector3D<T>& Normalize();
@@ -120,7 +120,7 @@ inline cVector3D<T>& cVector3D<T>::Normalize()
 	T l = x * x + y * y + z * z;
 	if (l == 0)
 		return *this;
-	l = (T) ( 1 / CrossMath::Sqrt(l) );
+	l = (T) ( 1 / MathFunc::Sqrt(l) );
 	x *= l; y *= l; z *= l;
 	return *this;
 }
@@ -136,8 +136,8 @@ template<class T>
 inline void cVector3D<T>::RotateXZBy(float degrees, const cVector3D<T>& center)
 {
 	degrees *= c_fDegToRad;
-	float cs = CrossMath::Cos(degrees);
-	float sn = CrossMath::Sin(degrees);
+	float cs = MathFunc::Cos(degrees);
+	float sn = MathFunc::Sin(degrees);
 	x -= center.x;
 	z -= center.z;
 	Set((T)(x*cs - z*sn), y, (T)(x*sn + z*cs));
@@ -149,8 +149,8 @@ template<class T>
 inline void cVector3D<T>::RotateXYBy(float degrees, const cVector3D<T>& center)
 {
 	degrees *= c_fDegToRad;
-	float cs = CrossMath::Cos(degrees);
-	float sn = CrossMath::Sin(degrees);
+	float cs = MathFunc::Cos(degrees);
+	float sn = MathFunc::Sin(degrees);
 	x -= center.x;
 	y -= center.y;
 	Set((T)(x*cs - y*sn), (T)(x*sn + y*cs), z);
@@ -162,8 +162,8 @@ template<class T>
 inline void cVector3D<T>::RotateYZBy(float degrees, const cVector3D<T>& center)
 {
 	degrees *= c_fDegToRad;
-	float cs = CrossMath::Cos(degrees);
-	float sn = CrossMath::Sin(degrees);
+	float cs = MathFunc::Cos(degrees);
+	float sn = MathFunc::Sin(degrees);
 	z -= center.z;
 	y -= center.y;
 	Set(x, (T)(y*cs - z*sn), (T)(y*sn + z*cs));
@@ -174,8 +174,8 @@ inline void cVector3D<T>::RotateYZBy(float degrees, const cVector3D<T>& center)
 template<class T>
 inline void cVector3D<T>::RotateRadianByAnyAxis(const cVector3D<T>& axis, float radian, const cVector3D<T>& center)
 {
-	float cs = CrossMath::Cos(radian);
-	float sn = CrossMath::Sin(radian);
+	float cs = MathFunc::Cos(radian);
+	float sn = MathFunc::Sin(radian);
 	float t  = 1 - cs;
 	float mxyt = axis.x*axis.y*t;
 	float mxzt = axis.x*axis.z*t;
@@ -210,7 +210,7 @@ inline float cVector3D<T>::GetTheta(const cVector3D<T>& vDes) const
 		n = 1;
 	else if (n < (T)-1)
 		n = -1;
-	return CrossMath::Acos(n);
+	return MathFunc::Acos(n);
 }
 
 template<class T>
@@ -253,10 +253,10 @@ typedef cSize3DTemplate<f32>	cSizef3D;
 
 }
 
-typedef cm::cVector3Df	vector3d;
-typedef cm::cVector3Dus	face;
+typedef cross::cVector3Df	vector3d;
+typedef cross::cVector3Dus	face;
 
-typedef cm::cSize3D		size3d;
-typedef cm::cSizef3D		size3df;
+typedef cross::cSize3D		size3d;
+typedef cross::cSizef3D		size3df;
 
 #endif

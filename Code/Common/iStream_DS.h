@@ -1,7 +1,7 @@
-#ifndef istream_array_h
-#define istream_array_h
+#ifndef cross_common_istream_array_h
+#define cross_common_istream_array_h
 
-#include "CommonDef.h"
+#include "Common.h"
 #include "iStream.h"
 #include <vector>
 #include <map>

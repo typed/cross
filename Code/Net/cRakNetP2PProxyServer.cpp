@@ -1,18 +1,18 @@
 #include "cRakNetP2PProxyServer.h"
 #include "RakNetConfig.h"
-#include "raknet/RakPeerInterface.h"
-#include "raknet/RakSleep.h"
+#include "Raknet/RakPeerInterface.h"
+#include "Raknet/RakSleep.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "raknet/Kbhit.h"
-#include "raknet/MessageIdentifiers.h"
-#include "raknet/BitStream.h"
-#include "raknet/RakSleep.h"
-#include "raknet/SocketLayer.h"
-#include "raknet/Getche.h"
-#include "raknet/Gets.h"
-#include "raknet/CloudClient.h"
+#include "Raknet/Kbhit.h"
+#include "Raknet/MessageIdentifiers.h"
+#include "Raknet/BitStream.h"
+#include "Raknet/RakSleep.h"
+#include "Raknet/SocketLayer.h"
+#include "Raknet/Getche.h"
+#include "Raknet/Gets.h"
+#include "Raknet/CloudClient.h"
 
 using namespace std;
 using namespace RakNet;
