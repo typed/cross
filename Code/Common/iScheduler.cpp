@@ -14,10 +14,10 @@ struct stATask
 {
 	ui64		to;
 	i32			id;
-	TypeTime	sortTime;
-	TypeTime	startTime;
-	TypeTime	endTime;
-	TypeTime	stepTime;
+	tTime	sortTime;
+	tTime	startTime;
+	tTime	endTime;
+	tTime	stepTime;
 	i32			bDel;
 	stATask() : to(0), id(0), sortTime(0), startTime(0), endTime(0), stepTime(0), bDel(0) {}
 	bool operator == (const stATask& other) const {
@@ -63,7 +63,7 @@ public:
 	//<?> 处理stepTime有问题，应该采用startTime，重新加入列表排序
 	void RunOnce()
 	{
-		TypeTime tmTimeCur = GetClock()->GetTimeCur();
+		tTime tmTimeCur = GetClock()->GetTimeCur();
 		aDelTask deltask;
 
 		for (itTask i = m_aTask.begin(); i != m_aTask.end(); i++) {
@@ -150,17 +150,17 @@ public:
 		deltask.clear();
 	}
 
-	TypeTime GetTimeCur()
+	tTime GetTimeCur()
 	{
 		return GetClock()->GetTimeCur();
 	}
 
-	TypeTime GetTimeEslasped()
+	tTime GetTimeEslasped()
 	{
 		return GetClock()->GetTimeEslasped();
 	}
 
-	bool AddTask(ui64 to, i32 id, TypeTime startTime, TypeTime durationTime, TypeTime stepTime)
+	bool AddTask(ui64 to, i32 id, tTime startTime, tTime durationTime, tTime stepTime)
 	{
 		if (HaveTask(to, id))
 			return false;
@@ -256,7 +256,7 @@ public:
 		return true;
 	}
 
-	bool AddTaskTime(ui64 to, i32 id, TypeTime addTime, TypeTime durationTime)
+	bool AddTaskTime(ui64 to, i32 id, tTime addTime, tTime durationTime)
 	{
 		itHmTask2 i = m_hmTask.find(to);
 		if (i == m_hmTask.end())
@@ -302,7 +302,7 @@ iTaskObj::~iTaskObj()
 	GetHmTaskObj().erase(m_id);
 }
 
-bool iTaskObj::AddTask(i32 id, TypeTime startTime, TypeTime durationTime, TypeTime stepTime)
+bool iTaskObj::AddTask(i32 id, tTime startTime, tTime durationTime, tTime stepTime)
 {
 	return GetScheduler2()->AddTask(m_id, id, startTime, durationTime, stepTime);
 }
@@ -322,7 +322,7 @@ bool iTaskObj::HaveTask(i32 id)
 	return GetScheduler2()->HaveTask(m_id, id);
 }
 
-TypeTime iTaskObj::GetTimeCur() const
+tTime iTaskObj::GetTimeCur() const
 {
 	return GetScheduler2()->GetTimeCur();
 }

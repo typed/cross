@@ -11,12 +11,12 @@ using namespace std;
 namespace cross
 {
 
-inline TypeTime _GetCurTime()
+inline tTime _GetCurTime()
 {
 	return CrossTime::GetCPUTime();
 }
 
-TypeTime GetCurTime()
+tTime GetCurTime()
 {
 	return GetClock()->GetTimeCur();//GetCurTimeReal();
 }
@@ -55,9 +55,9 @@ void cClock::Stop()
 	m_running = false;
 }
 
-TypeTime cClock::GetCurTimeReal()
+tTime cClock::GetCurTimeReal()
 {
-	return (TypeTime) ( ( _GetCurTime() - m_tmRealTimeInit ) * m_dSpeed + 0.5 );
+	return (tTime) ( ( _GetCurTime() - m_tmRealTimeInit ) * m_dSpeed + 0.5 );
 }
 
 void cClock::UpdateOnce()
@@ -86,7 +86,7 @@ void cClock::UpdateOnce()
 	//	m_tmVirtalTimeEslasped = m_dSmoothPreframe * m_dSpeed + 0.5;
 	//}
 	//else
-		m_tmVirtalTimeEslasped = (TypeTime) ( m_tmRealTimeEslasped * m_dSpeed + 0.5 );
+		m_tmVirtalTimeEslasped = (tTime) ( m_tmRealTimeEslasped * m_dSpeed + 0.5 );
 	if (m_running)
 		m_tmVirtalTimeCount += m_tmVirtalTimeEslasped;
 }
@@ -97,18 +97,18 @@ cClock* GetClock()
 	return &s_clock;
 }
 
-inline map<ui32, TypeTime>& GetCheckTimeHm()
+inline map<ui32, tTime>& GetCheckTimeHm()
 {
-	static map<ui32, TypeTime> s_hmCheckTime;
+	static map<ui32, tTime> s_hmCheckTime;
 	return s_hmCheckTime;
 }
 
-TypeTime GetCheckNowTime()
+tTime GetCheckNowTime()
 {
 	return _GetCurTime();
 }
 
-TypeTime GetPerformanceTime()
+tTime GetPerformanceTime()
 {
 	return _GetCurTime();
 }
@@ -121,12 +121,12 @@ ui32 BeginCheckTime()
 	return id;
 }
 
-TypeTime EndCheckTime(ui32 id)
+tTime EndCheckTime(ui32 id)
 {
-	map<ui32, TypeTime>::iterator it = GetCheckTimeHm().find(id);
+	map<ui32, tTime>::iterator it = GetCheckTimeHm().find(id);
 	if (it == GetCheckTimeHm().end())
 		return 0;
-	TypeTime tt = it->second;
+	tTime tt = it->second;
 	GetCheckTimeHm().erase(it);
 	return _GetCurTime() - tt;
 }
@@ -138,23 +138,23 @@ void BeginCheckTime(cpstr name)
 	GetCheckTimeHm()[crc] = _GetCurTime();
 }
 
-TypeTime EndCheckTime(cpstr name)
+tTime EndCheckTime(cpstr name)
 {
 	ui32 crc = 0;
 	StringCrc32(name, crc);
 	return EndCheckTime(crc);
 }
 
-void PrintEndCheckTime(cpstr name, TypeTime lessNotDisplay)
+void PrintEndCheckTime(cpstr name, tTime lessNotDisplay)
 {
-	TypeTime en = EndCheckTime(name);
+	tTime en = EndCheckTime(name);
 	if (en >= lessNotDisplay)
 		LInfo << name << " cost time: " << en << "ms." << LogEnter;
 }
 
-void MsgBoxEndCheckTime(cpstr name, TypeTime lessNotDisplay)
+void MsgBoxEndCheckTime(cpstr name, tTime lessNotDisplay)
 {
-	TypeTime en = EndCheckTime(name);
+	tTime en = EndCheckTime(name);
 	if (en >= lessNotDisplay)
 		CrossApp::MsgBox(CrossString::Format("%s const time: %f ms.", name, en));
 }
@@ -167,7 +167,7 @@ cDate::cDate() : m_lTime(0), m_year(0), m_month(0), m_mday(0), m_wday(0), m_hour
 {
 }
 
-cDate::cDate(TypeDate n) : m_lTime(n)
+cDate::cDate(tDate n) : m_lTime(n)
 {
 	MakeTime();
 }
@@ -220,7 +220,7 @@ bool cDate::operator <= (const cDate& date) const
 	return m_lTime <= date.m_lTime;
 }
 
-void cDate::SetTime(TypeDate tm)
+void cDate::SetTime(tDate tm)
 {
 	m_lTime = tm;
 	MakeTime();
@@ -337,7 +337,7 @@ cDate cDate::GetCurDate()
 	return cDate(GetCurDateTime());
 }
 
-TypeDate cDate::GetCurDateTime()
+tDate cDate::GetCurDateTime()
 {
 	return CrossTime::GetDate();
 }

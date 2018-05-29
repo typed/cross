@@ -544,7 +544,7 @@ namespace cross
 		return GetFileWriteTime(sz1) < GetFileWriteTime(sz2);
 	}
 
-	bool CrossFileOP::SetFileWriteTime(cpstr sFile, TypeDate tm)
+	bool CrossFileOP::SetFileWriteTime(cpstr sFile, tDate tm)
 	{
 #if (defined(WIN32) || defined(_WIN32) || defined (WINDOWS) || defined (_WINDOWS))
 		return false;
@@ -553,7 +553,7 @@ namespace cross
 #endif
 	}
 
-	TypeDate CrossFileOP::GetFileWriteTime(cpstr sFile)
+	tDate CrossFileOP::GetFileWriteTime(cpstr sFile)
 	{
 #if (defined(WIN32) || defined(_WIN32) || defined (WINDOWS) || defined (_WINDOWS))
 		if (!IsExist(sFile))
@@ -561,7 +561,7 @@ namespace cross
 		struct stat statbuf;
 		if (stat(sFile, &statbuf))
 			return 0;
-		return (TypeDate)statbuf.st_mtime;
+		return (tDate)statbuf.st_mtime;
 #else
 		return 0;
 #endif
@@ -612,9 +612,9 @@ namespace cross
 				entry.sName = sFile;
 				entry.sFullName = sFileFull;
 				entry.ulSize = c_file.size;
-				entry.time_create = (TypeDate)c_file.time_create;
-				entry.time_access = (TypeDate)c_file.time_access;
-				entry.time_write = (TypeDate)c_file.time_write;
+				entry.time_create = (tDate)c_file.time_create;
+				entry.time_access = (tDate)c_file.time_access;
+				entry.time_write = (tDate)c_file.time_write;
 				lstFile.push_back(entry);
 			}
 			while( _findnext( hFile, &c_file ) == 0 );

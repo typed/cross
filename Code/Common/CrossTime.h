@@ -20,16 +20,16 @@ class CrossTime
 {
 public:
 	//时钟
-	static TypeDate GetDate();
+	static tDate GetDate();
 	//CPU时间
-	static TypeTime GetCPUTime();
+	static tTime GetCPUTime();
 	//
-	static TypeDate MkTime(i32 year, i32 month, i32 day, i32 hour, i32 minute, i32 second);
-	static bool LocalTime(TypeDate tm, i32& year, i32& month, i32& day, i32& wday, i32& hour, i32& minute, i32& second);
+	static tDate MkTime(i32 year, i32 month, i32 day, i32 hour, i32 minute, i32 second);
+	static bool LocalTime(tDate tm, i32& year, i32& month, i32& day, i32& wday, i32& hour, i32& minute, i32& second);
 	static void FormatStringToTime(const std::string& stm, i32& year, i32& month, i32& day, i32& hour, i32& minute, i32& second);
 
-	static TypeDate VariantTimeToSystemTime(f64);
-	static f64 SystemTimeToVariantTime(TypeDate);
+	static tDate VariantTimeToSystemTime(f64);
+	static f64 SystemTimeToVariantTime(tDate);
 
 };
 

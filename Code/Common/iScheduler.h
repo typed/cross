@@ -24,9 +24,9 @@ class iScheduler;
 struct stTaskParam
 {
 	i32 id;
-	TypeTime curTime;
-	TypeTime startTime;
-	TypeTime sumTime;
+	tTime curTime;
+	tTime startTime;
+	tTime sumTime;
 };
 
 class iTaskObj
@@ -37,20 +37,20 @@ public:
 	virtual eTaskEnd OnTask(const stTaskParam& param) = 0;
 	virtual void OnTaskEnd(const stTaskParam& param, eTaskEndEvent event) {}
 protected:
-	bool AddTaskNow(i32 id, TypeTime durationTime) {
+	bool AddTaskNow(i32 id, tTime durationTime) {
 		return AddTaskNow(id, durationTime, 0);
 	}
-	bool AddTaskNow(i32 id, TypeTime durationTime, TypeTime stepTime) {
+	bool AddTaskNow(i32 id, tTime durationTime, tTime stepTime) {
 		return AddTask(id, GetTimeCur(), durationTime, stepTime);
 	}
-	bool AddTask(i32 id, TypeTime startTime, TypeTime durationTime) {
+	bool AddTask(i32 id, tTime startTime, tTime durationTime) {
 		return AddTask(id, GetTimeCur(), durationTime, 0);
 	}
-	bool AddTask(i32 id, TypeTime startTime, TypeTime durationTime, TypeTime stepTime);
+	bool AddTask(i32 id, tTime startTime, tTime durationTime, tTime stepTime);
 	bool DelTask(i32 id);
 	bool DelTask();
 	bool HaveTask(i32 id);
-	TypeTime GetTimeCur() const;
+	tTime GetTimeCur() const;
 private:
 	ui64 m_id;
 };

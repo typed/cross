@@ -10,7 +10,7 @@ namespace cross
 
 class cClock;
 cClock* GetClock();
-TypeTime GetCurTime();
+tTime GetCurTime();
 
 //时钟
 class cClock
@@ -30,8 +30,8 @@ public:
 	void UpdateOnce();
 
 	//运行经过的总时间，可以停止和重置
-	TypeTime GetTimeCur() const { return m_tmVirtalTimeCount; }
-	TypeTime GetTimeEslasped() const { return m_tmVirtalTimeEslasped; }
+	tTime GetTimeCur() const { return m_tmVirtalTimeCount; }
+	tTime GetTimeEslasped() const { return m_tmVirtalTimeEslasped; }
 
 	//时钟运行速度
 	bool SetTimeSpeed(f64 d) {
@@ -46,21 +46,21 @@ private:
 
 	cClock();
 
-	TypeTime GetCurTimeReal();
+	tTime GetCurTimeReal();
 
 	friend cClock* GetClock();
-	friend TypeTime GetCurTime();
+	friend tTime GetCurTime();
 
 	bool		m_running;
 
-	TypeTime	m_tmRealTimeInit;
-	TypeTime	m_tmRealTimeCur;
-	TypeTime	m_tmRealTimeLast;
-	TypeTime	m_tmRealTimeEslasped;
-	TypeTime	m_tmRealTimeCount;
+	tTime	m_tmRealTimeInit;
+	tTime	m_tmRealTimeCur;
+	tTime	m_tmRealTimeLast;
+	tTime	m_tmRealTimeEslasped;
+	tTime	m_tmRealTimeCount;
 
-	TypeTime	m_tmVirtalTimeEslasped;
-	TypeTime	m_tmVirtalTimeCount;
+	tTime	m_tmVirtalTimeEslasped;
+	tTime	m_tmVirtalTimeCount;
 
 	f64			m_dSpeed;
 
@@ -76,7 +76,7 @@ class cDate
 public:
 
 	cDate();
-	cDate(TypeDate n);
+	cDate(tDate n);
 	cDate(f64 n);
 	cDate(const cDate& date);
 
@@ -89,8 +89,8 @@ public:
 	bool operator >= (const cDate& date) const;
 	bool operator <= (const cDate& date) const;
 
-	void SetTime(TypeDate tm);
-	TypeDate GetTime() const {return m_lTime;}
+	void SetTime(tDate tm);
+	tDate GetTime() const {return m_lTime;}
 
 	//get win32 DATE
 	f64 GetDATE() const;
@@ -133,11 +133,11 @@ public:
 	int GetAllMinuteTheDay() const {return m_hour*60 + m_minute;}
 
 	static cDate GetCurDate();
-	static TypeDate GetCurDateTime();
+	static tDate GetCurDateTime();
 
 protected:
 	void MakeTime();
-	TypeDate	m_lTime;
+	tDate	m_lTime;
 	i32			m_year;
 	i32			m_month;
 	i32			m_mday;
@@ -147,15 +147,15 @@ protected:
 	i32			m_second;
 };
 
-TypeTime GetCheckNowTime();
-TypeTime GetPerformanceTime();
+tTime GetCheckNowTime();
+tTime GetPerformanceTime();
 ui64 GetCurLongTime();	
 ui32 BeginCheckTime();
-TypeTime EndCheckTime(ui32 id);
+tTime EndCheckTime(ui32 id);
 void BeginCheckTime(cpstr name);
-TypeTime EndCheckTime(cpstr name);
-void PrintEndCheckTime(cpstr name, TypeTime lessNotDisplay = 0);
-void MsgBoxEndCheckTime(cpstr name, TypeTime lessNotDisplay = 0);
+tTime EndCheckTime(cpstr name);
+void PrintEndCheckTime(cpstr name, tTime lessNotDisplay = 0);
+void MsgBoxEndCheckTime(cpstr name, tTime lessNotDisplay = 0);
 #define BeginCheckTimeCurFunc cross::BeginCheckTime(__FUNCTION__);
 #define EndCheckTimeCurFunc cross::EndCheckTime(__FUNCTION__);
 #define PrintEndCheckTimeCurFunc cross::PrintEndCheckTime(__FUNCTION__);

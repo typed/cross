@@ -47,9 +47,9 @@ struct stFileEntry
 	std::string sName;
 	std::string sFullName;		//当使用绝对路径时是绝对路径，否则是相对路径
 	ui32 ulSize;
-	TypeDate time_create;
-	TypeDate time_write;
-	TypeDate time_access;
+	tDate time_create;
+	tDate time_write;
+	tDate time_access;
 	bool isDirectory;
 	stFileEntry() : ulSize(0), 
 		time_create(0), time_write(0), time_access(0), isDirectory(false) {}
@@ -128,9 +128,9 @@ public:
 
 	//比较文件修改时间
 	static bool IsTimeLate(cpstr sz1, cpstr sz2);
-	static bool SetFileWriteTime(cpstr sFile, TypeDate tm);
+	static bool SetFileWriteTime(cpstr sFile, tDate tm);
 	//获取文件修改时间
-	static TypeDate GetFileWriteTime(cpstr sFile);
+	static tDate GetFileWriteTime(cpstr sFile);
 	//filefind
 
 	static void FindFile(const stFileFindParam& param, aFileEntry& lst);

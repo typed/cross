@@ -17,8 +17,8 @@ using namespace std;
 namespace cross
 {
 	//时钟
-	TypeDate CrossTime::GetDate() {
-		return (TypeDate)time(0);
+	tDate CrossTime::GetDate() {
+		return (tDate)time(0);
 	}
 
 #if (defined(WIN32) || defined(_WIN32) || defined (WINDOWS) || defined (_WINDOWS))
@@ -32,7 +32,7 @@ namespace cross
 			QueryPerformanceCounter( &lv );
 			m_init = (lv.QuadPart * 1000 / m_initlv.QuadPart) - init;
 		}
-		TypeTime GetTime() {
+		tTime GetTime() {
 			LARGE_INTEGER lv;
 			QueryPerformanceCounter( &lv );
 			return (lv.QuadPart * 1000 / m_initlv.QuadPart) - m_init;
@@ -46,19 +46,19 @@ namespace cross
 		return s_pc;
 	}
 	//CPU时间
-	TypeTime CrossTime::GetCPUTime() {
+	tTime CrossTime::GetCPUTime() {
 		return GetPerformanceClock().GetTime();
 	}
 #else
 	//CPU时间
-	TypeTime CrossTime::GetCPUTime() {
+	tTime CrossTime::GetCPUTime() {
 		timeval tv;
 		gettimeofday(&tv, 0);
 		return tv.tv_usec / 1000 + tv.tv_sec * 1000;
 	}
 #endif
 
-	TypeDate CrossTime::MkTime(i32 year, i32 month, i32 day, i32 hour, i32 minute, i32 second) {
+	tDate CrossTime::MkTime(i32 year, i32 month, i32 day, i32 hour, i32 minute, i32 second) {
 		tm t;
 		t.tm_year = year;
 		t.tm_mon = month;
@@ -69,10 +69,10 @@ namespace cross
 		t.tm_year -= 1900;
 		t.tm_mon--;
 		t.tm_isdst = 0;
-		return (TypeDate)mktime(&t);
+		return (tDate)mktime(&t);
 	}
 
-	bool CrossTime::LocalTime(TypeDate tm1, i32& year, i32& month, i32& day, i32& wday, i32& hour, i32& minute, i32& second) {
+	bool CrossTime::LocalTime(tDate tm1, i32& year, i32& month, i32& day, i32& wday, i32& hour, i32& minute, i32& second) {
 		time_t tmt = tm1;
 		tm* ptm = localtime(&tmt);
 		if (ptm) {
@@ -93,7 +93,7 @@ namespace cross
 		sscanf(stm.c_str(), "%04d_%02d_%02d-%02d.%02d.%02d", &year, &month, &day, &hour, &minute, &second);
 	}
 
-	TypeDate CrossTime::VariantTimeToSystemTime(f64 d) {
+	tDate CrossTime::VariantTimeToSystemTime(f64 d) {
 #if (defined(WIN32) || defined(_WIN32) || defined (WINDOWS) || defined (_WINDOWS))
 		SYSTEMTIME timeDest;
 		::VariantTimeToSystemTime(d, &timeDest);
@@ -106,12 +106,12 @@ namespace cross
 		tm1.tm_min = timeDest.wMinute;
 		tm1.tm_sec = timeDest.wSecond;
 		tm1.tm_isdst = 0;
-		return (TypeDate)mktime(&tm1);
+		return (tDate)mktime(&tm1);
 #else
 		return 0;
 #endif
 	}
-	f64 CrossTime::SystemTimeToVariantTime(TypeDate tm) {
+	f64 CrossTime::SystemTimeToVariantTime(tDate tm) {
 #if (defined(WIN32) || defined(_WIN32) || defined (WINDOWS) || defined (_WINDOWS))
 		SYSTEMTIME timeDest;
 		i32 year, month, day, wday, hour, minute, second;
