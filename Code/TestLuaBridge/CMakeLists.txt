@@ -11,6 +11,22 @@ add_definitions(-DUNICODE -D_UNICODE)
 
 add_executable(TestLuaBridge ${SOURCE})
 
-target_link_libraries(TestLuaBridge
-    libLua
-)
+set_target_properties(TestLuaBridge PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/../Resource")
+
+if (WIN32)
+	target_link_libraries(TestLuaBridge
+        libLua
+        libMath
+        libPcre
+        libCommon
+        dbghelp
+    )
+else ()
+    target_link_libraries(TestLuaBridge
+        libLua
+        libMath
+        libPcre
+        libCommon
+    )
+endif ()
+

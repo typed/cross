@@ -2,9 +2,9 @@
 #define _cross_common_luahelper_h_
 
 extern "C" {
-#include "lua.h"
-#include "lualib.h"
-#include "lauxlib.h"
+#include "Lua/lua.h"
+#include "Lua/lualib.h"
+#include "Lua/lauxlib.h"
 }
 #include "Common.h"
 #include "iLog.h"
@@ -1057,7 +1057,7 @@ inline void LuaAddLoader(lua_State* ls, lua_CFunction func)
 
 	// insert loader into index 2
 	lua_pushcfunction(ls, func);                                   /* L: package, loaders, func */
-	for (int i = (int)(lua_objlen(ls, -2) + 1); i > 2; --i)
+	for (int i = (int)(lua_rawlen(ls, -2) + 1); i > 2; --i)
 	{
 		lua_rawgeti(ls, -2, i - 1);                                /* L: package, loaders, func, function */
 		// we call lua_rawgeti, so the loader table now is at -3
@@ -1175,7 +1175,7 @@ inline void LuaModule(lua_State* L, cpstr name)
 			lua_rawset(L,-4);
 		}
 	} else {
-		lua_pushvalue(L,LUA_GLOBALSINDEX);
+		lua_pushvalue(L, LUA_RIDX_GLOBALS);
 	}
 	lua_pop(L,1);
 }
@@ -1185,7 +1185,7 @@ inline void LuaBeginModule(lua_State* L, cpstr name)
 		lua_pushstring(L,name);
 		lua_rawget(L,-2);
 	} else
-		lua_pushvalue(L,LUA_GLOBALSINDEX);
+		lua_pushvalue(L, LUA_RIDX_GLOBALS);
 }
 inline void LuaEndModule(lua_State* L)
 {

@@ -7,7 +7,10 @@ set(SOURCE
   lapi.c
   lauxlib.c
   lbaselib.c
+  lbitlib.c
   lcode.c
+  lcorolib.c
+  lctype.c
   ldblib.c
   ldebug.c
   ldo.c
@@ -31,9 +34,9 @@ set(SOURCE
   ltablib.c
   ltm.c
   lundump.c
+  lutf8lib.c
   lvm.c
   lzio.c
-  print.c
 )
 
 #unicode字符集
