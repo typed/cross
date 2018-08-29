@@ -1,0 +1,15 @@
+2018_08_29-11.06.12 [error] error do file:Lua/TestLuaBridge.lua===>Lua/TestLuaBridge.lua:1: module 'log_tree' not found:
+	no field package.preload['log_tree']
+	no file 'E:\work\cross\Build\VisualStudio\bin\Debug\lua\log_tree.lua'
+	no file 'E:\work\cross\Build\VisualStudio\bin\Debug\lua\log_tree\init.lua'
+	no file 'E:\work\cross\Build\VisualStudio\bin\Debug\log_tree.lua'
+	no file 'E:\work\cross\Build\VisualStudio\bin\Debug\log_tree\init.lua'
+	no file 'E:\work\cross\Build\VisualStudio\bin\Debug\..\share\lua\5.3\log_tree.lua'
+	no file 'E:\work\cross\Build\VisualStudio\bin\Debug\..\share\lua\5.3\log_tree\init.lua'
+	no file '.\log_tree.lua'
+	no file '.\log_tree\init.lua'
+	no file 'D:\Program Files (x86)\Lua\5.1\lua\log_tree.luac'
+	no file 'E:\work\cross\Build\VisualStudio\bin\Debug\log_tree.dll'
+	no file 'E:\work\cross\Build\VisualStudio\bin\Debug\..\lib\lua\5.3\log_tree.dll'
+	no file 'E:\work\cross\Build\VisualStudio\bin\Debug\loadall.dll'
+	no file '.\log_tree.dll'

@@ -2,10 +2,11 @@
 #define cross_common_ireference_h
 
 #include "Common.h"
+#include <vector>
 
-#ifdef _DEBUG
-#	define TRACE_REF
-#endif
+//#ifdef _DEBUG
+//#	define TRACE_REF
+//#endif
 
 #ifdef TRACE_REF
 #	define SafeAddRef(p) { if ( (p) != 0 ) { (p)->AddRef(__FILE__, __FUNCTION__, __LINE__); } }
@@ -48,13 +49,8 @@ public:
 #endif
 
 	bool Release() {
-		if (m_nRef <= 0) {
-			//错误！0引用释放！
-			RefError();
-			return false;
-		}
 		--m_nRef;
-		if (m_nRef == 0) {
+		if (m_nRef <= 0) {
 			OnDestroy();
 			return true;
 		}
@@ -73,15 +69,6 @@ private:
 
 	virtual void OnDestroy() {
 		delete this;
-	}
-
-	void RefError() {
-#ifdef _DEBUG
-		//__asm
-		//{
-		//	int 3;
-		//}
-#endif
 	}
 
 	int m_nRef;
