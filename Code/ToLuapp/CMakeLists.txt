@@ -3,7 +3,7 @@
 project(libToLuapp)
 
 #源文件
-file(GLOB SOURCE "./*.c" "./*.h")
+file(GLOB SOURCE "*.cpp" "*.c" "*.h")
 
 #unicode字符集
 add_definitions(-DUNICODE -D_UNICODE)
