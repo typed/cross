@@ -1,10 +1,7 @@
-
 #include "tolua_fix.h"
-#include "base/CCRef.h"
-#include "LuaBasicConversions.h"
+//#include "base/CCRef.h"
+//#include "LuaBasicConversions.h"
 #include <stdlib.h>
-
-using namespace cocos2d;
 
 static int s_function_ref_id = 0;
 
@@ -35,8 +32,10 @@ TOLUA_API int toluafix_pushusertype_ccobject(lua_State* L,
         return -1;
     }
     
-    Ref* vPtr = static_cast<Ref*>(ptr);
-    const char* vType = getLuaTypeName(vPtr, type);
+    //Ref* vPtr = static_cast<Ref*>(ptr);
+    //const char* vType = getLuaTypeName(vPtr, type);
+	void* vPtr = nullptr;
+	const char* vType = "";
 
     if (*p_refid == 0)
     {
@@ -143,7 +142,11 @@ TOLUA_API int toluafix_remove_ccobject_by_refid(lua_State* L, int refid)
 
     // cleanup peertable
     lua_pushvalue(L, LUA_REGISTRYINDEX);
-    lua_setfenv(L, -2);
+#if LUA_VERSION_NUM > 501
+	lua_setuservalue(L, -2);
+#else
+	lua_setfenv(L, -2);
+#endif
 
     ud = (void**)lua_touserdata(L, -1);
     lua_pop(L, 1);                                                  /* stack: mt ubox */

@@ -20,6 +20,7 @@ set_target_properties(TestLua PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_
 
 target_link_libraries(TestLua
     libLua
+    libToLuapp
     libMath
     libPcre
     libCommon
