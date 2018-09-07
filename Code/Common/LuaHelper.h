@@ -2,9 +2,9 @@
 #define _cross_common_luahelper_h_
 
 extern "C" {
-#include "Lua/lua.h"
-#include "Lua/lualib.h"
-#include "Lua/lauxlib.h"
+#include "lua.h"
+#include "lualib.h"
+#include "lauxlib.h"
 }
 #include "Common.h"
 #include "iLog.h"
