@@ -76,19 +76,21 @@ function class(classname, super)
     return cls
 end
 
---[[
-function schedule(node, callback, delay)
-    local delay = cc.DelayTime:create(delay)
-    local sequence = cc.Sequence:create(delay, cc.CallFunc:create(callback))
-    local action = cc.RepeatForever:create(sequence)
-    node:runAction(action)
-    return action
+--获取C++父类的成员函数
+function GetCppSuperClassMethod(table, methodName)
+    local mt = getmetatable(table)
+    local method = nil
+    while mt and not method do
+        method = mt[methodName]
+        if not method then
+            local index = mt.__index
+            if index and type(index) == "function" then
+                method = index(mt, methodName)
+            elseif index and type(index) == "table" then
+                method = index[methodName]
+            end
+        end
+        mt = getmetatable(mt)
+    end
+    return method
 end
-
-function performWithDelay(node, callback, delay)
-    local delay = cc.DelayTime:create(delay)
-    local sequence = cc.Sequence:create(delay, cc.CallFunc:create(callback))
-    node:runAction(sequence)
-    return sequence
-end
-]]

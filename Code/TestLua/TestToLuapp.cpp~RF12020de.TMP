@@ -89,18 +89,13 @@ static int lua_Node_AddChild(lua_State* L)
 		LError << "args 1 is nil" << LEnd;
 		return 0;
 	}
-	if (!tolua_isusertype(L, 2, "Node", 0, &tolua_err)) {
+	if (!tolua_iscppstring(L, 2, 0, &tolua_err)) {
 		LError << "args 2 invalid" << LEnd;
 		return 0;
 	}
-	Node* nod = (Node*)tolua_tousertype(L, 2, 0);
-	if (nod == nullptr) {
-		LError << "args 2 is nil" << LEnd;
-		return 0;
-	}
-	bool ret = self->AddChild(nod);
-	tolua_pushboolean(L, ret);
-	return 1;
+	const char* str = tolua_tocppstring(L, 2, "");
+	self->SetName(str);
+	return 0;
 }
 
 static int lua_Node_RemoveChild(lua_State* L)
@@ -158,32 +153,6 @@ static int lua_Node_RemoveFromParent(lua_State* L)
 	}
 	self->RemoveFromParent();
 	return 0;
-}
-
-static int lua_Node_FindChildByName(lua_State* L)
-{
-	tolua_Error tolua_err;
-	if (!tolua_isusertype(L, 1, "Node", 0, &tolua_err)) {
-		LError << "args 1 invalid" << LEnd;
-		return 0;
-	}
-	Node* self = (Node*)tolua_tousertype(L, 1, 0);
-	if (self == nullptr) {
-		LError << "args 1 is nil" << LEnd;
-		return 0;
-	}
-	if (!tolua_iscppstring(L, 2, 0, &tolua_err)) {
-		LError << "args 2 invalid" << LEnd;
-		return 0;
-	}
-	const string& name = tolua_tocppstring(L, 2, "");
-	Node* tolua_ret = self->FindChildByName(name);
-	if (tolua_ret) {
-		toluafix_pushusertype_ccobject(L, tolua_ret->_ID, &tolua_ret->_luaID, tolua_ret, "Node");
-		return 1;
-	}
-	lua_pushnil(L);
-	return 1;
 }
 
 static int lua_Node_GetClassType(lua_State* L)
@@ -302,17 +271,6 @@ static int lua_Player_GetControl(lua_State* L)
 	return 1;
 }
 
-static int lua_GetRootNode(lua_State* L)
-{
-	Node* pRoot = GetRootNode();
-	if (pRoot) {
-		toluafix_pushusertype_ccobject(L, pRoot->_ID, &pRoot->_luaID, pRoot, "Node");
-		return 1;
-	}
-	lua_pushnil(L);
-	return 1;
-}
-
 
 void TestToLuapp(int argc, char const *argv[])
 {
@@ -334,11 +292,9 @@ void TestToLuapp(int argc, char const *argv[])
 		tolua_function(L, "GetClassType", lua_Node_GetClassType);
 		tolua_function(L, "SetName", lua_Node_SetName);
 		tolua_function(L, "GetName", lua_Node_GetName);
-		tolua_function(L, "AddChild", lua_Node_AddChild);
 		tolua_function(L, "RemoveChild", lua_Node_RemoveChild);
 		tolua_function(L, "RemoveAllChild", lua_Node_RemoveAllChild);
 		tolua_function(L, "RemoveFromParent", lua_Node_RemoveFromParent);
-		tolua_function(L, "FindChildByName", lua_Node_FindChildByName);
 	tolua_endmodule(L);
 
 	tolua_usertype(L, "Char");
@@ -357,7 +313,7 @@ void TestToLuapp(int argc, char const *argv[])
 		tolua_function(L, "GetControl", lua_Player_GetControl);
 	tolua_endmodule(L);
 
-	tolua_function(L, "GetRootNode", lua_GetRootNode);
+	tolua_function(L, "GetControl", lua_Player_GetControl);
 
 	tolua_endmodule(L);
 

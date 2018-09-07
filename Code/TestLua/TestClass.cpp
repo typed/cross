@@ -92,12 +92,22 @@ void Node::RemoveAllChild()
     m_vChildren.clear();
 }
 
-bool Node::RemoveFromParent()
+void Node::RemoveFromParent()
 {
     if (m_pParent == nullptr)
-        return false;
+        return;
     RemoveAllChild();
-    return m_pParent->RemoveChild(this);
+    m_pParent->RemoveChild(this);
+}
+
+Node* Node::FindChildByName(const string& name)
+{
+	for (auto nd : m_vChildren) {
+		if (nd->GetName() == name) {
+			return nd;
+		}
+	}
+	return nullptr;
 }
 	
 void Node::Trace()

@@ -1,0 +1,1 @@
+2018_09_07-15.44.17 [error] error do file:Lua/TestToLuapp.lua===>Lua/TestToLuapp.lua:7: attempt to call method 'AddChild' (a nil value)

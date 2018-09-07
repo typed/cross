@@ -34,7 +34,8 @@ public:
 	virtual bool AddChild(Node* pNode);
 	virtual bool RemoveChild(Node* pNode);
 	virtual void RemoveAllChild();
-	virtual bool RemoveFromParent();
+	virtual void RemoveFromParent();
+	virtual Node* FindChildByName(const string& name);
 	virtual void Trace();
 protected:
 	int m_iTag;

@@ -16,7 +16,8 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libs)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
 # lua版本目录
-set(LUAVER Lua515)
+#set(LUAVER Lua515)
+set(LUAVER Lua535)
 
 add_subdirectory(AES)
 add_subdirectory(Sqlite)

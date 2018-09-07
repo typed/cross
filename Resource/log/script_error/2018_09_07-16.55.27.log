@@ -1,0 +1,1 @@
+2018_09_07-16.55.27 [error] error do file:Lua/TestToLuapp.lua===>Lua/TestToLuapp.lua:35: attempt to index a nil value (field 'super')
