@@ -1,15 +1,10 @@
-extern "C" {
-#include "lua.h"
-#include "lualib.h"
-#include "lauxlib.h"
-}
 #include "TestLuaBridge.h"
 #include "TestClass.h"
-#include "LuaBridge.h"
 #include "Common.h"
 #include "iLog.h"
 #include "iReference.h"
 #include "LuaHelper.h"
+#include "LuaBridge.h"
 #include <iostream>
 #include <string>
 

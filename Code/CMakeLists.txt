@@ -15,6 +15,9 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libs)
 # 设置可执行文件目录，同样设成和库目录相同
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
+# lua版本目录
+set(LUAVER Lua515)
+
 add_subdirectory(AES)
 add_subdirectory(Sqlite)
 add_subdirectory(QuickLZ)

@@ -1,12 +1,24 @@
 #pragma once
 
 #include "iReference.h"
+#include "tolua_fix.h"
 #include <string>
 
 using namespace std;
 using namespace cross;
 
-class Node : public iReference
+extern lua_State* g_lua_State;
+
+class RefLuaBind : public iReference
+{
+public:
+	RefLuaBind();
+	virtual ~RefLuaBind();
+	int _ID;
+	int _luaID;
+};
+
+class Node : public RefLuaBind
 {
 public:
 	Node();

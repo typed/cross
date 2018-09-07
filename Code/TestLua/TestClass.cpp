@@ -5,6 +5,22 @@
 using namespace std;
 using namespace cross;
 
+lua_State* g_lua_State = nullptr;
+
+RefLuaBind::RefLuaBind()
+{
+	static int s_uObjectCount = 0;
+	_luaID = 0;
+	_ID = ++s_uObjectCount;
+}
+
+RefLuaBind::~RefLuaBind()
+{
+	if (g_lua_State) {
+		toluafix_remove_ccobject_by_refid(g_lua_State, _luaID);
+	}
+}
+
 Node::Node()
 {
     m_pParent = nullptr;

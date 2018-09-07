@@ -30,6 +30,9 @@ TOLUA_API int toluafix_pushusertype_ccobject(lua_State* L,
         return -1;
     }
 
+	//Ref* vPtr = static_cast<Ref*>(ptr);
+	//const char* vType = getLuaTypeName(vPtr, type);
+
     if (*p_refid == 0)
     {
         *p_refid = refid;

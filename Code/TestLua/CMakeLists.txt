@@ -10,7 +10,7 @@ file(GLOB SOURCE "*.cpp" "*.c" "*.h")
 add_definitions(-DUNICODE -D_UNICODE)
 
 include_directories(../Common)
-include_directories(../Lua)
+include_directories(../Lua/${LUAVER})
 include_directories(../ToLuapp)
 include_directories(../LuaBridge)
 

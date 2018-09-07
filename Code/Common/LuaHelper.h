@@ -1057,7 +1057,11 @@ inline void LuaAddLoader(lua_State* ls, lua_CFunction func)
 
 	// insert loader into index 2
 	lua_pushcfunction(ls, func);                                   /* L: package, loaders, func */
+#if LUA_VERSION_NUM > 501
 	for (int i = (int)(lua_rawlen(ls, -2) + 1); i > 2; --i)
+#else
+	for (int i = (int)(lua_objlen(ls, -2) + 1); i > 2; --i)
+#endif
 	{
 		lua_rawgeti(ls, -2, i - 1);                                /* L: package, loaders, func, function */
 		// we call lua_rawgeti, so the loader table now is at -3
@@ -1175,7 +1179,11 @@ inline void LuaModule(lua_State* L, cpstr name)
 			lua_rawset(L,-4);
 		}
 	} else {
+#if LUA_VERSION_NUM > 501
 		lua_pushvalue(L, LUA_RIDX_GLOBALS);
+#else
+		lua_pushvalue(L, LUA_GLOBALSINDEX);
+#endif
 	}
 	lua_pop(L,1);
 }
@@ -1184,8 +1192,14 @@ inline void LuaBeginModule(lua_State* L, cpstr name)
 	if (name) {
 		lua_pushstring(L,name);
 		lua_rawget(L,-2);
-	} else
+	}
+	else {
+#if LUA_VERSION_NUM > 501
 		lua_pushvalue(L, LUA_RIDX_GLOBALS);
+#else
+		lua_pushvalue(L, LUA_GLOBALSINDEX);
+#endif
+	}
 }
 inline void LuaEndModule(lua_State* L)
 {

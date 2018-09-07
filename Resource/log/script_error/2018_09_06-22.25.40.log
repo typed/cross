@@ -1,0 +1,1 @@
+2018_09_06-22.25.40 [error] error do file:Lua/TestToLuapp.lua===>Lua/TestToLuapp.lua:4: attempt to index a nil value (global 'Node')
