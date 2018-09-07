@@ -1,1 +1,0 @@
-2018_09_07-17.27.54 [error] error do file:Lua/TestToLuapp.lua===>Lua/TestToLuapp.lua:59: attempt to index a nil value (local 'pl1')

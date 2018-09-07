@@ -1,1 +1,0 @@
-2018_08_29-11.10.43 [error] error do file:Lua/TestLuaBridge.lua===>Lua/TestLuaBridge.lua:3: attempt to call a nil value (field 'new')
