@@ -61,3 +61,5 @@ print(tostring(pl))
 print(tostring(mpl))
 mpl:Trace()
 
+mpl:RemoveFromParent()
+root:Trace()
