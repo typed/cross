@@ -23,4 +23,10 @@ TOLUA_API int toluafix_totable(lua_State* L, int lo, int def);
 TOLUA_API int toluafix_istable(lua_State* L, int lo, const char* type, int def, tolua_Error* err);
 TOLUA_API void toluafix_stack_dump(lua_State* L, const char* label);
 
+//add by levingong 2018-10-22
+#define TOLUA_REFID_USERTABLE_MAPPING "toluafix_refid_usertable_mapping"
+TOLUA_API void toluafix_add_usertable_by_refid(lua_State* L, int refid, int usertable);
+TOLUA_API void toluafix_get_usertable_by_refid(lua_State* L, int refid);
+TOLUA_API void toluafix_remove_usertable_by_refid(lua_State* L, int refid);
+
 #endif // __TOLUA_FIX_H_

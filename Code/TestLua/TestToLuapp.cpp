@@ -11,6 +11,26 @@
 using namespace std;
 using namespace cross;
 
+#define OBJ_BIND_MAPPING "obj_bind_mapping"
+
+static void printLuaStack(lua_State* L, const char* pre)
+{
+    int stackTop = lua_gettop(L);
+    int nIdx = 0;
+    int nType;
+    printf("%s  ", pre);
+    for (nIdx = stackTop; nIdx > 0; --nIdx)
+    {
+        nType = lua_type(L, nIdx);
+        const char* st = lua_typename(L, nType);
+        const char* sv = luaL_tolstring(L, nIdx, NULL);
+        lua_pop(L, 1);
+        printf("%d:%s(%s)|", nIdx, st, sv);
+    }
+    stackTop = lua_gettop(L);
+    printf("\n");
+}
+
 static int lua_Node_New(lua_State* L)
 {
 	Node* tolua_ret = Node::New();
@@ -186,6 +206,39 @@ static int lua_Node_FindChildByName(lua_State* L)
 	return 1;
 }
 
+static int lua_Node_SetLuaUserData(lua_State* L)
+{
+	tolua_Error tolua_err;
+	if (!tolua_isusertype(L, 1, "Node", 0, &tolua_err)) {
+		LError << "args 1 invalid" << LEnd;
+		return 0;
+	}
+    Node* self = (Node*)tolua_tousertype(L, 1, 0);
+    if (tolua_istable(L, 2, 0, &tolua_err)) {
+        int tbl = tolua_tovalue(L, 2, 0);
+        toluafix_add_usertable_by_refid(L, self->_luaID, tbl);
+		return 0;
+    }
+    if (lua_isnil(L, 2)) {
+        toluafix_remove_usertable_by_refid(L, self->_luaID);
+        return 0;
+    }
+    LError << "args 2 must table or nil." << LEnd;
+    return 0;
+}
+
+static int lua_Node_GetLuaUserData(lua_State* L)
+{
+	tolua_Error tolua_err;
+	if (!tolua_isusertype(L, 1, "Node", 0, &tolua_err)) {
+		LError << "args 1 invalid" << LEnd;
+		return 0;
+	}
+    Node* self = (Node*)tolua_tousertype(L, 1, 0);
+    toluafix_get_usertable_by_refid(L, self->_luaID);
+	return 1;
+}
+
 static int lua_Node_GetClassType(lua_State* L)
 {
 	tolua_Error tolua_err;
@@ -322,6 +375,10 @@ void TestToLuapp(int argc, char const *argv[])
 	g_lua_State = L;
 	tolua_open(L);
 	toluafix_open(L);
+
+	lua_pushstring(L, OBJ_BIND_MAPPING);
+	lua_newtable(L);
+	lua_rawset(L, LUA_REGISTRYINDEX);
 	
 	tolua_module(L, 0, 0);
 	tolua_beginmodule(L, 0);
@@ -339,6 +396,8 @@ void TestToLuapp(int argc, char const *argv[])
 		tolua_function(L, "RemoveAllChild", lua_Node_RemoveAllChild);
 		tolua_function(L, "RemoveFromParent", lua_Node_RemoveFromParent);
 		tolua_function(L, "FindChildByName", lua_Node_FindChildByName);
+		tolua_function(L, "SetLuaUserData", lua_Node_SetLuaUserData);
+		tolua_function(L, "GetLuaUserData", lua_Node_GetLuaUserData);
 	tolua_endmodule(L);
 
 	tolua_usertype(L, "Char");

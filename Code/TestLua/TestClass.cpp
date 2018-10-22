@@ -30,6 +30,9 @@ Node::Node()
 Node::~Node()
 {
     RemoveAllChild();
+    if (g_lua_State) {
+        toluafix_remove_usertable_by_refid(g_lua_State, _luaID);
+    }
 }
 
 Node* Node::New()

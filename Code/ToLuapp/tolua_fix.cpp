@@ -16,6 +16,10 @@ TOLUA_API void toluafix_open(lua_State* L)
     lua_pushstring(L, TOLUA_REFID_FUNCTION_MAPPING);
     lua_newtable(L);
     lua_rawset(L, LUA_REGISTRYINDEX);
+
+    lua_pushstring(L, TOLUA_REFID_USERTABLE_MAPPING);
+    lua_newtable(L);
+    lua_rawset(L, LUA_REGISTRYINDEX);
 }
 
 TOLUA_API int toluafix_pushusertype_ccobject(lua_State* L,
@@ -251,4 +255,33 @@ TOLUA_API void toluafix_stack_dump(lua_State* L, const char* label)
         }
     }
     printf("\n");
+}
+
+TOLUA_API void toluafix_add_usertable_by_refid(lua_State* L, int refid, int usertable)
+{
+    lua_pushstring(L, TOLUA_REFID_USERTABLE_MAPPING);
+    lua_rawget(L, LUA_REGISTRYINDEX);                               /* stack: refid_usertable */
+    lua_pushinteger(L, refid);                                      /* stack: refid_usertable refid */
+    lua_pushvalue(L, usertable);                                    /* stack: refid_usertable refid usertable */
+    lua_rawset(L, -3);                                              /* refid_usertable[refid] = usertable, stack: usertable */
+    lua_pop(L, 1);                                                  /* stack: - */
+}
+
+TOLUA_API void toluafix_get_usertable_by_refid(lua_State* L, int refid)
+{
+    lua_pushstring(L, TOLUA_REFID_USERTABLE_MAPPING);
+    lua_rawget(L, LUA_REGISTRYINDEX);                           /* stack: ... refid_usertable */
+    lua_pushinteger(L, refid);                                  /* stack: ... refid_usertable refid */
+    lua_rawget(L, -2);                                          /* stack: ... refid_usertable usertable */
+    lua_remove(L, -2);
+}
+
+TOLUA_API void toluafix_remove_usertable_by_refid(lua_State* L, int refid)
+{
+    lua_pushstring(L, TOLUA_REFID_USERTABLE_MAPPING);
+    lua_rawget(L, LUA_REGISTRYINDEX);                               /* stack: refid_usertable */
+    lua_pushinteger(L, refid);                                      /* stack: refid_usertable refid */
+    lua_pushnil(L);                                                 /* stack: refid_usertable refid nil */
+    lua_rawset(L, -3);                                              /* refid_usertable[refid] = nil, stack: nil */
+    lua_pop(L, 1);                                                  /* stack: - */
 }

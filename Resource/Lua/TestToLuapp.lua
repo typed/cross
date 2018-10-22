@@ -3,6 +3,16 @@ require("Lua/extern")
 print("This is TestToLuapp.")
 
 local root = GetRootNode()
+
+local luaUserData = {
+    name = "hello",
+}
+print("SetLuaUserData:"..tostring(luaUserData))
+root:SetLuaUserData(luaUserData)
+local luaUserData1 = root:GetLuaUserData()
+print("GetLuaUserData:"..tostring(luaUserData1))
+
+
 local node = Node.New()
 root:AddChild(node)
 node:SetName("aaa")
