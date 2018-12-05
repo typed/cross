@@ -13,7 +13,7 @@ using namespace cross;
 
 #define OBJ_BIND_MAPPING "obj_bind_mapping"
 
-static void printLuaStack(lua_State* L, const char* pre)
+static void printLuaStack(lua_State* L, const char* pre = "")
 {
     int stackTop = lua_gettop(L);
     int nIdx = 0;
@@ -235,8 +235,49 @@ static int lua_Node_GetLuaUserData(lua_State* L)
 		return 0;
 	}
     Node* self = (Node*)tolua_tousertype(L, 1, 0);
-    toluafix_get_usertable_by_refid(L, self->_luaID);
+    lua_pushstring(L, TOLUA_REFID_USERTABLE_MAPPING);
+    lua_rawget(L, LUA_REGISTRYINDEX);
+    lua_pushinteger(L, self->_luaID);
+    printLuaStack(L, "");
+    lua_rawget(L, -2);
+    printLuaStack(L, "");
+    lua_remove(L, -2);
+    printLuaStack(L, "");
+    //toluafix_get_usertable_by_refid(L, self->_luaID);
 	return 1;
+}
+
+static int lua_Node_CallFuncLuaUserData(lua_State* L)
+{
+    tolua_Error tolua_err;
+    if (!tolua_isusertype(L, 1, "Node", 0, &tolua_err)) {
+        LError << "args 1 invalid" << LEnd;
+        return 0;
+    }
+    Node* self = (Node*)tolua_tousertype(L, 1, 0);
+    const char* func = "test";
+    lua_pushstring(L, TOLUA_REFID_USERTABLE_MAPPING);
+    lua_rawget(L, LUA_REGISTRYINDEX);
+    lua_pushinteger(L, self->_luaID);
+    lua_rawget(L, -2);
+    //printLuaStack(L, "");
+    lua_remove(L, -2);
+    //printLuaStack(L, "");
+    if (!lua_istable(L, -1)) {
+        return 0;
+    }
+    lua_pushstring(L, func);
+    //printLuaStack(L, "");
+    lua_rawget(L, -2);
+    if (!lua_isfunction(L, -1)) {
+        return 0;
+    }
+    //printLuaStack(L, "");
+    lua_replace(L, -3);
+    //printLuaStack(L, "");
+    lua_call(L, 1, 0);
+    //printLuaStack(L, "");
+    return 0;
 }
 
 static int lua_Node_GetClassType(lua_State* L)
@@ -398,6 +439,7 @@ void TestToLuapp(int argc, char const *argv[])
 		tolua_function(L, "FindChildByName", lua_Node_FindChildByName);
 		tolua_function(L, "SetLuaUserData", lua_Node_SetLuaUserData);
 		tolua_function(L, "GetLuaUserData", lua_Node_GetLuaUserData);
+        tolua_function(L, "CallFuncLuaUserData", lua_Node_CallFuncLuaUserData);
 	tolua_endmodule(L);
 
 	tolua_usertype(L, "Char");

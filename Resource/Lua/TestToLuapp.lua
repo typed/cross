@@ -7,10 +7,15 @@ local root = GetRootNode()
 local luaUserData = {
     name = "hello",
 }
+function luaUserData:test()
+    print("hahaha test call! self.name="..self.name)
+end
+
 print("SetLuaUserData:"..tostring(luaUserData))
-root:SetLuaUserData(luaUserData)
+--root:SetLuaUserData(luaUserData)
 local luaUserData1 = root:GetLuaUserData()
 print("GetLuaUserData:"..tostring(luaUserData1))
+root:CallFuncLuaUserData()
 
 
 local node = Node.New()

@@ -251,7 +251,7 @@ TOLUA_API void toluafix_stack_dump(lua_State* L, const char* label)
                 printf("  [%02d] number %g\n", i, lua_tonumber(L, i));
                 break;
             default:
-                printf("  [%02d] %s\n", i, lua_typename(L, t));
+                printf("  [%02d] %s %s\n", i, lua_typename(L, t), lua_tostring(L, i));
         }
     }
     printf("\n");

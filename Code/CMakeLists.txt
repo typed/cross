@@ -1,13 +1,27 @@
 # 最低版本要求，必须
 cmake_minimum_required (VERSION 3.0)
 
+if(WIN32) # Win32
+  set(PLATFORM_FOLDER win32)
+elseif(APPLE)# osx or ios
+  set(PLATFORM_FOLDER mac)
+else() # Assume Linux
+  set(PLATFORM_FOLDER linux)
+endif()
+
 # 工程名
 project(cross)
 
-include_directories(${PROJECT_SOURCE_DIR}/)
+include_directories(
+    ${PROJECT_SOURCE_DIR}/
+    ${CMAKE_CURRENT_SOURCE_DIR}/FFmpeg/include
+)
 
 # 添加链接库查找目录，库查找序按照参数顺序从向右查
-link_directories(${PROJECT_BINARY_DIR}/libs)
+link_directories(
+    ${PROJECT_BINARY_DIR}/libs
+    ${CMAKE_CURRENT_SOURCE_DIR}/FFmpeg/lib/${PLATFORM_FOLDER}
+)
 
 # 设置生成的库文件目录，这里我们设置成和库目录相同
 set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/libs)
@@ -37,3 +51,4 @@ add_subdirectory(TestAES)
 add_subdirectory(TestTinyXml)
 add_subdirectory(TestCommon)
 add_subdirectory(TestLua)
+add_subdirectory(TestFFmpeg)
