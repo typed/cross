@@ -15,12 +15,16 @@ project(cross)
 include_directories(
     ${PROJECT_SOURCE_DIR}/
     ${CMAKE_CURRENT_SOURCE_DIR}/FFmpeg/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/SDL2/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/FbxSdk/include
 )
 
 # 添加链接库查找目录，库查找序按照参数顺序从向右查
 link_directories(
     ${PROJECT_BINARY_DIR}/libs
     ${CMAKE_CURRENT_SOURCE_DIR}/FFmpeg/lib/${PLATFORM_FOLDER}
+    ${CMAKE_CURRENT_SOURCE_DIR}/SDL2/lib/${PLATFORM_FOLDER}
+    ${CMAKE_CURRENT_SOURCE_DIR}/FbxSdk/lib/${PLATFORM_FOLDER}
 )
 
 # 设置生成的库文件目录，这里我们设置成和库目录相同
@@ -52,3 +56,4 @@ add_subdirectory(TestTinyXml)
 add_subdirectory(TestCommon)
 add_subdirectory(TestLua)
 add_subdirectory(TestFFmpeg)
+add_subdirectory(ToolMx2Fbx)

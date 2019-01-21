@@ -11,6 +11,8 @@ add_definitions(-DUNICODE -D_UNICODE)
 
 add_executable(TestFFmpeg ${SOURCE})
 
+set_target_properties(TestFFmpeg PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}/../Resource")
+
 target_link_libraries(
     TestFFmpeg
     libavcodec
@@ -20,4 +22,6 @@ target_link_libraries(
     libavutil
     libswresample
     libswscale
+    SDL2
+    SDL2main
 )
