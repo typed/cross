@@ -1,12 +1,12 @@
---¹¦ÄÜ£º½çÃæ
---×÷Õß£º¹¨Ïş½£
---Ê±¼ä£º2013-12-3
---°æ±¾ºÅ£ºv0.1
+--åŠŸèƒ½ï¼šç•Œé¢
+--ä½œè€…ï¼šé¾šæ™“å‰‘
+--æ—¶é—´ï¼š2013-12-3
+--ç‰ˆæœ¬å·ï¼šv0.1
 
 c_sVersion = "v0.1";
-c_sTitle = "gcrossµ¼³ö¹¤¾ß";
+c_sTitle = "gcrosså¯¼å‡ºå·¥å…·";
 
---»ñÈ¡Ê±¼ä
+--è·å–æ—¶é—´
 function getFramesSumTime nFrameCount = (
 	local fFrameCount = nFrameCount as float;
 	local fPer = 0.25;
@@ -14,7 +14,7 @@ function getFramesSumTime nFrameCount = (
 	return fFrameCount / frameRate / fPer;
 )
 
---»ñÈ¡SkinĞŞ¸ÄÆ÷
+--è·å–Skinä¿®æ”¹å™¨
 function getSkin obj = (
 	local s,i ;
 	s = undefined ;
@@ -26,7 +26,7 @@ function getSkin obj = (
 	return s;
 )
 
---»ñÈ¡PhysiqueĞŞ¸ÄÆ÷
+--è·å–Physiqueä¿®æ”¹å™¨
 function getPhysique obj = (
 	local s,i ;
 	s = undefined ;
@@ -38,7 +38,7 @@ function getPhysique obj = (
 	return s;
 )
 
---»ñÈ¡·¨Ïß
+--è·å–æ³•çº¿
 function getVertexNormalAccordingToSmoothingGroups selectedMesh faceIndex vertexIndex = (
 	local normal;
 	local faceSmoothingGroup = getFaceSmoothGroup selectedMesh faceIndex;
@@ -59,7 +59,7 @@ function getVertexNormalAccordingToSmoothingGroups selectedMesh faceIndex vertex
 	return normal;
 )
 
---»ñÈ¡¹Ç÷ÀID
+--è·å–éª¨éª¼ID
 function getBoneID name = (
 	local i = 0;
 	for obj in objects do (
@@ -71,7 +71,7 @@ function getBoneID name = (
 	return -1;
 )
 
---»ñÈ¡¶¥µãÊı¾İ
+--è·å–é¡¶ç‚¹æ•°æ®
 function getVertexDatas selObj = (
 	local sk = getSkin selObj;
 	local phy = getPhysique selObj;
@@ -99,14 +99,14 @@ function getVertexDatas selObj = (
 			local vertexIndex = faceVerticesIndices[iFaceVi];
 			if (vertexData[vertexIndex] == undefined) then (
 				
-				--¶¥µã
+				--é¡¶ç‚¹
 				local vertexPosition = getVert tmesh vertexIndex;
 				local vertTmp = copy vertexPosition;
 				vertexPosition[2] = vertTmp[3];
 				vertexPosition[3] = vertTmp[2];
 				--print(vertexPosition as string);
 				
-				--·¨Ïß
+				--æ³•çº¿
 				local vertexNormal = getVertexNormalAccordingToSmoothingGroups tmesh iFace iFaceVi;
 				vertexNormal = vertexNormal * -1;
 				local nmalTmp = copy vertexNormal;
@@ -114,7 +114,7 @@ function getVertexDatas selObj = (
 				vertexNormal[3] = nmalTmp[2];
 				--print(vertexNormal as string);
 				
-				--ÎÆÀí×ø±ê
+				--çº¹ç†åæ ‡
 				local UVcoords = #();
 				local vertInds = meshOp.getMapFace tmesh 1 iFace;
 				local vInd = vertInds[iFaceVi];
@@ -124,11 +124,11 @@ function getVertexDatas selObj = (
 				
 				vertexData[vertexIndex] = #(vertexIndex, vertexPosition[1], vertexPosition[2], vertexPosition[3], vertexNormal[1], vertexNormal[2], vertexNormal[3], UVcoords[1], UVcoords[2]);
 				
-				--È¨ÖØ
+				--æƒé‡
 				if (sk != undefined) then (
 					local vertexWeightCount = skinOps.getVertexWeightCount sk vertexIndex;
 					if (vertexWeightCount > 4) then (
-						messageBox "¶¥µãÈ¨ÖØ¸öÊıÇë²»Òª³¬¹ı4¸ö£¡";
+						messageBox "é¡¶ç‚¹æƒé‡ä¸ªæ•°è¯·ä¸è¦è¶…è¿‡4ä¸ªï¼";
 					)
 					local k;
 					for k = 1 to vertexWeightCount do (
@@ -143,7 +143,7 @@ function getVertexDatas selObj = (
 				if (phy != undefined) then (
 					local vertexWeightCount = physiqueOps.getVertexBoneCount selObj vertexIndex;
 					if (vertexWeightCount > 4) then (
-						messageBox "¶¥µãÈ¨ÖØ¸öÊıÇë²»Òª³¬¹ı4¸ö£¡";
+						messageBox "é¡¶ç‚¹æƒé‡ä¸ªæ•°è¯·ä¸è¦è¶…è¿‡4ä¸ªï¼";
 					)
 					local k;
 					for k = 1 to vertexWeightCount do (
@@ -167,7 +167,7 @@ function getVertexDatas selObj = (
 	return data;
 )
 
---µ¼³ö¹Ç÷ÀÊı¾İ
+--å¯¼å‡ºéª¨éª¼æ•°æ®
 function writeBones outFile = (
 	format("\t<bones>\n") to:outFile;
 	for obj in objects do (
@@ -199,7 +199,7 @@ function writeBones outFile = (
 	format("\t</bones>\n") to:outFile;
 )
 
---µ¼³öÄ£ĞÍÊı¾İ
+--å¯¼å‡ºæ¨¡å‹æ•°æ®
 function writeMesh selObj outFile = (
 	local data = getVertexDatas selObj;
 	--print(data as string);
@@ -213,7 +213,7 @@ function writeMesh selObj outFile = (
 	format("\t</mesh>\n") to:outFile;
 )
 
---µ¼³ö²ÄÖÊÊı¾İ
+--å¯¼å‡ºæè´¨æ•°æ®
 function writeMaterials mat outFile = (
 	format("\t<materials>\n") to:outFile;
 	format("\t</materials>\n") to:outFile;
@@ -221,14 +221,14 @@ function writeMaterials mat outFile = (
 
 rollout gcrossExportTools (c_sTitle + " - " + c_sVersion)
 (
-	label lbl01 "XML×ª»»Æ÷" pos:[2,2] width:70 height:18
+	label lbl01 "XMLè½¬æ¢å™¨" pos:[2,2] width:70 height:18
 	editText editXMLconverter "" pos:[74,2] width:160 height:18
-	button browseXMLconverter "..." pos:[236,2] width:30 height:18 toolTip:"Ñ¡ÔñexeÎÄ¼ş"
+	button browseXMLconverter "..." pos:[236,2] width:30 height:18 toolTip:"é€‰æ‹©exeæ–‡ä»¶"
 	
-	button btnExportSkeleton "µ¼³ö¹Ç¼Ü" pos:[2,22] width:200 height:18
-	button btnExportMesh "µ¼³öÑ¡ÔñµÄÄ£ĞÍ" pos:[2,42] width:200 height:18
-	button btnExportAni "µ¼³ö¶¯×÷" pos:[2,62] width:200 height:18
-	button btnExportAniTest "²âÊÔÓÃ!" pos:[2,82] width:200 height:18
+	button btnExportSkeleton "å¯¼å‡ºéª¨æ¶" pos:[2,22] width:200 height:18
+	button btnExportMesh "å¯¼å‡ºé€‰æ‹©çš„æ¨¡å‹" pos:[2,42] width:200 height:18
+	button btnExportAni "å¯¼å‡ºåŠ¨ä½œ" pos:[2,62] width:200 height:18
+	button btnExportAniTest "æµ‹è¯•ç”¨!" pos:[2,82] width:200 height:18
 	
 	on browseXMLconverter pressed do (
 		filename = getOpenFileName types:"Executables(*.exe)|*.exe|";
@@ -272,7 +272,7 @@ rollout gcrossExportTools (c_sTitle + " - " + c_sVersion)
 			close outFile;
 			DOSCommand (editXMLconverter.text + " -mesh \"" + sceneName + "\"");
 		) else (
-			messageBox "ÇëÑ¡ÔñÒ»¸öÓĞĞ§µÄÄ£ĞÍ¶ÔÏó";
+			messageBox "è¯·é€‰æ‹©ä¸€ä¸ªæœ‰æ•ˆçš„æ¨¡å‹å¯¹è±¡";
 		)
 		sliderTime = oldt;
 	)
