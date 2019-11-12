@@ -14,7 +14,7 @@ project(cross)
 
 include_directories(
     ${PROJECT_SOURCE_DIR}/
-    ${CMAKE_CURRENT_SOURCE_DIR}/FFmpeg/include/${PLATFORM_FOLDER}
+    ${CMAKE_CURRENT_SOURCE_DIR}/FFmpeg/include
     ${CMAKE_CURRENT_SOURCE_DIR}/SDL2/include
 )
 
