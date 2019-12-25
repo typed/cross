@@ -68,7 +68,8 @@ int main_simplest_ffmpeg_player(int argc, char* argv[])
 	struct SwsContext *img_convert_ctx;
 
 	//char filepath[]="bigbuckbunny_480x272.h265";
-    char filepath[] = "Titanic.mkv";
+    //char filepath[] = "Titanic.mkv";
+    char filepath[] = "mv002.mp4";
 	//SDL---------------------------
 	int screen_w=0,screen_h=0;
 	SDL_Window *screen; 
@@ -114,7 +115,8 @@ int main_simplest_ffmpeg_player(int argc, char* argv[])
 	
 	pFrame=av_frame_alloc();
 	pFrameYUV=av_frame_alloc();
-	out_buffer=(unsigned char *)av_malloc(av_image_get_buffer_size(AV_PIX_FMT_YUV420P,  pCodecCtx->width, pCodecCtx->height,1));
+	out_buffer=(unsigned char *)av_malloc(av_image_get_buffer_size(AV_PIX_FMT_YUV420P,
+        pCodecCtx->width, pCodecCtx->height, 1));
 	av_image_fill_arrays(pFrameYUV->data, pFrameYUV->linesize,out_buffer,
 		AV_PIX_FMT_YUV420P,pCodecCtx->width, pCodecCtx->height,1);
 	
@@ -160,6 +162,20 @@ int main_simplest_ffmpeg_player(int argc, char* argv[])
 	//SDL End----------------------
 	while(av_read_frame(pFormatCtx, packet)>=0){
 		if(packet->stream_index==videoindex){
+
+            //int re = avcodec_send_packet(pCodecCtx, packet);
+            //if (re != 0) {
+            //    break;
+            //}
+            //while (avcodec_receive_frame(pCodecCtx, pFrame) == 0)
+            //{
+
+            //    //读取到一帧音频或者视频
+
+            //    //处理解码后音视频 frame
+
+            //}
+
 			ret = avcodec_decode_video2(pCodecCtx, pFrame, &got_picture, packet);
 			if(ret < 0){
 				printf("Decode Error.\n");
@@ -229,6 +245,7 @@ int main_simplest_ffmpeg_player(int argc, char* argv[])
 
 	SDL_Quit();
 
+    av_free(out_buffer);
 	av_frame_free(&pFrameYUV);
 	av_frame_free(&pFrame);
 	avcodec_close(pCodecCtx);
